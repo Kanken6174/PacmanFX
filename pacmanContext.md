@@ -3,7 +3,7 @@
 - score
 - petites boules pour score
 - grandes boules pour super pacman (manger)
-- fruits pour score + temps
+- fruits pour score + temps (time attack)
 - couloirs sans fin
 - 4 fantômes avec 4 comportements
 - ?power-ups (type vitesse, glissant, pac-fantôme)?
@@ -13,3 +13,5 @@
 - 3 vies avec collection de vies à chaque 1000 points?
 - joueur mange fantômes, gagne 250 points
 - victoire quand toutes les petites boules mangées
+- paramètres de difficulté pour nb de fantômes (4 max), et leur vitesse.
+- mode survie (survivre le plus longtemps (difficulté grandissante)/time attack (timer qui décrémente 0 = mort)/normal ?
