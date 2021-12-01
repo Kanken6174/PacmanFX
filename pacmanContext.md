@@ -14,4 +14,4 @@
 - joueur mange fantômes, gagne 250 points
 - victoire quand toutes les petites boules mangées
 - paramètres de difficulté pour nb de fantômes (4 max), et leur vitesse.
-- mode survie (survivre le plus longtemps (difficulté grandissante)/time attack (timer qui décrémente 0 = mort)/normal ?
+- mode survie (survivre le plus longtemps (difficulté grandissante))/time attack (timer qui décrémente 0 = mort)/normal ?
