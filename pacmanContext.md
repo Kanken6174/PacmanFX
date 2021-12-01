@@ -11,3 +11,5 @@
 - site respawn fantôme
 - respawn joueur sur place
 - 3 vies avec collection de vies à chaque 1000 points?
+- joueur mange fantômes, gagne 250 points
+- victoire quand toutes les petites boules mangées
