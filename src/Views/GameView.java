@@ -10,16 +10,5 @@ public class GameView {
     public GameView(Stage stage){
        this.stage = stage;
     }
-    @FXML
-    public void runPacMan(){
 
-        pacman.setStartAngle(pacman.getStartAngle());
-        pacman.setCenterX(0f);
-        pacman.setCenterY(0f);
-        System.out.println(pacman.getLength());
-        if(pacman.getLength() >= 345)
-            pacman.setLength(270f);
-        else
-            pacman.setLength(pacman.getLength()+1f);
-    }
 }
