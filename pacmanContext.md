@@ -1,0 +1,8 @@
+- joueur peut aller haut bas gauche droite avec collisions
+- timer
+- score
+- petites boules pour score
+- grandes boules pour super pacman (manger)
+- fruits pour score + temps
+- couloirs sans fin
+- 4 fantômes avec 4 comportements
