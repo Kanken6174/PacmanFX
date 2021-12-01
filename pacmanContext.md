@@ -8,3 +8,6 @@
 - 4 fantômes avec 4 comportements
 - ?power-ups (type vitesse, glissant, pac-fantôme)?
 - mort si touche fantôme sans power-up ni mode manger ou time-out
+- site respawn fantôme
+- respawn joueur sur place
+- 3 vies avec collection de vies à chaque 1000 points?
