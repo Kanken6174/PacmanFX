@@ -64,16 +64,16 @@ public class Game {
 
         switch ((int)pacAngle){
             case 0:
-                pacman.setCenterY(pacman.getCenterY()+1);
-                break;
-            case 90:
                 pacman.setCenterX(pacman.getCenterX()+1);
                 break;
             case 180:
                 pacman.setCenterY(pacman.getCenterY()-1);
                 break;
             case 270:
-                pacman.setCenterX(pacman.getCenterX()-1);
+                pacman.setCenterY(pacman.getCenterX()-1);
+                break;
+            case 90:
+                pacman.setCenterX(pacman.getCenterX()+1);
                 break;
             default:
                 break;
@@ -96,21 +96,26 @@ public class Game {
 
     private void changePacOrient(KeyCode kc){
         switch (kc){
+            case RIGHT:
+                pacAngle = 90;
+                System.out.println("RIGHT");
+                break;
             case UP:
-                pacAngle = 0;
+                pacAngle = 180;
+                System.out.println("UP");
                 break;
             case DOWN:
-                pacAngle = 180;
+                pacAngle = 0;
+                System.out.println("DOWN");
                 break;
             case LEFT:
                 pacAngle = 270;
-                break;
-            case RIGHT:
-                pacAngle = 90;
+                System.out.println("LEFT");
                 break;
             default:
                 break;
         }
         pacman.setStartAngle(pacAngle);
+        pacman.setLength(pacAngle);
     }
 }
