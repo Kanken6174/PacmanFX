@@ -6,7 +6,9 @@ import model.Sprite;
 
 public class Entite {
     public int id;
-    Position pos;
-    CollisionSquare hitBox;
-    Sprite sprite;
+    private Position pos;
+    private CollisionSquare hitBox;
+    private Sprite sprite;
+    public int spriteX = 0;//définit la position du sprite sur la palette
+    public int spriteY = 0;
 }
