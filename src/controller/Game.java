@@ -5,12 +5,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Arc;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -19,6 +19,8 @@ public class Game {
     @FXML private Stage stage;
     @FXML private BorderPane myBP;
     @FXML private Arc pacman;
+    @FXML private Rectangle blinky;
+    @FXML private Button test;
 
     private boolean closingAnimation = false;
 
@@ -64,6 +66,7 @@ public class Game {
 
         switch ((int)pacAngle){
             case 0:
+            case 90:
                 pacman.setCenterX(pacman.getCenterX()+1);
                 break;
             case 180:
@@ -71,9 +74,6 @@ public class Game {
                 break;
             case 270:
                 pacman.setCenterY(pacman.getCenterX()-1);
-                break;
-            case 90:
-                pacman.setCenterX(pacman.getCenterX()+1);
                 break;
             default:
                 break;
@@ -117,5 +117,9 @@ public class Game {
         }
         pacman.setStartAngle(pacAngle);
         pacman.setLength(pacAngle);
+    }
+
+    public void buttonChangeColor() {
+        test.setBackground(Color.BLACK);
     }
 }
