@@ -16,10 +16,31 @@
          <top>
 
          </top>
-         <left>
-            <ImageView fx:id="imgV" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" smooth="false">
+         <center>
+            <ImageView fx:id="fantome4" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@Images/blinkyRight.png" smooth="false" />
+                  <Image smooth="false" url="@Images/blinkyRight.png" />
+               </image>
+            </ImageView>
+         </center>
+         <top>
+            <ImageView fx:id="fantome3" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
+               <image>
+                  <Image smooth="false" url="@Images/blinkyRight.png" />
+               </image>
+            </ImageView>
+         </top>
+         <bottom>
+            <ImageView fx:id="fantome2" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
+               <image>
+                  <Image smooth="false" url="@Images/blinkyRight.png" />
+               </image>
+            </ImageView>
+         </bottom>
+         <left>
+            <ImageView fx:id="fantome1" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
+               <image>
+                  <Image smooth="false" url="@Images/blinkyRight.png" />
                </image>
             </ImageView>
          </left>

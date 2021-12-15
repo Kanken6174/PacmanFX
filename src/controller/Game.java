@@ -25,15 +25,21 @@ public class Game {
     @FXML private Stage stage;
     @FXML private BorderPane myBP;
     @FXML private Arc pacman;
-    @FXML private Rectangle blinky;
     @FXML private Button test;
-    @FXML private ImageView imgV;
+    @FXML private ImageView fantome1;
+    @FXML private ImageView fantome2;
+    @FXML private ImageView fantome3;
+    @FXML private ImageView fantome4;
 
     private boolean closingAnimation = false;
 
     @FXML public PacmanObject pacmanobject = new PacmanObject();
     private EspaceDeJeu playspace = new EspaceDeJeu();
     private Fantome clyde = new Fantome(1);
+    private Fantome inky = new Fantome(2);
+    private Fantome blinky = new Fantome(3);
+    private Fantome pinky = new Fantome(4);
+    private Fantome[] fantomes= {clyde, inky, blinky, pinky};
 
 
     @FXML public EventHandler<KeyEvent> eventHandler = new EventHandler<KeyEvent>(){
@@ -49,13 +55,13 @@ public class Game {
     @FXML private void initialize() {
         myBP.setOnKeyPressed(eventHandler);
         Image img = ImageMaster.getImageAt(553,65);
-        imgV.setImage(img);
-        runPacRegularly(stage);
-        runGhostRegularly(stage);
+        fantome1.setImage(img);
+        runPacRegularly();
+        runGhostRegularly();
     }
 
 
-    public void runPacRegularly(Stage stage){
+    public void runPacRegularly(){
         ScheduledExecutorService exec = Executors.newScheduledThreadPool(15, r -> {
             Thread t = new Thread(r);
             t.setDaemon(true);
@@ -71,7 +77,7 @@ public class Game {
         exec.scheduleAtFixedRate(pacTask, 1, 7, TimeUnit.MILLISECONDS);
     }
 
-    public void runGhostRegularly(Stage stage){
+    public void runGhostRegularly(){
         ScheduledExecutorService exec = Executors.newScheduledThreadPool(15, r -> {
             Thread t = new Thread(r);
             t.setDaemon(true);
@@ -84,21 +90,22 @@ public class Game {
                 Platform.runLater(() -> runGhost());
             }
         };
-        exec.scheduleAtFixedRate(fanTask, 1, 1000, TimeUnit.MILLISECONDS);
+        exec.scheduleAtFixedRate(fanTask, 1, 400, TimeUnit.MILLISECONDS);
     }
 
     private void runGhost(){
-        if(clyde.spriteX > 441+(15*8)){
-            clyde.spriteX = 441+16;
-            clyde.spriteY += 16;
-            if(clyde.spriteY > 49+(16*4))
-                clyde.spriteY = 65;
+        for(int i = 0; i < 4; i++) {
+            if (fantomes[i].spriteX > 441 + (15 * 8)) {
+                fantomes[i].spriteX = 441 + 16;
+                fantomes[i].spriteY += 16;
+                if (fantomes[i].spriteY > 49 + (16 * 4))
+                    fantomes[i].spriteY = 65;
+            } else
+                fantomes[i].spriteX += 16;
+            System.out.println("Running");
+            Image img = ImageMaster.getImageAt(fantomes[i].spriteX, fantomes[i].spriteY);
+            fantome1.setImage(img);
         }
-        else
-            clyde.spriteX += 16;
-        System.out.println("Running");
-        Image img = ImageMaster.getImageAt(clyde.spriteX,clyde.spriteY);
-        imgV.setImage(img);
     }
 
     private void runPacMan(){
