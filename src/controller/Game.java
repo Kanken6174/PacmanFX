@@ -8,13 +8,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Arc;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import model.EspaceDeJeu;
-import model.entites.Entite;
+import model.terrain.EspaceDeJeu;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
-import model.utilities.ImageMaster;
+import model.graphicsUtilities.ImageMaster;
 
 import java.awt.*;
 import java.util.concurrent.Executors;

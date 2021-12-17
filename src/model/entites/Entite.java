@@ -1,8 +1,8 @@
 package model.entites;
 
-import model.CollisionSquare;
-import model.Position;
-import model.Sprite;
+import model.collisions.CollisionSquare;
+import model.mouvement.Position;
+import model.graphicsUtilities.Sprite;
 
 public class Entite {
     public int id;

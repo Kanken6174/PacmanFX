@@ -1,6 +1,8 @@
 package model.boucles;
 
-public class Boucleur extends Observable{
+import model.Observers.Observable;
+
+public class Boucleur extends Observable {
     private int periode;
 
     public Boucleur(int periode){

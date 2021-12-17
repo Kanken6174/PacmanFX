@@ -1,8 +1,8 @@
 package model.boucles;
 
-import javafx.scene.input.*;
+import model.Observers.Observable;
 
-public class GestionInputs extends Observable{
+public class GestionInputs extends Observable {
     public void getTouchesClavier(){
     }
 }
