@@ -11,4 +11,12 @@ public class Entite {
     private Sprite sprite;
     public int spriteX = 0;//définit la position du sprite sur la palette
     public int spriteY = 0;
+
+    public int getX(){
+        return (int) pos.x;
+    }
+
+    public int getY(){
+        return (int) pos.y;
+    }
 }

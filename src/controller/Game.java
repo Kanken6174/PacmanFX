@@ -102,7 +102,7 @@ public class Game {
                     fantomes[i].spriteY = 65;
             } else
                 fantomes[i].spriteX += 16;
-            System.out.println("Running");
+            //System.out.println("Running");
             Image img = ImageMaster.getImageAt(fantomes[i].spriteX, fantomes[i].spriteY);
             fantome1.setImage(img);
         }
