@@ -1,13 +1,13 @@
 package model.entites;
 
-import model.collisions.CollisionSquare;
+import model.collisions.HitboxSquare;
 import model.mouvement.Position;
 import model.graphicsUtilities.Sprite;
 
 public class Entite {
     public int id;
     private Position pos;
-    private CollisionSquare hitBox;
+    private HitboxSquare hitBox;
     private Sprite sprite;
     public int spriteX = 0;//définit la position du sprite sur la palette
     public int spriteY = 0;

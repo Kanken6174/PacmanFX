@@ -1,5 +1,5 @@
 package model.Observers;
 
-public class Abonne {
-    public void miseAJour(){}
+public interface Abonne {
+    public void miseAJour();
 }
