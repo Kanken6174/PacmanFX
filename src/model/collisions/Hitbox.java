@@ -26,4 +26,8 @@ public abstract class Hitbox {
     public float getTrueCollisionDistance(){
         return 0;
     }
+
+    public void toggleCollision(){
+        this.CollisionEnabled = !this.CollisionEnabled;
+    }
 }
