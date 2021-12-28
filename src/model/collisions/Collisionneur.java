@@ -1,5 +1,6 @@
 package model.collisions;
 
+import javafx.geometry.Pos;
 import model.Observers.Abonne;
 import model.mouvement.Position;
 
@@ -37,9 +38,25 @@ public class Collisionneur implements Abonne {
         return isInCollision;
     }
 
-    private boolean CheckCollisionSquareCircle(Position P1, Position P2, Hitbox C1, Hitbox C2){
-        float Xdistance =  Math.abs(P1.getX() - P2.getX());
-        float Ydistance = Math.abs(P1.getY() - P2.getY());
+    private boolean CheckCollisionSquareCircle(Position PSquare, Position PCircle, Hitbox CSquare, Hitbox CCircle){
+        Hitbox HC;
+        Hitbox HS;
+        Position PC;
+        Position PS;
+        if(CSquare instanceof HitboxSquare && CCircle instanceof HitboxCircle){
+            PC = PCircle;
+            PS = PSquare;
+            HC = CCircle;
+            HS = CSquare;
+        }else if(CSquare instanceof HitboxCircle && CCircle instanceof HitboxSquare){//cas où on a inversé les 2 formes par accident
+            PC = PSquare;
+            PS = PCircle;
+            HC = CSquare;
+            HS = CCircle;
+        }else{
+            return false;   //cas d'erreur normalement impossible, les 2 sont des carrés ou les 2 sont des cercles...
+        }
+
         return false;
     }
 
