@@ -24,6 +24,6 @@ public class collisionLoader {
             e.printStackTrace();
         }
 
-        return null;
+        return cases;
     }
 }

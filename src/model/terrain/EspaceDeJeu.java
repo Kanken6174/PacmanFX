@@ -1,7 +1,7 @@
 package model.terrain;
 
 public class EspaceDeJeu {
-    private Case tiles[][];
+    private Case[][] tiles;
 
     public EspaceDeJeu(){
 
@@ -11,5 +11,9 @@ public class EspaceDeJeu {
         tiles = new Case[10][28];   //taille pacman original
         tiles = collisionLoader.loadCollisions(StageName, 10, 28);
         tiles = entityLoader.loadEntities(StageName, tiles,10, 28);
+    }
+
+    public Case[][] getStage(){
+        return this.tiles;
     }
 }

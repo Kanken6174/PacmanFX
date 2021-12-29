@@ -3,7 +3,7 @@ package model.entites;
 import javafx.beans.property.*;
 import javafx.scene.input.KeyCode;
 
-public class PacmanObject {
+public class PacmanObject extends Entite{
 
     private IntegerProperty pacAngle = new SimpleIntegerProperty();
         public int getPacAngle(){return pacAngle.get();}

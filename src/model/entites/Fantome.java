@@ -10,6 +10,7 @@ public class Fantome extends Entite{
      * @param i l'id du fantome, de 0 à 3
      */
     public Fantome(int i){
-        spriteY += 16*i;    //0-3 0 pour blinky 3 pour clyde
+        identifier = i;
+        spriteY += 16*identifier;    //0-3 0 pour blinky 3 pour clyde
     }
 }
