@@ -5,8 +5,8 @@ import model.Observers.Observable;
 public class Boucleur extends Observable {
     private int periode;
 
-    public Boucleur(int periode){
-        this.periode = periode;
+    public Boucleur(int periodeMillis){
+        this.periode = periodeMillis;
     }
 
     public void run() {

@@ -1,9 +1,13 @@
 package model.boucles;
 
+import java.util.ArrayList;
+
 public class GestionBoucle{
-    public Boucleur[] boucles = new Boucleur[0];
+    public ArrayList<Boucleur> boucles = new ArrayList<>();
 
     public void scheduleAll() {
+        Boucleur PacManAnimation = new Boucleur(4);
+        Boucleur FantomeAnimation = new Boucleur(400);
     }
 
     public void animateMortPacman() {

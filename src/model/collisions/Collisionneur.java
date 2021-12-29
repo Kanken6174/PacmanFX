@@ -20,13 +20,11 @@ public class Collisionneur implements Abonne {
 
         switch (collisionStrategy){
             case 0: //2 cercles (0+0 = 0)
-                System.out.println("2 circles");
                 return CheckCollision2Circles(P1,P2,C1,C2);
             case 1: //1 cercle 1 carré (0+1 = 1)
                 System.out.println("1/1");
                 return CheckCollisionSquareCircle(P1,P2,C1,C2);
             case 2: //2 carrés (1+1 = 2)
-                System.out.println("2 squares");
                 return CheckCollision2Square(P1,P2,C1,C2);
             default:
                 System.out.println("Error: defaulted");
@@ -57,14 +55,29 @@ public class Collisionneur implements Abonne {
             PS = PCircle;
             HC = CSquare;
             HS = CCircle;
+            System.out.println("inversé");
         }else{
             return false;   //cas d'erreur normalement impossible, les 2 sont des carrés ou les 2 sont des cercles...
         }
 
-        Position Pext = getClosestEdge(HS, PS, PC);
-        double distance = getAbsDistance(Pext, PC);
+        double testX = PC.getX();
+        double testY = PC.getY();
 
-        return (distance < HS.getCollisionDistance());
+        if (PC.getX() < PS.getX())
+            testX = PS.getX();      // test left edge
+        else if (PC.getX() > PS.getX()+HS.getCollisionDistance())
+            testX = PS.getX()+HS.getCollisionDistance();   // right edge
+
+        if (PC.getY() < PS.getX())
+            testY = PS.getY();      // top edge
+        else if (PC.getY() > (PS.getY()+HS.getCollisionDistance()))
+            testY = PS.getY()+HS.getCollisionDistance();   // bottom edge
+
+        double distX = PC.getX()-testX;
+        double distY = PC.getY()-testY;
+        double distance = Math.sqrt( Math.pow(distX,2) + Math.pow(distY,2));
+        boolean toReturn = (distance <= HC.getCollisionDistance());
+        return toReturn;  //si la distance entre les 2 points est inférieur au rayon du cercle... collision
     }
 
     private boolean CheckCollision2Square(Position P1, Position P2, Hitbox C1, Hitbox C2){
@@ -82,54 +95,6 @@ public class Collisionneur implements Abonne {
         return pointDistance;
     }
 
-    //-------------------------------------INTUILISES-------------------------------------------------------------------
-    private boolean OldCheckCollision2Square(Position P1, Position P2, Hitbox C1, Hitbox C2){
-
-        Position Pext1 = getClosestEdge(C1,P1,P2);  //on prend le coin de C1 le plus proche de P2
-        Position Pext2 = getClosestEdge(C2,P2,P1);  //on prend le coin de C2 le plus proche de P1
-        System.out.println(Pext1.print());
-        System.out.println(Pext2.print());
-
-        double dist = getInteriorExteriorDistance(Pext1,Pext2);
-        System.out.println(dist);
-        // ici on a 2 points dans l'espace, mais il faut connaître l'orientation dans laquelle on doit tester leur distance pour que ça marche...
-        //on a détourné la dimension Z pour conserver cette information
-
-        return (dist < 0 || dist == -0.0);  //on inclut le zero negatif
-    }
-    /**
-     * @param Xpos la position du carré dans l'espace (X)
-     * @param Ypos la position du carré dans l'espace (X)
-     * @param C la surface de collision du carré
-     * @return  un tableau contenant les positions de chaque extrémité du carré
-     */
-    private Position[] getSquareEdges(float Xpos, float Ypos, Hitbox C){
-        int index = 0;
-
-        float CotePosX[] = {0,0,0,0};
-        float CotePosY[] = {0,0,0,0};
-
-        for(int xSign =-1; xSign<2; xSign+=2)   //va de -1 à 1
-            for(int ySign=-1; ySign<2; ySign+=2) {    //va de -1 à 1
-                CotePosX[index] = Xpos + (C.getCollisionDistance()/2)*xSign;//on prend la moitié de la longeur d'un côté et on l'ajoute, ça met le point sur le milieu d'un
-                //côté du carré.
-                CotePosY[index] = Ypos + (C.getCollisionDistance()/2)*ySign;//Ensuite, on ajoute la moitié de la longueur à la hauteur du point. A la fin ce point est à
-                //l'extrémité du carré (4 extrémités du coup)
-                index++;
-            }
-
-        Position[] pointsCarre = new Position[4];
-        for(int i = 0; i < 4; i++)
-            pointsCarre[i] = new Position(CotePosX[i],CotePosY[i]);
-
-        /*on finit avec les points XY des 4 extrémités, dans cet ordre:
-        pointsCarre[0] = bas    gauche  ->  [1]-----[3]
-        pointsCarre[1] = haut   gauche   ->  |       |
-        pointsCarre[2] = bas    droit  ->    |       |
-        pointsCarre[3] = haut   droit   ->  [0]-----[2]
-         */
-        return pointsCarre;
-    }
     private Position getClosestEdge(Hitbox HS, Position Square, Position Point){    //inutilisé
         float CheckX = Point.getX(), CheckY = Point.getY();
 
@@ -203,5 +168,78 @@ public class Collisionneur implements Abonne {
 
         return D;
     }
+    /**
+     * @param Xpos la position du carré dans l'espace (X)
+     * @param Ypos la position du carré dans l'espace (X)
+     * @param C la surface de collision du carré
+     * @return  un tableau contenant les positions de chaque extrémité du carré
+     */
+    private Position[] getSquareEdges(float Xpos, float Ypos, Hitbox C){
+        int index = 0;
 
+        float CotePosX[] = {0,0,0,0};
+        float CotePosY[] = {0,0,0,0};
+
+        for(int xSign =-1; xSign<2; xSign+=2)   //va de -1 à 1
+            for(int ySign=-1; ySign<2; ySign+=2) {    //va de -1 à 1
+                CotePosX[index] = Xpos + (C.getCollisionDistance()/2)*xSign;//on prend la moitié de la longeur d'un côté et on l'ajoute, ça met le point sur le milieu d'un
+                //côté du carré.
+                CotePosY[index] = Ypos + (C.getCollisionDistance()/2)*ySign;//Ensuite, on ajoute la moitié de la longueur à la hauteur du point. A la fin ce point est à
+                //l'extrémité du carré (4 extrémités du coup)
+                index++;
+            }
+
+        Position[] pointsCarre = new Position[4];
+        for(int i = 0; i < 4; i++)
+            pointsCarre[i] = new Position(CotePosX[i],CotePosY[i]);
+
+        /*on finit avec les points XY des 4 extrémités, dans cet ordre:
+        pointsCarre[0] = bas    gauche  ->  [1]-----[3]
+        pointsCarre[1] = haut   gauche   ->  |       |
+        pointsCarre[2] = bas    droit  ->    |       |
+        pointsCarre[3] = haut   droit   ->  [0]-----[2]
+         */
+        return pointsCarre;
+    }
+
+    //-------------------------------------INTUILISES-------------------------------------------------------------------
+    private boolean Old_CheckCollision2Square(Position P1, Position P2, Hitbox C1, Hitbox C2){
+
+        Position Pext1 = getClosestEdge(C1,P1,P2);  //on prend le coin de C1 le plus proche de P2
+        Position Pext2 = getClosestEdge(C2,P2,P1);  //on prend le coin de C2 le plus proche de P1
+        System.out.println(Pext1.print());
+        System.out.println(Pext2.print());
+
+        double dist = getInteriorExteriorDistance(Pext1,Pext2);
+        System.out.println(dist);
+        // ici on a 2 points dans l'espace, mais il faut connaître l'orientation dans laquelle on doit tester leur distance pour que ça marche...
+        //on a détourné la dimension Z pour conserver cette information
+
+        return (dist < 0 || dist == -0.0);  //on inclut le zero negatif
+    }
+    private boolean Old_CheckCollisionSquareCircle(Position PSquare, Position PCircle, Hitbox CSquare, Hitbox CCircle){
+        Hitbox HC;
+        Hitbox HS;
+        Position PC;
+        Position PS;
+        if(CSquare instanceof HitboxSquare && CCircle instanceof HitboxCircle){
+            PC = PCircle;
+            PS = PSquare;
+            HC = CCircle;
+            HS = CSquare;
+        }else if(CSquare instanceof HitboxCircle && CCircle instanceof HitboxSquare){//cas où on a inversé les 2 formes par accident
+            PC = PSquare;
+            PS = PCircle;
+            HC = CSquare;
+            HS = CCircle;
+            System.out.println("inversé");
+        }else{
+            return false;   //cas d'erreur normalement impossible, les 2 sont des carrés ou les 2 sont des cercles...
+        }
+
+        Position Pext = getClosestEdge(HS, PS, PC);
+        double distance = getAbsDistance(Pext, PC);
+
+        return (distance < HS.getCollisionDistance());
+    }
 }

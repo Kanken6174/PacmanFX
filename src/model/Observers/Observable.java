@@ -1,17 +1,25 @@
 package model.Observers;
 
-import model.Observers.Abonne;
+import java.util.ArrayList;
 
 public class Observable {
-    Abonne[] abonnes = new Abonne[300];
+    private final ArrayList<Abonne> abonnes = new ArrayList<>();
 
     public void notifyAbonnes(){
+        for (Abonne abonne: abonnes){
+            abonne.miseAJour();
+        }
     }
 
     public void subscribe(Abonne a){
-        abonnes[(abonnes.length) + 1] = a;
+        abonnes.add(a);
     }
     
     public void unsubscribe(Abonne a){
+        abonnes.remove(a);
+    }
+
+    public int getAbonnesCount(){
+        return abonnes.size();
     }
 }
