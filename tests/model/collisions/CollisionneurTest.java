@@ -55,10 +55,10 @@ class CollisionneurTest {
         SquarePos2 = new Position(0,0); //chevauchés
         assertTrue(col.isInCollision(SquarePos, SquarePos2, HS, HS2));
 
-        SquarePos2 = new Position(5,6);//en diagonale, sans se toucher
+        SquarePos2 = new Position(10,11);//en diagonale, sans se toucher
         assertFalse(col.isInCollision(SquarePos, SquarePos2, HS, HS2));
 
-        SquarePos2 = new Position(1f,1f);//en diagonale, se touchant
+        SquarePos2 = new Position(10,10);//en diagonale, se touchant
         assertTrue(col.isInCollision(SquarePos, SquarePos2, HS, HS2));
     }
 }

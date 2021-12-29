@@ -67,28 +67,37 @@ public class Collisionneur implements Abonne {
         return (distance < HS.getCollisionDistance());
     }
 
-
     private boolean CheckCollision2Square(Position P1, Position P2, Hitbox C1, Hitbox C2){
+        return(P1.getX() + C1.getCollisionDistance() >= P2.getX() &&    // r1 right edge past r2 left
+                P1.getX() <= P2.getX() + C2.getCollisionDistance() &&    // r1 left edge past r2 right
+                P1.getY() + C1.getCollisionDistance() >= P2.getY() &&    // r1 top edge past r2 bottom
+                P1.getY() <= P2.getY() + C2.getCollisionDistance());
+    }
+
+    private double getAbsDistance(Position P1, Position P2){
+        double Xdistance =  Math.abs(P1.getX() - P2.getX());
+        double Ydistance = Math.abs(P1.getY() - P2.getY());
+        double pointDistance = Math.sqrt( Math.pow(Xdistance,2) + Math.pow(Ydistance,2));
+
+        return pointDistance;
+    }
+
+    //-------------------------------------INTUILISES-------------------------------------------------------------------
+    private boolean OldCheckCollision2Square(Position P1, Position P2, Hitbox C1, Hitbox C2){
 
         Position Pext1 = getClosestEdge(C1,P1,P2);  //on prend le coin de C1 le plus proche de P2
         Position Pext2 = getClosestEdge(C2,P2,P1);  //on prend le coin de C2 le plus proche de P1
         System.out.println(Pext1.print());
         System.out.println(Pext2.print());
 
-        float dist = getInteriorExteriorDistance(Pext1,Pext2);
+        double dist = getInteriorExteriorDistance(Pext1,Pext2);
         System.out.println(dist);
         // ici on a 2 points dans l'espace, mais il faut connaître l'orientation dans laquelle on doit tester leur distance pour que ça marche...
         //on a détourné la dimension Z pour conserver cette information
 
         return (dist < 0 || dist == -0.0);  //on inclut le zero negatif
     }
-
-    private boolean checkDistanceIsLess(){
-        return false;
-    }
-
     /**
-     *
      * @param Xpos la position du carré dans l'espace (X)
      * @param Ypos la position du carré dans l'espace (X)
      * @param C la surface de collision du carré
@@ -121,8 +130,7 @@ public class Collisionneur implements Abonne {
          */
         return pointsCarre;
     }
-
-    private Position getClosestEdge(Hitbox HS, Position Square, Position Point){
+    private Position getClosestEdge(Hitbox HS, Position Square, Position Point){    //inutilisé
         float CheckX = Point.getX(), CheckY = Point.getY();
 
         Position[] edges = getSquareEdges(Square.getX(), Square.getY(), HS);    //retourne la position absolue de chaque coin du carré
@@ -141,19 +149,10 @@ public class Collisionneur implements Abonne {
             }
         }
         Position toReturn =  new Position(edges[minDistanceIndex].getX(),edges[minDistanceIndex].getY(), minDistanceIndex); //on détourne Z pour savoir dans quelle direction tester...
-                                                                                                                            // bof
+        // bof
         return toReturn; //on retourne le coin de HS (carré) le moins loin de la position point
     }
-
-    private double getAbsDistance(Position P1, Position P2){
-        double Xdistance =  Math.abs(P1.getX() - P2.getX());
-        double Ydistance = Math.abs(P1.getY() - P2.getY());
-        double pointDistance = Math.sqrt( Math.pow(Xdistance,2) + Math.pow(Ydistance,2));
-
-        return pointDistance;
-    }
-
-    private float getInteriorExteriorDistance(Position P1, Position P2){
+    private double getInteriorExteriorDistance(Position P1, Position P2){   //inutilisé et non-fonctionnel
         float X1 = P1.getX();
         float Y1 = P1.getY();
         float X2 = P2.getX();
@@ -199,16 +198,8 @@ public class Collisionneur implements Abonne {
             default:
                 break;
         }
-
-        float D = (X1-X2)+(Y1-Y2);
-
-        return D;
-    }
-
-    private float getRelativeDistance(Position P1, Position P2){
-        float X = P1.getX()-P2.getX();
-        float Y = P1.getY()-P2.getY();
-        float D = X+Y;
+        double D = (X1-X2)+(Y1-Y2);
+        //double D = Math.sqrt( Math.pow(X1-X2,2) + Math.pow(Y1-Y2,2));
 
         return D;
     }
