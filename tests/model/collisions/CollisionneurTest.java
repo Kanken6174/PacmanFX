@@ -10,9 +10,9 @@ class CollisionneurTest {
     private Collisionneur col = new Collisionneur();
 
     @Test
-    void circleCircleCollision(){
-        Position CirclePos = new Position(0,0);
-        Position CirclePos2 = new Position(1,0);
+    void circleCircleCollision() {
+        Position CirclePos = new Position(0, 0);
+        Position CirclePos2 = new Position(1, 0);
 
         HitboxCircle HBC = new HitboxCircle(3);
         HitboxCircle HBC2 = new HitboxCircle(3);
@@ -24,11 +24,12 @@ class CollisionneurTest {
 
         assertTrue(col.isInCollision(CirclePos, CirclePos2, HBC, HBC2));
 
-        CirclePos = new Position(0,-7);
+        CirclePos = new Position(0, -7);
+        assertFalse(col.isInCollision(CirclePos, CirclePos2, HBC, HBC2));
 
+        CirclePos = new Position(3, 2);
         assertTrue(col.isInCollision(CirclePos, CirclePos2, HBC, HBC2));
     }
-
     @Test
     void SquareSquareCollision(){
         Position SquarePos = new Position(0,0);

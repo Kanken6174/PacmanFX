@@ -36,10 +36,9 @@ public class Collisionneur implements Abonne {
 
 
     private boolean CheckCollision2Circles(Position P1, Position P2, Hitbox C1, Hitbox C2){
-        float Xdistance =  Math.abs(P1.getX() - P2.getX());
-        float Ydistance = Math.abs(P1.getY() - P2.getY());
-        float collisionDistance = C1.getCollisionDistance() + C2.getCollisionDistance();
-        boolean isInCollision = (Xdistance < collisionDistance || Ydistance < collisionDistance);
+        double pointDistance = getAbsDistance(P1,P2);
+        double collisionDistance = C1.getCollisionDistance()+C2.getCollisionDistance();
+        boolean isInCollision = (pointDistance < collisionDistance);
         return isInCollision;
     }
 
@@ -63,7 +62,7 @@ public class Collisionneur implements Abonne {
         }
 
         Position Pext = getClosestEdge(HS, PS, PC);
-        float distance = getAbsDistance(Pext, PC);
+        double distance = getAbsDistance(Pext, PC);
 
         return (distance < HS.getCollisionDistance());
     }
@@ -127,8 +126,8 @@ public class Collisionneur implements Abonne {
         float CheckX = Point.getX(), CheckY = Point.getY();
 
         Position[] edges = getSquareEdges(Square.getX(), Square.getY(), HS);    //retourne la position absolue de chaque coin du carré
-        float[] distances = {0,0,0,0};
-        float minDistance = -1;
+        double[] distances = {0,0,0,0};
+        double minDistance = -1;
         int minDistanceIndex = -1;
         for(int i = 0; i < edges.length; i++) {
             distances[i] = getAbsDistance(edges[i],Point);
@@ -146,12 +145,12 @@ public class Collisionneur implements Abonne {
         return toReturn; //on retourne le coin de HS (carré) le moins loin de la position point
     }
 
-    private float getAbsDistance(Position P1, Position P2){
-        float absX = Math.abs(P1.getX()-P2.getX());
-        float absY = Math.abs(P1.getY()-P2.getY());
-        float absD = Math.abs(absX+absY);
+    private double getAbsDistance(Position P1, Position P2){
+        double Xdistance =  Math.abs(P1.getX() - P2.getX());
+        double Ydistance = Math.abs(P1.getY() - P2.getY());
+        double pointDistance = Math.sqrt( Math.pow(Xdistance,2) + Math.pow(Ydistance,2));
 
-        return absD;
+        return pointDistance;
     }
 
     private float getInteriorExteriorDistance(Position P1, Position P2){
