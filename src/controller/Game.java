@@ -9,11 +9,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
-import model.graphicsUtilities.ImageLoader;
+import model.enums.FantomeNom;
+import model.graphics.Loaders.ImageLoader;
 import model.terrain.EspaceDeJeu;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
-import model.graphicsUtilities.ImageMaster;
+import model.graphics.Loaders.ImageMaster;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -35,10 +36,10 @@ public class Game {
 
     @FXML public PacmanObject pacmanobject = new PacmanObject();
     private EspaceDeJeu playspace = new EspaceDeJeu();
-    private Fantome clyde = new Fantome(1);
-    private Fantome inky = new Fantome(2);
-    private Fantome blinky = new Fantome(3);
-    private Fantome pinky = new Fantome(4);
+    private Fantome clyde = new Fantome(FantomeNom.CLYDE);
+    private Fantome inky = new Fantome(FantomeNom.INKY);
+    private Fantome blinky = new Fantome(FantomeNom.BLINKY);
+    private Fantome pinky = new Fantome(FantomeNom.PINKY);
     private Fantome[] fantomes= {clyde, inky, blinky, pinky};
 
     private ImageMaster im = new ImageMaster(ImageLoader.loadRessources());

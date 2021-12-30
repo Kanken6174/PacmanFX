@@ -1,12 +1,11 @@
-package model.graphicsUtilities;
+package model.graphics.Loaders;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
-public class ImageLoader {
+public class SpriteLoader {
     public static BufferedImage loadRessources(){
         BufferedImage bi = null;
         try {

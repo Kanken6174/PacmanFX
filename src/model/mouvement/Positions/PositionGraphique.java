@@ -1,4 +1,4 @@
-package model.mouvement;
+package model.mouvement.Positions;
 
 public class PositionGraphique {
     private float x;

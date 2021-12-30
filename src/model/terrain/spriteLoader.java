@@ -1,6 +1,6 @@
 package model.terrain;
 
-import model.graphicsUtilities.Sprite;
+import model.graphics.Sprites.Sprite;
 
 import java.io.File;
 

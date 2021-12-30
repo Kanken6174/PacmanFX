@@ -1,6 +1,6 @@
 package model.collisions;
 
-import model.mouvement.PositionGraphique;
+import model.mouvement.Positions.PositionGraphique;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

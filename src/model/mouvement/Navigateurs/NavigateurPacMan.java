@@ -1,4 +1,6 @@
-package model.mouvement;
+package model.mouvement.Navigateurs;
 
 public class NavigateurPacMan extends Navigateur{
+
+
 }

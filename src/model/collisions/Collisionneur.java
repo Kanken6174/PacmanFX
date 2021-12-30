@@ -1,7 +1,7 @@
 package model.collisions;
 
 import model.Observers.Abonne;
-import model.mouvement.PositionGraphique;
+import model.mouvement.Positions.PositionGraphique;
 
 public class Collisionneur implements Abonne {
 

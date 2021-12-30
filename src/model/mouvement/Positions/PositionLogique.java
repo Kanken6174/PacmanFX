@@ -1,4 +1,4 @@
-package model.mouvement;
+package model.mouvement.Positions;
 
 import model.enums.Orients;
 

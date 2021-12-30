@@ -1,5 +1,6 @@
-package model.graphicsUtilities;
+package model.graphics;
 
+import model.graphics.Loaders.ImageLoader;
 import org.junit.jupiter.api.Test;
 
 import java.awt.image.BufferedImage;

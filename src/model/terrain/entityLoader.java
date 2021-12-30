@@ -1,6 +1,7 @@
 package model.terrain;
 
 import model.entites.*;
+import model.enums.FantomeNom;
 
 import java.io.*;
 
@@ -24,19 +25,19 @@ public class entityLoader {
                             cases[i][j].ReceiveEntity(pacman);
                             break;
                         case '3':
-                            Fantome blinky = new Fantome(0);
+                            Fantome blinky = new Fantome(FantomeNom.BLINKY);
                             cases[i][j].ReceiveEntity(blinky);
                             break;
                         case '4':
-                            Fantome pinky = new Fantome(1);
+                            Fantome pinky = new Fantome(FantomeNom.INKY);
                             cases[i][j].ReceiveEntity(pinky);
                             break;
                         case '5':
-                            Fantome inky = new Fantome(2);
+                            Fantome inky = new Fantome(FantomeNom.PINKY);
                             cases[i][j].ReceiveEntity(inky);
                             break;
                         case '6':
-                            Fantome clyde = new Fantome(3);
+                            Fantome clyde = new Fantome(FantomeNom.CLYDE);
                             cases[i][j].ReceiveEntity(clyde);
                             break;
                         case '7':

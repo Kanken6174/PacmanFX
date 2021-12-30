@@ -1,4 +1,4 @@
-package model.graphicsUtilities;
+package model.graphics;
 
 import model.entites.Entite;
 
