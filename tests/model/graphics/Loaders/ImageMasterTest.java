@@ -44,10 +44,10 @@ class ImageMasterTest {
         assertNotNull(im);
 
 
-        BufferedImage straightUp = im.getTerrainTiles(2,3);
-        BufferedImage straightDown = ImageFlipper.flipVertical(straightUp);
-        BufferedImage straightBottom = ImageRotate.RotateDeg(straightDown,-90);
-        BufferedImage straightTop = ImageFlipper.flipHorizontal(straightBottom);
+        BufferedImage straightUp = im.getTerrainTiles(3,2);
+        BufferedImage straightDown = ImageRotate.RotateDeg(straightUp, 180);
+;        BufferedImage straightBottom = ImageRotate.RotateDeg(straightDown,-90);
+        BufferedImage straightTop = ImageFlipper.flipVertical(straightBottom);
 
         BufferedImage cornerRightDown = im.getTerrainTiles(2,2);
         BufferedImage cornerDownLeft = ImageRotate.RotateDeg(cornerRightDown,90);

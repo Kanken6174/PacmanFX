@@ -14,4 +14,8 @@ public class ImageClipper {
     public static BufferedImage getFrame(BufferedImage source, int id){
         return source.getSubimage(id*16,0,14,14);
     }
+
+    public static BufferedImage getFrame(BufferedImage source, int id, int sideSize){
+        return source.getSubimage(id*sideSize,0,sideSize,sideSize);
+    }
 }

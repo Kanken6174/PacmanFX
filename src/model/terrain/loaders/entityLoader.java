@@ -1,12 +1,13 @@
-package model.terrain;
+package model.terrain.loaders;
 
 import model.entites.*;
 import model.enums.FantomeNom;
+import model.terrain.Case;
 
 import java.io.*;
 
 public class entityLoader {
-    public static Case[][] loadEntities(String StageName, Case[][] cases,int maxX, int maxY){
+    public static Case[][] loadEntities(String StageName, Case[][] cases, int maxX, int maxY){
         File entityMap = new File("./out/production/pacmanfx/Cartes/"+StageName+"/"+StageName+".entityMap");
 
         try (BufferedReader br = new BufferedReader(new FileReader(entityMap))) {

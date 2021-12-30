@@ -1,4 +1,6 @@
-package model.terrain;
+package model.terrain.loaders;
+
+import model.terrain.Case;
 
 import java.io.*;
 

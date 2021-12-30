@@ -1,7 +1,9 @@
 package model.terrain;
 
 import model.entites.Entite;
+import model.entites.Fantome;
 import model.entites.PacmanObject;
+import model.graphics.Sprites.Sprite;
 
 import java.util.ArrayList;
 
@@ -10,6 +12,8 @@ public class Case {
     private boolean isGhostHouseDoor = false;
     private boolean containsPacMan = false;
     private int SpriteIndex = -1;
+    private Sprite sp;
+
     private ArrayList<Entite> Entites = new ArrayList<>();
     private Entite EntiteStatique = null;
 
@@ -61,11 +65,41 @@ public class Case {
         return (Entites.size() > 0);
     }
 
+    public boolean hasGhosts(){
+        boolean toReturn = false;
+        for(Entite e : Entites){
+            if(e instanceof Fantome){
+                toReturn = true;
+                break;
+            }
+
+        }
+        return toReturn;
+    }
+
+    public ArrayList<Integer> getGhostIndexes(){
+        ArrayList<Integer> indexs = new ArrayList<>();
+        for(Entite e : Entites){
+            if(e instanceof Fantome){
+                indexs.add(Entites.indexOf(e));
+            }
+        }
+        return indexs;
+    }
+
     public boolean hasStaticEntities(){
         return (EntiteStatique != null);
     }
 
     public boolean containsPacMan(){
         return containsPacMan;
+    }
+
+    public void setSprite(Sprite sp){
+        this.sp = sp;
+    }
+
+    public Sprite getSprite(){
+        return this.sp;
     }
 }

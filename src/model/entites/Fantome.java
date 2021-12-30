@@ -20,4 +20,16 @@ public class Fantome extends Entite{
         identifier = fn;
         spriteY += 16*identifier.ordinal();    //0-3
     }
+
+    public FantomeNom getFantomeNom(){
+        return identifier;
+    }
+
+    public void setSpriteAnimable(SpriteAnimable sa){
+        this.sa = sa;
+    }
+
+    public SpriteAnimable getSpriteAnimable(){
+        return this.sa;
+    }
 }
