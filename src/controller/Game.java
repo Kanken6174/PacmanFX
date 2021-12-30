@@ -9,12 +9,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
+import model.graphicsUtilities.ImageLoader;
 import model.terrain.EspaceDeJeu;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
 import model.graphicsUtilities.ImageMaster;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -39,6 +41,8 @@ public class Game {
     private Fantome pinky = new Fantome(4);
     private Fantome[] fantomes= {clyde, inky, blinky, pinky};
 
+    private ImageMaster im = new ImageMaster(ImageLoader.loadRessources());
+
 
     @FXML public EventHandler<KeyEvent> eventHandler = new EventHandler<KeyEvent>(){
         @Override
@@ -52,7 +56,8 @@ public class Game {
 
     @FXML private void initialize() {
         myBP.setOnKeyPressed(eventHandler);
-        Image img = ImageMaster.getImageAt(553,65);
+        BufferedImage bi = ImageLoader.loadRessources();
+        Image img = im.getImageAt(553,65);
         fantome1.setImage(img);
         runPacRegularly();
         runGhostRegularly();
@@ -101,7 +106,7 @@ public class Game {
             } else
                 fantomes[i].spriteX += 16;
             //System.out.println("Running");
-            Image img = ImageMaster.getImageAt(fantomes[i].spriteX, fantomes[i].spriteY);
+            Image img = im.getImageAt(fantomes[i].spriteX, fantomes[i].spriteY);
             fantome1.setImage(img);
         }
     }

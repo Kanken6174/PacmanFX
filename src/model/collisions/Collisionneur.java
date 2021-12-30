@@ -1,7 +1,7 @@
 package model.collisions;
 
 import model.Observers.Abonne;
-import model.mouvement.Position;
+import model.mouvement.PositionGraphique;
 
 public class Collisionneur implements Abonne {
 
@@ -11,7 +11,7 @@ public class Collisionneur implements Abonne {
 
     private void gererCollisions(){}
 
-    public boolean isInCollision(Position P1, Position P2, Hitbox C1, Hitbox C2){
+    public boolean isInCollision(PositionGraphique P1, PositionGraphique P2, Hitbox C1, Hitbox C2){
         if(C1.getSurfaceType() == -1 || C2.getSurfaceType() == -1 || !C1.CollisionEnabled || !C2.CollisionEnabled){
             return false;
         }
@@ -33,18 +33,18 @@ public class Collisionneur implements Abonne {
     }
 
 
-    private boolean CheckCollision2Circles(Position P1, Position P2, Hitbox C1, Hitbox C2){
+    private boolean CheckCollision2Circles(PositionGraphique P1, PositionGraphique P2, Hitbox C1, Hitbox C2){
         double pointDistance = getAbsDistance(P1,P2);
         double collisionDistance = C1.getCollisionDistance()+C2.getCollisionDistance();
         boolean isInCollision = (pointDistance < collisionDistance);
         return isInCollision;
     }
 
-    private boolean CheckCollisionSquareCircle(Position PSquare, Position PCircle, Hitbox CSquare, Hitbox CCircle){
+    private boolean CheckCollisionSquareCircle(PositionGraphique PSquare, PositionGraphique PCircle, Hitbox CSquare, Hitbox CCircle){
         Hitbox HC;
         Hitbox HS;
-        Position PC;
-        Position PS;
+        PositionGraphique PC;
+        PositionGraphique PS;
         if(CSquare instanceof HitboxSquare && CCircle instanceof HitboxCircle){
             PC = PCircle;
             PS = PSquare;
@@ -80,14 +80,14 @@ public class Collisionneur implements Abonne {
         return toReturn;  //si la distance entre les 2 points est inférieur au rayon du cercle... collision
     }
 
-    private boolean CheckCollision2Square(Position P1, Position P2, Hitbox C1, Hitbox C2){
+    private boolean CheckCollision2Square(PositionGraphique P1, PositionGraphique P2, Hitbox C1, Hitbox C2){
         return(P1.getX() + C1.getCollisionDistance() >= P2.getX() &&    // r1 right edge past r2 left
                 P1.getX() <= P2.getX() + C2.getCollisionDistance() &&    // r1 left edge past r2 right
                 P1.getY() + C1.getCollisionDistance() >= P2.getY() &&    // r1 top edge past r2 bottom
                 P1.getY() <= P2.getY() + C2.getCollisionDistance());
     }
 
-    private double getAbsDistance(Position P1, Position P2){
+    private double getAbsDistance(PositionGraphique P1, PositionGraphique P2){
         double Xdistance =  Math.abs(P1.getX() - P2.getX());
         double Ydistance = Math.abs(P1.getY() - P2.getY());
         double pointDistance = Math.sqrt( Math.pow(Xdistance,2) + Math.pow(Ydistance,2));
@@ -95,10 +95,10 @@ public class Collisionneur implements Abonne {
         return pointDistance;
     }
 
-    private Position getClosestEdge(Hitbox HS, Position Square, Position Point){    //inutilisé
+    private PositionGraphique getClosestEdge(Hitbox HS, PositionGraphique Square, PositionGraphique Point){    //inutilisé
         float CheckX = Point.getX(), CheckY = Point.getY();
 
-        Position[] edges = getSquareEdges(Square.getX(), Square.getY(), HS);    //retourne la position absolue de chaque coin du carré
+        PositionGraphique[] edges = getSquareEdges(Square.getX(), Square.getY(), HS);    //retourne la position absolue de chaque coin du carré
         double[] distances = {0,0,0,0};
         double minDistance = -1;
         int minDistanceIndex = -1;
@@ -113,11 +113,11 @@ public class Collisionneur implements Abonne {
                 minDistanceIndex = i;
             }
         }
-        Position toReturn =  new Position(edges[minDistanceIndex].getX(),edges[minDistanceIndex].getY(), minDistanceIndex); //on détourne Z pour savoir dans quelle direction tester...
+        PositionGraphique toReturn =  new PositionGraphique(edges[minDistanceIndex].getX(),edges[minDistanceIndex].getY(), minDistanceIndex); //on détourne Z pour savoir dans quelle direction tester...
         // bof
         return toReturn; //on retourne le coin de HS (carré) le moins loin de la position point
     }
-    private double getInteriorExteriorDistance(Position P1, Position P2){   //inutilisé et non-fonctionnel
+    private double getInteriorExteriorDistance(PositionGraphique P1, PositionGraphique P2){   //inutilisé et non-fonctionnel
         float X1 = P1.getX();
         float Y1 = P1.getY();
         float X2 = P2.getX();
@@ -174,7 +174,7 @@ public class Collisionneur implements Abonne {
      * @param C la surface de collision du carré
      * @return  un tableau contenant les positions de chaque extrémité du carré
      */
-    private Position[] getSquareEdges(float Xpos, float Ypos, Hitbox C){
+    private PositionGraphique[] getSquareEdges(float Xpos, float Ypos, Hitbox C){
         int index = 0;
 
         float CotePosX[] = {0,0,0,0};
@@ -189,9 +189,9 @@ public class Collisionneur implements Abonne {
                 index++;
             }
 
-        Position[] pointsCarre = new Position[4];
+        PositionGraphique[] pointsCarre = new PositionGraphique[4];
         for(int i = 0; i < 4; i++)
-            pointsCarre[i] = new Position(CotePosX[i],CotePosY[i]);
+            pointsCarre[i] = new PositionGraphique(CotePosX[i],CotePosY[i]);
 
         /*on finit avec les points XY des 4 extrémités, dans cet ordre:
         pointsCarre[0] = bas    gauche  ->  [1]-----[3]
@@ -203,10 +203,10 @@ public class Collisionneur implements Abonne {
     }
 
     //-------------------------------------INTUILISES-------------------------------------------------------------------
-    private boolean Old_CheckCollision2Square(Position P1, Position P2, Hitbox C1, Hitbox C2){
+    private boolean Old_CheckCollision2Square(PositionGraphique P1, PositionGraphique P2, Hitbox C1, Hitbox C2){
 
-        Position Pext1 = getClosestEdge(C1,P1,P2);  //on prend le coin de C1 le plus proche de P2
-        Position Pext2 = getClosestEdge(C2,P2,P1);  //on prend le coin de C2 le plus proche de P1
+        PositionGraphique Pext1 = getClosestEdge(C1,P1,P2);  //on prend le coin de C1 le plus proche de P2
+        PositionGraphique Pext2 = getClosestEdge(C2,P2,P1);  //on prend le coin de C2 le plus proche de P1
         System.out.println(Pext1.print());
         System.out.println(Pext2.print());
 
@@ -217,11 +217,11 @@ public class Collisionneur implements Abonne {
 
         return (dist < 0 || dist == -0.0);  //on inclut le zero negatif
     }
-    private boolean Old_CheckCollisionSquareCircle(Position PSquare, Position PCircle, Hitbox CSquare, Hitbox CCircle){
+    private boolean Old_CheckCollisionSquareCircle(PositionGraphique PSquare, PositionGraphique PCircle, Hitbox CSquare, Hitbox CCircle){
         Hitbox HC;
         Hitbox HS;
-        Position PC;
-        Position PS;
+        PositionGraphique PC;
+        PositionGraphique PS;
         if(CSquare instanceof HitboxSquare && CCircle instanceof HitboxCircle){
             PC = PCircle;
             PS = PSquare;
@@ -237,7 +237,7 @@ public class Collisionneur implements Abonne {
             return false;   //cas d'erreur normalement impossible, les 2 sont des carrés ou les 2 sont des cercles...
         }
 
-        Position Pext = getClosestEdge(HS, PS, PC);
+        PositionGraphique Pext = getClosestEdge(HS, PS, PC);
         double distance = getAbsDistance(Pext, PC);
 
         return (distance < HS.getCollisionDistance());

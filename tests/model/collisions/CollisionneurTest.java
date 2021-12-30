@@ -1,6 +1,6 @@
 package model.collisions;
 
-import model.mouvement.Position;
+import model.mouvement.PositionGraphique;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -11,8 +11,8 @@ class CollisionneurTest {
 
     @Test
     void circleCircleCollision() {
-        Position CirclePos = new Position(0, 0);
-        Position CirclePos2 = new Position(1, 0);
+        PositionGraphique CirclePos = new PositionGraphique(0, 0);
+        PositionGraphique CirclePos2 = new PositionGraphique(1, 0);
 
         HitboxCircle HBC = new HitboxCircle(3);
         HitboxCircle HBC2 = new HitboxCircle(3);
@@ -24,16 +24,16 @@ class CollisionneurTest {
 
         assertTrue(col.isInCollision(CirclePos, CirclePos2, HBC, HBC2));
 
-        CirclePos = new Position(0, -7);
+        CirclePos = new PositionGraphique(0, -7);
         assertFalse(col.isInCollision(CirclePos, CirclePos2, HBC, HBC2));
 
-        CirclePos = new Position(3, 2);
+        CirclePos = new PositionGraphique(3, 2);
         assertTrue(col.isInCollision(CirclePos, CirclePos2, HBC, HBC2));
     }
     @Test
     void SquareSquareCollision(){
-        Position SquarePos = new Position(0,0);
-        Position SquarePos2 = new Position(0,10);
+        PositionGraphique SquarePos = new PositionGraphique(0,0);
+        PositionGraphique SquarePos2 = new PositionGraphique(0,10);
 
         HitboxSquare HS = new HitboxSquare(10);
         HitboxSquare HS2 = new HitboxSquare(10);
@@ -52,19 +52,19 @@ class CollisionneurTest {
 
         assertTrue(col.isInCollision(SquarePos, SquarePos2, HS, HS2));
 
-        SquarePos2 = new Position(0,0); //chevauchés
+        SquarePos2 = new PositionGraphique(0,0); //chevauchés
         assertTrue(col.isInCollision(SquarePos, SquarePos2, HS, HS2));
 
-        SquarePos2 = new Position(10,11);//en diagonale, sans se toucher
+        SquarePos2 = new PositionGraphique(10,11);//en diagonale, sans se toucher
         assertFalse(col.isInCollision(SquarePos, SquarePos2, HS, HS2));
 
-        SquarePos2 = new Position(10,10);//en diagonale, se touchant
+        SquarePos2 = new PositionGraphique(10,10);//en diagonale, se touchant
         assertTrue(col.isInCollision(SquarePos, SquarePos2, HS, HS2));
     }
     @Test
     void TestSquareCircleCollision(){
-        Position SquarePos = new Position(0,0);
-        Position CirclePos = new Position(0, 0);
+        PositionGraphique SquarePos = new PositionGraphique(0,0);
+        PositionGraphique CirclePos = new PositionGraphique(0, 0);
 
         HitboxSquare HS = new HitboxSquare(10);
         HitboxCircle HBC = new HitboxCircle(3);
@@ -76,13 +76,13 @@ class CollisionneurTest {
 
         assertTrue(col.isInCollision(SquarePos, CirclePos, HS, HBC));
 
-        CirclePos = new Position(0,0); //chevauchés
+        CirclePos = new PositionGraphique(0,0); //chevauchés
         assertTrue(col.isInCollision(SquarePos, CirclePos, HS, HBC));
 
-        CirclePos = new Position(17,11);//en diagonale, sans se toucher
+        CirclePos = new PositionGraphique(17,11);//en diagonale, sans se toucher
         assertFalse(col.isInCollision(SquarePos, CirclePos, HS, HBC));
 
-        CirclePos = new Position(5,5);//en diagonale, se touchant
+        CirclePos = new PositionGraphique(5,5);//en diagonale, se touchant
         assertTrue(col.isInCollision(SquarePos, CirclePos, HS, HBC));
     }
 }

@@ -1,8 +1,10 @@
 package model.mouvement;
 
+import model.enums.Orients;
+
 public class Navigateur {
-    public int donneDirectionAPrendre(int x, int y){
-        int i;
-        return i = 0;
+    public Orients donneDirectionAPrendre(Orients actuel, int caseX, int CaseY){
+        int direction = 0;
+        return Orients.values()[0];
     }
 }

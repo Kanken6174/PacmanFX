@@ -28,29 +28,31 @@ class EspaceDeJeuTest {
                 String toAdd = "§";
                 if(cases[i][j] != null) {
                     if (cases[i][j].isObstacle()) {
-                        toAdd = "#";
-                    } else {
+                        toAdd = "█";
+                    } else if(cases[i][j].isGhostHouseDoor()){
+                        toAdd = "_";
+                    }else {
                         toAdd = " ";
                     }
 
                     if(cases[i][j].hasStaticEntities()){
                         Entite e = cases[i][j].getStaticEntite();
                         if(e instanceof Gomme)
-                            toAdd = "◎";
+                            toAdd = ".";
                         if(e instanceof SuperGomme)
-                            toAdd = "\uD83C\uDF59";
+                            toAdd = "°";
                         if(e instanceof Fruits)
-                            toAdd = "\uD83C\uDF4E";
+                            toAdd = "$";
                     }
 
                     if(cases[i][j].hasEntities()){
                         Entite e = cases[i][j].getEntite(0);
                         if(e instanceof Fantome)
-                            toAdd = "\uD83D\uDC7B";
+                            //toAdd = "\uD83D\uDC7B";
+                            toAdd = "A";
                         if(e instanceof PacmanObject)
-                            toAdd = "\uD83D\uDFE1";
+                            toAdd = "C";
                     }
-                    toAdd += "\t";
                     toWrite += toAdd;
                 }
             }

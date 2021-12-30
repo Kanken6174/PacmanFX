@@ -14,6 +14,7 @@ public class collisionLoader {
                 for(char c : line.toCharArray()){
                     cases[i][j] = new Case();
                     cases[i][j].setEstObstacle((c=='1'));
+                    cases[i][j].setGhostHouseDoor((c=='2'));
                     j++;
                 }
                 i++;

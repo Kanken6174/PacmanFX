@@ -1,22 +1,35 @@
 package model.entites;
 
 import model.collisions.HitboxSquare;
-import model.mouvement.Position;
+import model.enums.Orients;
+import model.mouvement.PositionGraphique;
 import model.graphicsUtilities.Sprite;
+import model.mouvement.PositionLogique;
 
 public class Entite {
     public int id;
-    private Position pos;
-    private HitboxSquare hitBox;
-    private Sprite sprite;
-    public int spriteX = 0;//définit la position du sprite sur la palette
-    public int spriteY = 0;
+    protected PositionGraphique pos;
+    protected PositionLogique posL;
+    protected HitboxSquare hitBox;
+    protected Sprite sprite;
 
     public int getX(){
-        return (int) pos.x;
+        return (int) pos.getX();
     }
 
-    public int getY(){
-        return (int) pos.y;
+    public float getY(){
+        return pos.getY();
+    }
+
+    public Orients getOrient(){
+        return posL.getOrient();
+    }
+
+    public int getLogicX(){
+        return posL.getCasex();
+    }
+
+    public int getLogicY(){
+        return posL.getCaseY();
     }
 }

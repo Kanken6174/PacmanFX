@@ -2,7 +2,11 @@ package model.graphicsUtilities;
 
 import javafx.scene.image.Image;
 
+import java.awt.image.BufferedImage;
+
 public class Sprite {
-    public Image image;
-    public Animateur anim;
+    private Image image;
+    private BufferedImage bi;
+    private Animateur anim;
+
 }

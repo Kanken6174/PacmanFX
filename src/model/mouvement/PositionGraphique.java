@@ -1,17 +1,17 @@
 package model.mouvement;
 
-public class Position {
-    public float x;
-    public float y;
-    public float z;
+public class PositionGraphique {
+    private float x;
+    private float y;
+    private float z;
 
-    public Position(float x, float y, float z){
+    public PositionGraphique(float x, float y, float z){
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
-    public Position(float x, float y){
+    public PositionGraphique(float x, float y){
         this.x = x;
         this.y = y;
         this.z = 0;
