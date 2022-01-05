@@ -3,6 +3,8 @@ package model.terrain;
 import model.entites.*;
 import org.junit.jupiter.api.Test;
 
+import java.awt.image.BufferedImage;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EspaceDeJeuTest {
@@ -15,7 +17,8 @@ class EspaceDeJeuTest {
         Case[][] cases = EJ.getStage();
         assertNotNull(cases);
         drawGameStageToConsole(cases);
-        //System.out.print("\033[H\033[2J");
+        BufferedImage bi = EJ.assemblePlayspace();
+        System.out.print("test");
         //System.out.flush();
     }
 

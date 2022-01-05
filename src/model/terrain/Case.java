@@ -11,7 +11,7 @@ public class Case {
     private boolean estObstacle = true;
     private boolean isGhostHouseDoor = false;
     private boolean containsPacMan = false;
-    private int SpriteIndex = -1;
+    private int SpriteIndex = -1;       //inutilisé
     private Sprite sp;
 
     private ArrayList<Entite> Entites = new ArrayList<>();
