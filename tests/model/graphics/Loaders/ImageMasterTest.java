@@ -1,11 +1,10 @@
 package model.graphics.Loaders;
 
+import javafx.scene.image.WritableImage;
 import model.enums.FantomeNom;
 import model.graphics.tools.ImageFlipper;
 import model.graphics.tools.ImageRotate;
 import org.junit.jupiter.api.Test;
-
-import .image.WritableImage;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

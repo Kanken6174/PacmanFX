@@ -3,21 +3,23 @@ package controller;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
-import model.enums.FantomeNom;
-import model.graphics.Loaders.ImageLoader;
-import model.terrain.EspaceDeJeu;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
+import model.enums.FantomeNom;
+import model.graphics.Loaders.ImageLoader;
 import model.graphics.Loaders.ImageMaster;
+import model.graphics.tools.ImageConverter;
+import model.terrain.EspaceDeJeu;
 
-import .*;
-import .image.WritableImage;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -42,7 +44,7 @@ public class Game {
     private Fantome pinky = new Fantome(FantomeNom.PINKY);
     private Fantome[] fantomes= {clyde, inky, blinky, pinky};
 
-    private ImageMaster im = new ImageMaster(ImageLoader.loadRessources());
+    private ImageMaster im = new ImageMaster(( WritableImage) ImageLoader.loadRessources());
 
 
     @FXML public EventHandler<KeyEvent> eventHandler = new EventHandler<KeyEvent>(){
@@ -57,7 +59,7 @@ public class Game {
 
     @FXML private void initialize() {
         myBP.setOnKeyPressed(eventHandler);
-        WritableImage bi = ImageLoader.loadRessources();
+        WritableImage bi = ImageConverter.ImageToWriteableImage(ImageLoader.loadRessources());
         Image img = im.getImageAt(553,65);
         fantome1.setImage(img);
         runPacRegularly();
@@ -156,6 +158,6 @@ public class Game {
     }
 
     public void buttonChangeColor() {
-        test.setBackground(Color.BLACK);
+        test.setBackground(Background.EMPTY);
     }
 }

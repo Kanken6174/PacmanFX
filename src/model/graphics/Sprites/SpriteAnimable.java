@@ -1,8 +1,8 @@
 package model.graphics.Sprites;
 
+import javafx.scene.image.WritableImage;
 import model.graphics.tools.ImageClipper;
 
-import .image.WritableImage;
 
 public class SpriteAnimable extends Sprite {
     private WritableImage Spritesheet;
@@ -17,7 +17,7 @@ public class SpriteAnimable extends Sprite {
         Spritesheet = bi;
         SpritesAmountCycle = cycles;
         SpritesAmountTypes = types;
-        FrameWidth = bi.getHeight();    //chaque sprite est soit 8*XX ou 16*XX, et sur une seule ligne, donc si on prend la hauteur on a la largeur de chaque frame
+        FrameWidth = (int)bi.getHeight();    //chaque sprite est soit 8*XX ou 16*XX, et sur une seule ligne, donc si on prend la hauteur on a la largeur de chaque frame
     }
 
     public WritableImage getSpritesheet(){

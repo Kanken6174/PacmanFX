@@ -1,10 +1,9 @@
 package model.terrain;
 
-import javafx.scene.image.WritableImage;
+import javafx.scene.image.*;
 import model.terrain.loaders.collisionLoader;
 import model.terrain.loaders.entityLoader;
 import model.terrain.loaders.spriteLoader;
-
 
 
 public class EspaceDeJeu {
@@ -36,18 +35,20 @@ public class EspaceDeJeu {
             }
         }
 
-        WritableImage playspace = new WritableImage(pixelsY,pixelsX,WritableImage.TYPE_INT_ARGB);
-        Graphics2D g2d = playspace.createGraphics();
+        WritableImage playspace = new WritableImage(pixelsY,pixelsX);
+        PixelWriter px = playspace.getPixelWriter();
 
         for(int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
                 if(bis[x][y] != null){
-                    g2d.drawImage(bis[x][y],y*8,x*8,null);
+                    //ça se passera dans les vues, on snapshot le cadre
                 }
             }
         }
+        /*
         g2d.rotate(Math.PI/2);
         g2d.dispose();
+         */
         return playspace;
     }
 

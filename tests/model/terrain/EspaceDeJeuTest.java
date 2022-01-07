@@ -1,11 +1,10 @@
 package model.terrain;
 
+import javafx.scene.image.WritableImage;
 import model.entites.*;
 import org.junit.jupiter.api.Test;
 
-import .image.WritableImage;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class EspaceDeJeuTest {
     @Test

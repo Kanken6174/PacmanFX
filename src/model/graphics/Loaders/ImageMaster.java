@@ -4,13 +4,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import model.enums.FantomeNom;
 import model.graphics.tools.ImageClipper;
+import model.graphics.tools.ImageConverter;
 
 
 public class ImageMaster {  //Cette classe contient la spritesheet principale et existe dans le manager
     private WritableImage MainRessource;
 
     public ImageMaster(){
-       MainRessource = ImageLoader.loadRessources();
+       MainRessource = ImageConverter.ImageToWriteableImage(ImageLoader.loadRessources());
     }
 
     public ImageMaster(WritableImage MainRessource){
@@ -25,7 +26,7 @@ public class ImageMaster {  //Cette classe contient la spritesheet principale et
     public WritableImage getSpritePart(int x, int y, int width, int height){
         WritableImage bi = null;
         try{
-            bi = MainRessource.getSubimage(x,y,width,height);
+            bi = ImageClipper.clip(MainRessource,x,y,width,height);
         }
         catch (IndexOutOfBoundsException e){
 

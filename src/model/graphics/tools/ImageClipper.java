@@ -12,6 +12,12 @@ public class ImageClipper {
         return wi;
     }
 
+    public static WritableImage clip(Image source, int x, int y, int w, int h){
+        PixelReader px = source.getPixelReader();
+        WritableImage wi = new WritableImage(px,x,y,w,h);
+        return wi;
+    }
+
     public static WritableImage clipGhostAnimation(Image source, int id){
         PixelReader px = source.getPixelReader();
         WritableImage wi = new WritableImage(px,441,49+(16*id),14,14*8);
