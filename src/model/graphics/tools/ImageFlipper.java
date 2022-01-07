@@ -1,24 +1,30 @@
 package model.graphics.tools;
 
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 
 public class ImageFlipper {
-    public static BufferedImage flipHorizontal(BufferedImage bi){
+    public static WritableImage flipHorizontal(WritableImage bi){
+        /*
         AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
         tx.translate(0, -bi.getHeight());
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         bi = op.filter(bi, null);
+        */
+        PixelWriter px = bi.getPixelWriter();
         return bi;
     }
 
-    public static BufferedImage flipVertical(BufferedImage bi){
-        BufferedImage b2 = bi;
+    public static WritableImage flipVertical(WritableImage bi){
+        /*
+        WritableImage b2 = bi;
         AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
         tx.translate(-bi.getWidth(), 0);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         bi = op.filter(bi, null);
+        return bi;
+        */
+        PixelWriter px = bi.getPixelWriter();
         return bi;
     }
 }

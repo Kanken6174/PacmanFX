@@ -3,7 +3,7 @@ package model.terrain;
 import model.entites.*;
 import org.junit.jupiter.api.Test;
 
-import java.awt.image.BufferedImage;
+import .image.WritableImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +17,7 @@ class EspaceDeJeuTest {
         Case[][] cases = EJ.getStage();
         assertNotNull(cases);
         drawGameStageToConsole(cases);
-        BufferedImage bi = EJ.assemblePlayspace();
+        WritableImage bi = EJ.assemblePlayspace();
         System.out.print("test");
         //System.out.flush();
     }

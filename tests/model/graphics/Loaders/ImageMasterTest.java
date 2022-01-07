@@ -5,7 +5,7 @@ import model.graphics.tools.ImageFlipper;
 import model.graphics.tools.ImageRotate;
 import org.junit.jupiter.api.Test;
 
-import java.awt.image.BufferedImage;
+import .image.WritableImage;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -15,16 +15,16 @@ class ImageMasterTest {
     public void TestImageMasterFantome(){
         ImageMaster im = new ImageMaster();
         assertNotNull(im);
-        BufferedImage blinkySpritesheet = im.getSpritesheetForGhost(FantomeNom.BLINKY); //fantome rouge
+        WritableImage blinkySpritesheet = im.getSpritesheetForGhost(FantomeNom.BLINKY); //fantome rouge
         assertNotNull(blinkySpritesheet);
 
-        BufferedImage inkySpritesheet = im.getSpritesheetForGhost(FantomeNom.INKY); //fantome rouge
+        WritableImage inkySpritesheet = im.getSpritesheetForGhost(FantomeNom.INKY); //fantome rouge
         assertNotNull(inkySpritesheet);
 
-        BufferedImage pinkySpritesheet = im.getSpritesheetForGhost(FantomeNom.PINKY); //fantome rouge
+        WritableImage pinkySpritesheet = im.getSpritesheetForGhost(FantomeNom.PINKY); //fantome rouge
         assertNotNull(pinkySpritesheet);
 
-        BufferedImage clydeSpritesheet = im.getSpritesheetForGhost(FantomeNom.CLYDE); //fantome rouge
+        WritableImage clydeSpritesheet = im.getSpritesheetForGhost(FantomeNom.CLYDE); //fantome rouge
         assertNotNull(clydeSpritesheet);
 
 
@@ -34,7 +34,7 @@ class ImageMasterTest {
     public void TestImageMasterGhostFreightened(){
         ImageMaster im = new ImageMaster();
         assertNotNull(im);
-        BufferedImage freghtened = im.getSpritesheetGhostFreightened();
+        WritableImage freghtened = im.getSpritesheetGhostFreightened();
         assertNotNull(freghtened);
     }
 
@@ -44,15 +44,15 @@ class ImageMasterTest {
         assertNotNull(im);
 
 
-        BufferedImage straightUp = im.getTerrainTiles(3,2);
-        BufferedImage straightDown = ImageRotate.RotateDeg(straightUp, 180);
-;        BufferedImage straightBottom = ImageRotate.RotateDeg(straightDown,-90);
-        BufferedImage straightTop = ImageFlipper.flipVertical(straightBottom);
+        WritableImage straightUp = im.getTerrainTiles(3,2);
+        WritableImage straightDown = ImageRotate.RotateDeg(straightUp, 180);
+;        WritableImage straightBottom = ImageRotate.RotateDeg(straightDown,-90);
+        WritableImage straightTop = ImageFlipper.flipVertical(straightBottom);
 
-        BufferedImage cornerRightDown = im.getTerrainTiles(2,2);
-        BufferedImage cornerDownLeft = ImageRotate.RotateDeg(cornerRightDown,90);
-        BufferedImage cornerLeftTop = ImageRotate.RotateDeg(cornerDownLeft,90);
-        BufferedImage cornerTopRight = ImageRotate.RotateDeg(cornerLeftTop,90);
+        WritableImage cornerRightDown = im.getTerrainTiles(2,2);
+        WritableImage cornerDownLeft = ImageRotate.RotateDeg(cornerRightDown,90);
+        WritableImage cornerLeftTop = ImageRotate.RotateDeg(cornerDownLeft,90);
+        WritableImage cornerTopRight = ImageRotate.RotateDeg(cornerLeftTop,90);
 
         assertNotNull(straightTop);
         assertNotNull(cornerTopRight);

@@ -1,13 +1,13 @@
 package model.graphics.Animateurs;
 
+import javafx.scene.image.WritableImage;
 import model.Observers.Abonne;
 import model.graphics.Sprites.SpriteAnimable;
 
-import java.awt.image.BufferedImage;
 
 public class Animateur implements Abonne {
 
-    private BufferedImage nextFrame(SpriteAnimable sprite){
+    private WritableImage nextFrame(SpriteAnimable sprite){
         return null;
     }
 

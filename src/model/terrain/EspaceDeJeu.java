@@ -1,11 +1,11 @@
 package model.terrain;
 
+import javafx.scene.image.WritableImage;
 import model.terrain.loaders.collisionLoader;
 import model.terrain.loaders.entityLoader;
 import model.terrain.loaders.spriteLoader;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
+
 
 public class EspaceDeJeu {
     private Case[][] tiles;
@@ -24,8 +24,8 @@ public class EspaceDeJeu {
         assemblePlayspace();
     }
 
-    public BufferedImage assemblePlayspace(){
-        BufferedImage[][] bis = new BufferedImage[maxX][maxY];
+    public WritableImage assemblePlayspace(){
+        WritableImage[][] bis = new WritableImage[maxX][maxY];
         int pixelsX = maxX*8;
         int pixelsY = maxY*8;
         for(int x = 0; x < maxX; x++) {
@@ -36,7 +36,7 @@ public class EspaceDeJeu {
             }
         }
 
-        BufferedImage playspace = new BufferedImage(pixelsY,pixelsX,BufferedImage.TYPE_INT_ARGB);
+        WritableImage playspace = new WritableImage(pixelsY,pixelsX,WritableImage.TYPE_INT_ARGB);
         Graphics2D g2d = playspace.createGraphics();
 
         for(int x = 0; x < maxX; x++) {

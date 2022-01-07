@@ -1,5 +1,6 @@
 package model.terrain.loaders;
 
+import javafx.scene.image.WritableImage;
 import model.entites.Fantome;
 import model.enums.FantomeNom;
 import model.graphics.Loaders.ImageMaster;
@@ -8,13 +9,13 @@ import model.graphics.Sprites.SpriteAnimable;
 import model.graphics.tools.ImageRotate;
 import model.terrain.Case;
 
-import java.awt.image.BufferedImage;
+
 import java.util.ArrayList;
 
 public class spriteLoader {
     public static Case[][] loadSprites(Case[][] cases, int maxX, int maxY){
         ImageMaster im = new ImageMaster();
-        BufferedImage blinkySpritesheet = im.getSpritesheetForGhost(FantomeNom.BLINKY);
+        WritableImage blinkySpritesheet = im.getSpritesheetForGhost(FantomeNom.BLINKY);
 
 
         for(int x = 0; x < maxX; x++){
@@ -95,7 +96,7 @@ public class spriteLoader {
         if (c.hasGhosts()) {
             ArrayList<Integer> indexsGhost = c.getGhostIndexes();
             for (Integer i : indexsGhost) {
-                BufferedImage bi = im.getSpritesheetForGhost(((Fantome) c.getEntite(i)).getFantomeNom()); //C'est toujours un fantome, le cast est requis
+                WritableImage bi = im.getSpritesheetForGhost(((Fantome) c.getEntite(i)).getFantomeNom()); //C'est toujours un fantome, le cast est requis
                                                                                                           //pour qu'il trouve la méthode getFantomeNom...
                 SpriteAnimable sa = new SpriteAnimable(bi,2,4);
                 ((Fantome) c.getEntite(i)).setSpriteAnimable(sa);

@@ -1,10 +1,11 @@
 package model.graphics.Sprites;
 
-import java.awt.image.BufferedImage;
+
+import javafx.scene.image.WritableImage;
 
 public class Sprite {
-    private BufferedImage bi;
-    public Sprite(BufferedImage bi){
+    private WritableImage bi;
+    public Sprite(WritableImage bi){
         this.bi = bi;
     }
 
@@ -12,11 +13,11 @@ public class Sprite {
         this.bi = null;
     }
 
-    public BufferedImage getImage(){
+    public WritableImage getImage(){
         return bi;
     }
 
-    public void setBi(BufferedImage bi){
+    public void setBi(WritableImage bi){
         this.bi = bi;
     }
 }

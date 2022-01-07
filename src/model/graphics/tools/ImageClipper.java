@@ -1,21 +1,32 @@
 package model.graphics.tools;
 
-import java.awt.image.BufferedImage;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.WritableImage;
 
 public class ImageClipper {
-    public static BufferedImage clipSprite(BufferedImage source,int x, int y){
-        return source.getSubimage(x,y,14,14);
+    public static WritableImage clipSprite(Image source, int x, int y){
+        PixelReader px = source.getPixelReader();
+        WritableImage wi = new WritableImage(px,x,y,14,14);
+        return wi;
     }
 
-    public static BufferedImage clipGhostAnimation(BufferedImage source, int id){
-        return source.getSubimage(441,49+(16*id),14,14*8);
+    public static WritableImage clipGhostAnimation(Image source, int id){
+        PixelReader px = source.getPixelReader();
+        WritableImage wi = new WritableImage(px,441,49+(16*id),14,14*8);
+        return wi;
     }
 
-    public static BufferedImage getFrame(BufferedImage source, int id){
-        return source.getSubimage(id*16,0,14,14);
+    public static WritableImage getFrame(Image source, int id){
+        PixelReader px = source.getPixelReader();
+        WritableImage wi = new WritableImage(px,id*16,0,14,14);
+        return wi;
     }
 
-    public static BufferedImage getFrame(BufferedImage source, int id, int sideSize){
-        return source.getSubimage(id*sideSize,0,sideSize,sideSize);
+    public static WritableImage getFrame(Image source, int id, int sideSize){
+        PixelReader px = source.getPixelReader();
+        WritableImage wi = new WritableImage(px,id*sideSize,0,sideSize,sideSize);
+        return wi;
     }
 }

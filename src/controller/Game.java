@@ -16,8 +16,8 @@ import model.entites.Fantome;
 import model.entites.PacmanObject;
 import model.graphics.Loaders.ImageMaster;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import .*;
+import .image.WritableImage;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -57,7 +57,7 @@ public class Game {
 
     @FXML private void initialize() {
         myBP.setOnKeyPressed(eventHandler);
-        BufferedImage bi = ImageLoader.loadRessources();
+        WritableImage bi = ImageLoader.loadRessources();
         Image img = im.getImageAt(553,65);
         fantome1.setImage(img);
         runPacRegularly();

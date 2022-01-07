@@ -1,16 +1,16 @@
 package model.graphics.tools;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import .*;
+import .image.WritableImage;
 
-import static java.awt.image.BufferedImage.*;
+import static .image.WritableImage.*;
 
 public class ImageRotate {
-    public static BufferedImage RotateDeg(BufferedImage bi, double degresPos){
+    public static WritableImage RotateDeg(WritableImage bi, double degresPos){
         degresPos /= 180;
         degresPos *= Math.PI;
 
-        BufferedImage toReturn = new BufferedImage(bi.getHeight(),bi.getWidth(), TYPE_INT_ARGB);//RGB avec transparence
+        WritableImage toReturn = new WritableImage(bi.getHeight(),bi.getWidth(), TYPE_INT_ARGB);//RGB avec transparence
 
         Graphics2D g2d = toReturn.createGraphics();
         g2d.translate((bi.getHeight() - bi.getWidth()) / 2, (bi.getHeight() - bi.getWidth()) / 2);

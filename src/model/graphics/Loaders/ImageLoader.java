@@ -1,19 +1,20 @@
 package model.graphics.Loaders;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+import javafx.scene.image.Image;
+
 import java.io.File;
-import java.io.IOException;
 
 
 public class ImageLoader {
-    public static BufferedImage loadRessources(){
-        BufferedImage bi = null;
+    public static Image loadRessources(){
+        Image img = null;
         try {
-            bi = ImageIO.read(new File("./out/production/pacmanfx/Images/sprites.png"));    //chemin relatif
-        } catch (IOException e) {
+            File f = new File("./out/production/pacmanfx/Images/sprites.png");    //chemin relatif
+            img = new Image(f.toURI().toString());
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return bi;
+        return img;
     }
 }
