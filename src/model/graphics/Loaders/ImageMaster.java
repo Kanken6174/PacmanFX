@@ -8,13 +8,13 @@ import model.graphics.tools.ImageConverter;
 
 
 public class ImageMaster {  //Cette classe contient la spritesheet principale et existe dans le manager
-    private WritableImage MainRessource;
+    private Image MainRessource;
 
     public ImageMaster(){
        MainRessource = ImageConverter.ImageToWriteableImage(ImageLoader.loadRessources());
     }
 
-    public ImageMaster(WritableImage MainRessource){
+    public ImageMaster(Image MainRessource){
         this.MainRessource = MainRessource;
     }
 

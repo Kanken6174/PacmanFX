@@ -44,7 +44,7 @@ public class Game {
     private Fantome pinky = new Fantome(FantomeNom.PINKY);
     private Fantome[] fantomes= {clyde, inky, blinky, pinky};
 
-    private ImageMaster im = new ImageMaster(( WritableImage) ImageLoader.loadRessources());
+    private ImageMaster im = new ImageMaster( ImageLoader.loadRessources());
 
 
     @FXML public EventHandler<KeyEvent> eventHandler = new EventHandler<KeyEvent>(){
