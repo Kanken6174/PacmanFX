@@ -3,10 +3,10 @@ package model.terrain.loaders;
 import javafx.scene.image.WritableImage;
 import model.entites.Fantome;
 import model.enums.FantomeNom;
-import model.graphics.Loaders.ImageMaster;
-import model.graphics.Sprites.Sprite;
-import model.graphics.Sprites.SpriteAnimable;
-import model.graphics.tools.ImageRotate;
+import views.Loaders.ImageMaster;
+import views.Sprites.Sprite;
+import views.Sprites.SpriteAnimable;
+import views.tools.ImageRotate;
 import model.terrain.Case;
 
 

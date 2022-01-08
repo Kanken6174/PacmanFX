@@ -1,4 +1,4 @@
-package model.graphics.tools;
+package views.tools;
 
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;

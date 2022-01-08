@@ -1,10 +1,10 @@
-package model.graphics.Loaders;
+package views.Loaders;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import model.enums.FantomeNom;
-import model.graphics.tools.ImageClipper;
-import model.graphics.tools.ImageConverter;
+import views.tools.ImageClipper;
+import views.tools.ImageConverter;
 
 
 public class ImageMaster {  //Cette classe contient la spritesheet principale et existe dans le manager

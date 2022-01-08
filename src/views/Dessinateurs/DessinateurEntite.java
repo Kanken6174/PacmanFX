@@ -1,4 +1,4 @@
-package model.graphics;
+package views.Dessinateurs;
 
 import model.entites.Entite;
 

@@ -2,7 +2,7 @@ package model.entites;
 
 import model.enums.FantomeNom;
 import model.enums.FantomeState;
-import model.graphics.Sprites.SpriteAnimable;
+import views.Sprites.SpriteAnimable;
 
 public class Fantome extends Entite{
     public int spriteX = 441;   //définit la position du sprite sur la palette (X)

@@ -1,8 +1,8 @@
-package model.graphics.Animateurs;
+package views.Animateurs;
 
 import javafx.scene.image.WritableImage;
 import model.Observers.Abonne;
-import model.graphics.Sprites.SpriteAnimable;
+import views.Sprites.SpriteAnimable;
 
 
 public class Animateur implements Abonne {
