@@ -2,9 +2,8 @@ package views.Loaders;
 
 import javafx.scene.image.WritableImage;
 import model.enums.FantomeNom;
-import tools.ImageFlipper;
-import tools.ImageRotate;
 import org.junit.jupiter.api.Test;
+import tools.ImageRotate;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -44,14 +43,14 @@ class ImageMasterTest {
 
 
         WritableImage straightUp = im.getTerrainTiles(3,2);
-        WritableImage straightDown = ImageRotate.RotateDeg(straightUp, 180);
-;        WritableImage straightBottom = ImageRotate.RotateDeg(straightDown,-90);
-        WritableImage straightTop = ImageFlipper.flipVertical(straightBottom);
+        WritableImage straightDown = ImageRotate.RotateDegx90(straightUp, 180);
+;        WritableImage straightBottom = ImageRotate.RotateDegx90(straightDown,-90);
+        WritableImage straightTop = ImageRotate.RotateDegx90(straightBottom,90);
 
         WritableImage cornerRightDown = im.getTerrainTiles(2,2);
-        WritableImage cornerDownLeft = ImageRotate.RotateDeg(cornerRightDown,90);
-        WritableImage cornerLeftTop = ImageRotate.RotateDeg(cornerDownLeft,90);
-        WritableImage cornerTopRight = ImageRotate.RotateDeg(cornerLeftTop,90);
+        WritableImage cornerDownLeft = ImageRotate.RotateDegx90(cornerRightDown,90);
+        WritableImage cornerLeftTop = ImageRotate.RotateDegx90(cornerDownLeft,90);
+        WritableImage cornerTopRight = ImageRotate.RotateDegx90(cornerLeftTop,90);
 
         assertNotNull(straightTop);
         assertNotNull(cornerTopRight);

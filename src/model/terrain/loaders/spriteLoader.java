@@ -59,32 +59,32 @@ public class spriteLoader {
 
             if(T && B && R && L){
                 if(!TR){
-                    sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,2),0));
+                    sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,2),0));
                 }else if(!TL){
-                    sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,2),270));
+                    sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,2),90));
                 }else if(!BR){
-                    sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,2),90));
+                    sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,2),270));
                 }else if(!BL){
-                    sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,2),180));
+                    sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,2),180));
                 }else{
                     sp = new Sprite(im.getTerrainTiles(0,10));  //plein -> vide
                 }
             }else if(T && B && R){
-                sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,3),270));
+                sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,3),180));
             }else if(T && B && L){
-                sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,3),90));
+                sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,3),0));
             }else if(L && B && R){
-                sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,3),0));
+                sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,3),90));
             }else if(L && T && R){
-                sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,3),180));
+                sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,3),270));
             }else if(B && R){
-                sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,2),180));
+                sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,2),180));
             }else if(B && L){
-                sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,2),90));
+                sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,2),270));
             }else if(T && L){
-                sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,2),0));
+                sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,2),0));
             }else if(T && R){
-                sp = new Sprite(ImageRotate.RotateDeg(im.getTerrainTiles(2,2),270));
+                sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(2,2),90));
             }else{
                 sp = new Sprite(im.getTerrainTiles(0,10));  //les autres ne devraient pas se produire, donc vide
             }
