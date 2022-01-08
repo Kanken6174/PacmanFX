@@ -7,6 +7,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
+import model.entites.Fantome;
 
 public class gameView {
     @FXML
@@ -14,26 +15,30 @@ public class gameView {
     @FXML private BorderPane myBP;
     @FXML private Arc pacman;
     @FXML private Button test;
-    @FXML private ImageView fantome1;
-    @FXML private ImageView fantome2;
-    @FXML private ImageView fantome3;
-    @FXML private ImageView fantome4;
+    @FXML private ImageView blinky;
+    @FXML private ImageView pinky;
+    @FXML private ImageView inky;
+    @FXML private ImageView clyde;
     @FXML private ImageView terrain;
 
-    public gameView(){
-    }
-
+    @FXML private ImageView[] fantomes = {blinky,pinky,inky,clyde};
 
     @FXML
     public void initialize(){
 
     }
 
-    public void DrawPlaspaceBackground(WritableImage img){
+    public void DrawPlayspaceBackground(WritableImage img){
         terrain.setImage(img);
         terrain.setRotate(90);
         terrain.setScaleX(terrain.getScaleX()*3);
         terrain.setScaleY(terrain.getScaleY()*3);
+    }
+
+    public void bindFantome(Fantome f){
+        ImageView toBind = fantomes[f.getFantomeNom().ordinal()];
+        toBind.xProperty().bindBidirectional(f.getPositionGraphique().xProperty());
+        toBind.yProperty().bindBidirectional(f.getPositionGraphique().yProperty());
     }
 
 }

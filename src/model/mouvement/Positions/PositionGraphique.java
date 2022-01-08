@@ -1,37 +1,40 @@
 package model.mouvement.Positions;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+
 public class PositionGraphique {
-    private float x;
-    private float y;
-    private float z;
+    private final DoubleProperty x = new SimpleDoubleProperty();
+        public double getx() {return x.get();}
+        public void setx(double value){this.x.set(value);}
+        public DoubleProperty xProperty(){return x;}
 
-    public PositionGraphique(float x, float y, float z){
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    private final DoubleProperty y = new SimpleDoubleProperty();
+        public double gety() {return y.get();}
+        public void sety(double value){this.y.set(value);}
+        public DoubleProperty yProperty(){return y;}
+
+    private final DoubleProperty z = new SimpleDoubleProperty();
+        public double getz() {return z.get();}
+        public void setz(double value){this.z.set(value);}
+        public DoubleProperty zProperty(){return z;}
+
+
+    public PositionGraphique(double x, double y, double z){
+        this.x.set(x);
+        this.y.set(y);
+        this.z.set(z);
     }
 
-    public PositionGraphique(float x, float y){
-        this.x = x;
-        this.y = y;
-        this.z = 0;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public float getZ() {
-        return z;
+    public PositionGraphique(double x, double y){
+        this.x.set(x);
+        this.y.set(y);
+        this.z.set(0);
     }
 
     public String print(){
-        String toReturn = "X: " + Float.toString(x);
-        toReturn = toReturn + " Y : "+Float.toString(y)+ " Z : " + Float.toString(z);
+        String toReturn = "X: " + Double.toString(x.get());
+        toReturn = toReturn + " Y : "+Double.toString(y.get())+ " Z : " + Double.toString(z.get());
         return toReturn;
     }
 }

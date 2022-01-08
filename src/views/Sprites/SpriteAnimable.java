@@ -1,7 +1,7 @@
 package views.Sprites;
 
 import javafx.scene.image.WritableImage;
-import views.tools.ImageClipper;
+import tools.ImageClipper;
 
 
 public class SpriteAnimable extends Sprite {

@@ -60,45 +60,45 @@ public class Collisionneur implements Abonne {
             return false;   //cas d'erreur normalement impossible, les 2 sont des carrés ou les 2 sont des cercles...
         }
 
-        double testX = PC.getX();
-        double testY = PC.getY();
+        double testX = PC.getx();
+        double testY = PC.gety();
 
-        if (PC.getX() < PS.getX())
-            testX = PS.getX();      // test left edge
-        else if (PC.getX() > PS.getX()+HS.getCollisionDistance())
-            testX = PS.getX()+HS.getCollisionDistance();   // right edge
+        if (PC.getx() < PS.getx())
+            testX = PS.getx();      // test left edge
+        else if (PC.getx() > PS.getx()+HS.getCollisionDistance())
+            testX = PS.getx()+HS.getCollisionDistance();   // right edge
 
-        if (PC.getY() < PS.getX())
-            testY = PS.getY();      // top edge
-        else if (PC.getY() > (PS.getY()+HS.getCollisionDistance()))
-            testY = PS.getY()+HS.getCollisionDistance();   // bottom edge
+        if (PC.gety() < PS.getx())
+            testY = PS.gety();      // top edge
+        else if (PC.gety() > (PS.gety()+HS.getCollisionDistance()))
+            testY = PS.gety()+HS.getCollisionDistance();   // bottom edge
 
-        double distX = PC.getX()-testX;
-        double distY = PC.getY()-testY;
+        double distX = PC.getx()-testX;
+        double distY = PC.gety()-testY;
         double distance = Math.sqrt( Math.pow(distX,2) + Math.pow(distY,2));
         boolean toReturn = (distance <= HC.getCollisionDistance());
         return toReturn;  //si la distance entre les 2 points est inférieur au rayon du cercle... collision
     }
 
     private boolean CheckCollision2Square(PositionGraphique P1, PositionGraphique P2, Hitbox C1, Hitbox C2){
-        return(P1.getX() + C1.getCollisionDistance() >= P2.getX() &&    // r1 right edge past r2 left
-                P1.getX() <= P2.getX() + C2.getCollisionDistance() &&    // r1 left edge past r2 right
-                P1.getY() + C1.getCollisionDistance() >= P2.getY() &&    // r1 top edge past r2 bottom
-                P1.getY() <= P2.getY() + C2.getCollisionDistance());
+        return(P1.getx() + C1.getCollisionDistance() >= P2.getx() &&    // r1 right edge past r2 left
+                P1.getx() <= P2.getx() + C2.getCollisionDistance() &&    // r1 left edge past r2 right
+                P1.gety() + C1.getCollisionDistance() >= P2.gety() &&    // r1 top edge past r2 bottom
+                P1.gety() <= P2.gety() + C2.getCollisionDistance());
     }
 
     private double getAbsDistance(PositionGraphique P1, PositionGraphique P2){
-        double Xdistance =  Math.abs(P1.getX() - P2.getX());
-        double Ydistance = Math.abs(P1.getY() - P2.getY());
+        double Xdistance =  Math.abs(P1.getx() - P2.getx());
+        double Ydistance = Math.abs(P1.gety() - P2.gety());
         double pointDistance = Math.sqrt( Math.pow(Xdistance,2) + Math.pow(Ydistance,2));
 
         return pointDistance;
     }
 
     private PositionGraphique getClosestEdge(Hitbox HS, PositionGraphique Square, PositionGraphique Point){    //inutilisé
-        float CheckX = Point.getX(), CheckY = Point.getY();
+        double CheckX = Point.getx(), CheckY = Point.gety();
 
-        PositionGraphique[] edges = getSquareEdges(Square.getX(), Square.getY(), HS);    //retourne la position absolue de chaque coin du carré
+        PositionGraphique[] edges = getSquareEdges(Square.getx(), Square.gety(), HS);    //retourne la position absolue de chaque coin du carré
         double[] distances = {0,0,0,0};
         double minDistance = -1;
         int minDistanceIndex = -1;
@@ -113,15 +113,15 @@ public class Collisionneur implements Abonne {
                 minDistanceIndex = i;
             }
         }
-        PositionGraphique toReturn =  new PositionGraphique(edges[minDistanceIndex].getX(),edges[minDistanceIndex].getY(), minDistanceIndex); //on détourne Z pour savoir dans quelle direction tester...
+        PositionGraphique toReturn =  new PositionGraphique(edges[minDistanceIndex].getx(),edges[minDistanceIndex].gety(), minDistanceIndex); //on détourne Z pour savoir dans quelle direction tester...
         // bof
         return toReturn; //on retourne le coin de HS (carré) le moins loin de la position point
     }
     private double getInteriorExteriorDistance(PositionGraphique P1, PositionGraphique P2){   //inutilisé et non-fonctionnel
-        float X1 = P1.getX();
-        float Y1 = P1.getY();
-        float X2 = P2.getX();
-        float Y2 = P2.getY();
+        double X1 = P1.getx();
+        double Y1 = P1.gety();
+        double X2 = P2.getx();
+        double Y2 = P2.gety();
 
 
         /*        rappel:
@@ -130,7 +130,7 @@ public class Collisionneur implements Abonne {
         pointsCarre[2] = bas    droit  ->    |       |
         pointsCarre[3] = haut   droit   ->  [0]-----[2]
          */
-        switch ((int)P1.getZ()) {
+        switch ((int)P1.getz()) {
             case 0:
                 X1 *= -1;
                 Y1 *= -1;
@@ -147,7 +147,7 @@ public class Collisionneur implements Abonne {
                 break;
         }
 
-        switch ((int)P2.getZ()) {
+        switch ((int)P2.getz()) {
             case 0:
                 X2 *= -1;
                 Y2 *= -1;
@@ -174,11 +174,11 @@ public class Collisionneur implements Abonne {
      * @param C la surface de collision du carré
      * @return  un tableau contenant les positions de chaque extrémité du carré
      */
-    private PositionGraphique[] getSquareEdges(float Xpos, float Ypos, Hitbox C){
+    private PositionGraphique[] getSquareEdges(double Xpos, double Ypos, Hitbox C){
         int index = 0;
 
-        float CotePosX[] = {0,0,0,0};
-        float CotePosY[] = {0,0,0,0};
+        double CotePosX[] = {0,0,0,0};
+        double CotePosY[] = {0,0,0,0};
 
         for(int xSign =-1; xSign<2; xSign+=2)   //va de -1 à 1
             for(int ySign=-1; ySign<2; ySign+=2) {    //va de -1 à 1

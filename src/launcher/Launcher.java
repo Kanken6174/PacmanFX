@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import views.gameView;
 
 public class Launcher extends Application{
-    private boolean visible = true;
 
     public void start(Stage stage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Game.fxml"));

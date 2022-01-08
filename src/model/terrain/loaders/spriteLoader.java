@@ -6,7 +6,7 @@ import model.enums.FantomeNom;
 import views.Loaders.ImageMaster;
 import views.Sprites.Sprite;
 import views.Sprites.SpriteAnimable;
-import views.tools.ImageRotate;
+import tools.ImageRotate;
 import model.terrain.Case;
 
 

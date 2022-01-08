@@ -18,7 +18,7 @@ public class GameController implements EventHandler<KeyEvent> {
         EJ = new EspaceDeJeu();
         EJ.LoadStage("level");
         WritableImage playspaceBackground = EJ.assemblePlayspace();
-        gv.DrawPlaspaceBackground(playspaceBackground);
+        gv.DrawPlayspaceBackground(playspaceBackground);
     }
 
     @Override

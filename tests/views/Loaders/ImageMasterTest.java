@@ -2,8 +2,8 @@ package views.Loaders;
 
 import javafx.scene.image.WritableImage;
 import model.enums.FantomeNom;
-import views.tools.ImageFlipper;
-import views.tools.ImageRotate;
+import tools.ImageFlipper;
+import tools.ImageRotate;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;

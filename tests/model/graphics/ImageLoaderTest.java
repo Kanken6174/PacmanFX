@@ -3,7 +3,7 @@ package model.graphics;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import views.Loaders.ImageLoader;
-import views.tools.ImageConverter;
+import tools.ImageConverter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;

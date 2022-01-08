@@ -9,12 +9,12 @@ public class Entite {
     protected PositionGraphique pos;
     protected PositionLogique posL;
 
-    public int getX(){
-        return (int) pos.getX();
+    public double getX(){
+        return (int) pos.getx();
     }
 
-    public float getY(){
-        return pos.getY();
+    public double getY(){
+        return pos.gety();
     }
 
     public Orients getOrient(){
@@ -28,4 +28,8 @@ public class Entite {
     public int getLogicY(){
         return posL.getCaseY();
     }
+
+    public PositionGraphique getPositionGraphique(){return this.pos;}
+
+    public PositionLogique getPositionLogique(){return this.posL;}
 }

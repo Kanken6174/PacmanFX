@@ -6,7 +6,6 @@ import views.Sprites.SpriteAnimable;
 
 
 public class Animateur implements Abonne {
-
     private WritableImage nextFrame(SpriteAnimable sprite){
         return null;
     }
