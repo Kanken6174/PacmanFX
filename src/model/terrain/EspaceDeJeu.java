@@ -1,9 +1,15 @@
 package model.terrain;
 
-import javafx.scene.image.*;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
+import javafx.scene.image.WritablePixelFormat;
+import javafx.scene.paint.Color;
 import model.terrain.loaders.collisionLoader;
 import model.terrain.loaders.entityLoader;
 import model.terrain.loaders.spriteLoader;
+
+import java.nio.ByteBuffer;
 
 
 public class EspaceDeJeu {
@@ -35,20 +41,33 @@ public class EspaceDeJeu {
             }
         }
 
-        WritableImage playspace = new WritableImage(pixelsY,pixelsX);
-        PixelWriter px = playspace.getPixelWriter();
+        WritableImage playspace = new WritableImage(pixelsX,pixelsY);
+        PixelWriter pw = playspace.getPixelWriter();
+
+
+        WritablePixelFormat<ByteBuffer> pixelFormat = WritablePixelFormat.getByteBgraInstance();
+        byte[] pixelBuffer = new byte[8*8];
 
         for(int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
                 if(bis[x][y] != null){
-                    //ça se passera dans les vues, on snapshot le cadre
+                    int xpixels = (int)bis[x][y].getWidth();
+                    int ypixels = (int)bis[x][y].getHeight();
+
+                    PixelReader pr = bis[x][y].getPixelReader();
+
+                    for(int xbis = 0; xbis < xpixels; xbis++){
+                        for(int ybis = 0; ybis < ypixels; ybis++){
+                            Color cbis = pr.getColor(xbis,ybis);
+                            pw.setColor(xbis+(x*xpixels),ybis+(y*ypixels),cbis);
+                        }
+                    }
+
+
                 }
             }
         }
-        /*
-        g2d.rotate(Math.PI/2);
-        g2d.dispose();
-         */
+
         return playspace;
     }
 

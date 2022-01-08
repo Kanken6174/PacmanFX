@@ -33,7 +33,6 @@ public class Game {
     @FXML private ImageView fantome2;
     @FXML private ImageView fantome3;
     @FXML private ImageView fantome4;
-    @FXML private ImageView terrain;
 
     private boolean closingAnimation = false;
 
@@ -65,10 +64,6 @@ public class Game {
         fantome1.setImage(img);
         runPacRegularly();
         runGhostRegularly();
-        EspaceDeJeu ej = new EspaceDeJeu();
-        ej.LoadStage("level");
-        WritableImage im = ej.assemblePlayspace();
-        terrain.setImage(im);
     }
 
 

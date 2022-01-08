@@ -7,10 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Arc?>
 
-<BorderPane fx:id="myBP" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Game">
-   <center>
-      <Arc fx:id="pacman" fill="#fcff1f" length="270.0" radiusX="45.0" radiusY="45.0" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="7.0" type="ROUND" BorderPane.alignment="CENTER" />
-   </center>
+<BorderPane fx:id="myBP" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Game">
    <right>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -52,4 +49,14 @@
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
+   <left>
+      <Arc fx:id="pacman" fill="#fcff1f" length="270.0" radiusX="45.0" radiusY="45.0" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="7.0" type="ROUND" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <ImageView fx:id="terrain" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" smooth="false">
+         <image>
+            <Image smooth="false" url="@Images/blinkyRight.png" />
+         </image>
+      </ImageView>
+   </center>
 </BorderPane>
