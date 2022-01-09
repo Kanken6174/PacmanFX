@@ -15,10 +15,10 @@ public class AnimateurPacMan extends Animateur{
 
     @Override
     protected void Animate(){
-
-        if(pacman.getLength() >= 345+pacman.getRotate()){
+        double rotation = pacman.getRotate();
+        if(pacman.getLength() >= 345){
             closingAnimation = true;
-        }else if(pacman.getLength() < 270+pacman.getRotate()){
+        }else if(pacman.getLength() < 270){
             closingAnimation = false;
         }
         if (closingAnimation){
