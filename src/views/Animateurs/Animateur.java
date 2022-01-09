@@ -1,16 +1,21 @@
 package views.Animateurs;
 
-import javafx.scene.image.WritableImage;
-import model.Observers.Abonne;
 import views.Sprites.SpriteAnimable;
 
 
-public class Animateur implements Abonne {
-    private WritableImage nextFrame(SpriteAnimable sprite){
-        return null;
+public class Animateur implements Runnable {
+    private SpriteAnimable toAnimate;
+
+    public Animateur(SpriteAnimable sa){
+        this.toAnimate = sa;
+    }
+
+    protected void Animate(){
+        toAnimate.nextFrame();
     }
 
     @Override
-    public void miseAJour(){
+    public void run(){
+        Animate();
     }
 }

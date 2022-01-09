@@ -87,6 +87,19 @@ public class Case {
         return indexs;
     }
 
+    public int getPacmanIndex() {
+        if (containsPacMan) {
+            int i = 0;
+            for (Entite e : Entites) {
+                if (e instanceof PacmanObject) {
+                    return i;
+                }
+                i++;
+            }
+        }
+        return -1;  //cas d'erreur
+    }
+
     public boolean hasStaticEntities(){
         return (EntiteStatique != null);
     }

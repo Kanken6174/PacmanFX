@@ -5,6 +5,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.image.WritablePixelFormat;
 import javafx.scene.paint.Color;
+import model.entites.PacmanObject;
 import model.terrain.loaders.collisionLoader;
 import model.terrain.loaders.entityLoader;
 import model.terrain.loaders.spriteLoader;
@@ -13,9 +14,9 @@ import java.nio.ByteBuffer;
 
 
 public class EspaceDeJeu {
-    private Case[][] tiles;
     private int maxX = 13;
     private int maxY = 28;
+    private Case[][] tiles = new Case[maxX][maxY];
 
     public EspaceDeJeu(){
 
@@ -73,5 +74,22 @@ public class EspaceDeJeu {
 
     public Case[][] getStage(){
         return this.tiles;
+    }
+
+    public PacmanObject getPacman(){
+        for(int x = 0; x < maxX; x++) {
+            for (int y = 0; y < maxY; y++) {
+                Case processed = tiles[x][y];
+                if(processed == null){
+                    System.out.println("null cell at:"+x+" "+y);
+
+                }else if(processed.containsPacMan()){
+                    System.out.println("pacman at: "+x+" "+y);
+                    PacmanObject pac = (PacmanObject)processed.getEntite(processed.getPacmanIndex());
+                    return pac;
+                }
+            }
+        }
+        return null;
     }
 }

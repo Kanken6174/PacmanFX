@@ -1,11 +1,11 @@
 package model.collisions;
 
-import model.Observers.Abonne;
 import model.mouvement.Positions.PositionGraphique;
 
-public class Collisionneur implements Abonne {
+public class Collisionneur implements Runnable {
 
-    public void miseAJour(){
+    @Override
+    public void run(){
         gererCollisions();
     }
 

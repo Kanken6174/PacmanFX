@@ -5,20 +5,20 @@ import javafx.scene.input.KeyCode;
 
 public class PacmanObject extends Entite{
 
-    private IntegerProperty pacAngle = new SimpleIntegerProperty();
-        public int getPacAngle(){return pacAngle.get();}
+    private DoubleProperty pacAngle = new SimpleDoubleProperty();
+        public double getPacAngle(){return pacAngle.get();}
         public void setPacAngle(int value){pacAngle.set(value);}
-        public ReadOnlyIntegerProperty pacAngleProperty(){return pacAngle;}
+        public DoubleProperty pacAngleProperty(){return pacAngle;}
 
     private DoubleProperty pacX = new SimpleDoubleProperty();
         public double getPacX(){return pacX.get();}
         public void setPacX(double value){pacX.set(value);}
-        public ReadOnlyDoubleProperty pacXProperty(){return pacX;}
+        public DoubleProperty pacXProperty(){return pacX;}
 
     private DoubleProperty pacY = new SimpleDoubleProperty();
         public double getPacY(){return pacY.get();}
         public void setPacY(double value){pacY.set(value);}
-        public ReadOnlyDoubleProperty pacYProperty(){return pacY;}
+        public DoubleProperty pacYProperty(){return pacY;}
 
 
     public void changePacOrient(KeyCode kc){

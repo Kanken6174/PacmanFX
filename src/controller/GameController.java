@@ -2,8 +2,8 @@ package controller;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
+import model.entites.PacmanObject;
 import model.terrain.EspaceDeJeu;
 import views.gameView;
 
@@ -17,20 +17,25 @@ public class GameController implements EventHandler<KeyEvent> {
         gv = view;
         EJ = new EspaceDeJeu();
         EJ.LoadStage("level");
-        WritableImage playspaceBackground = EJ.assemblePlayspace();
-        gv.DrawPlayspaceBackground(playspaceBackground);
+        gv.DrawPlayspace(EJ.assemblePlayspace());
+
     }
 
     @Override
     public void handle(KeyEvent event) {
         switch (event.getCode()){
             case UP:
+                PacmanObject pac = EJ.getPacman();
+                pac.setPacAngle(270);
                 break;
             case DOWN:
+                EJ.getPacman().setPacAngle(90);
                 break;
             case LEFT:
+                EJ.getPacman().setPacAngle(180);
                 break;
             case RIGHT:
+                EJ.getPacman().setPacAngle(0);
                 break;
             default:
                 break;

@@ -22,7 +22,7 @@ public class Entite {
     }
 
     public int getLogicX(){
-        return posL.getCasex();
+        return posL.getCaseX();
     }
 
     public int getLogicY(){

@@ -3,20 +3,20 @@ package model.Observers;
 import java.util.ArrayList;
 
 public class Observable {
-    private final ArrayList<Abonne> abonnes = new ArrayList<>();
+    private final ArrayList<Runnable> abonnes = new ArrayList<>();
 
     public void notifyAbonnes(){
-        for (Abonne abonne: abonnes){
-            abonne.miseAJour();
+        for (Runnable r: abonnes){
+            r.run();
         }
     }
 
-    public void subscribe(Abonne a){
-        abonnes.add(a);
+    public void subscribe(Runnable r){
+        abonnes.add(r);
     }
     
-    public void unsubscribe(Abonne a){
-        abonnes.remove(a);
+    public void unsubscribe(Runnable r){
+        abonnes.remove(r);
     }
 
     public int getAbonnesCount(){

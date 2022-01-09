@@ -2,61 +2,36 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Arc?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="myBP" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.gameView">
-   <right>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-
-         </top>
-         <center>
-            <ImageView fx:id="fantome4" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
-               <image>
-                  <Image smooth="false" url="@Images/blinkyRight.png" />
-               </image>
-            </ImageView>
-         </center>
-         <top>
-            <ImageView fx:id="fantome3" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
-               <image>
-                  <Image smooth="false" url="@Images/blinkyRight.png" />
-               </image>
-            </ImageView>
-         </top>
-         <bottom>
-            <ImageView fx:id="fantome2" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
-               <image>
-                  <Image smooth="false" url="@Images/blinkyRight.png" />
-               </image>
-            </ImageView>
-         </bottom>
-         <left>
-            <ImageView fx:id="fantome1" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
-               <image>
-                  <Image smooth="false" url="@Images/blinkyRight.png" />
-               </image>
-            </ImageView>
-         </left>
-      </BorderPane>
-   </right>
    <cursor>
       <Cursor fx:constant="DISAPPEAR" />
    </cursor>
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
-   <left>
-      <Arc fx:id="pacman" fill="#fcff1f" length="270.0" radiusX="45.0" radiusY="45.0" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="7.0" type="ROUND" BorderPane.alignment="CENTER" />
-   </left>
    <center>
-      <ImageView fx:id="terrain" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" smooth="false">
-         <image>
-            <Image smooth="false" url="@Images/blinkyRight.png" />
-         </image>
-      </ImageView>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="terrain" layoutX="300" layoutY="100" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="blinky" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pinky" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inky" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="clyde" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Arc fx:id="pacman" fill="#fcff1f" layoutX="301.0" layoutY="183.0" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.0" type="ROUND" />
+            <AnchorPane layoutX="200.0" layoutY="400" prefHeight="93.0" prefWidth="200.0">
+               <children>
+                  <Text layoutX="14.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score:" wrappingWidth="52.13671875" />
+                  <Text layoutX="118.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Temps:" wrappingWidth="52.13671875" />
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
    </center>
 </BorderPane>
