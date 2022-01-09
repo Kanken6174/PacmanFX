@@ -5,12 +5,15 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.image.WritablePixelFormat;
 import javafx.scene.paint.Color;
+import model.entites.Entite;
+import model.entites.Fantome;
 import model.entites.PacmanObject;
 import model.terrain.loaders.collisionLoader;
 import model.terrain.loaders.entityLoader;
 import model.terrain.loaders.spriteLoader;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 
 
 public class EspaceDeJeu {
@@ -91,5 +94,46 @@ public class EspaceDeJeu {
             }
         }
         return null;
+    }
+
+    public ArrayList<Fantome> getFantomes(){
+        ArrayList<Fantome> fantomes = new ArrayList<Fantome>();
+        for(int x = 0; x < maxX; x++) {
+            for (int y = 0; y < maxY; y++) {
+                Case processed = tiles[x][y];
+                if(processed == null){
+                    System.out.println("null cell at:"+x+" "+y);
+                }else if(processed.hasGhosts()){
+                    System.out.println("ghost at: "+x+" "+y);
+                    ArrayList<Integer> indexes = processed.getGhostIndexes();
+                    for(int i : indexes)
+                         fantomes.add((Fantome) processed.getEntite(i));
+                    if(fantomes.size() == 4)
+                        return fantomes;
+                }
+            }
+        }
+        return fantomes;
+    }
+
+    public ArrayList<Entite> getAllEntites(){
+        ArrayList<Entite> entites = new ArrayList<Entite>();
+        for(int x = 0; x < maxX; x++) {
+            for (int y = 0; y < maxY; y++) {
+                Case processed = tiles[x][y];
+                if(processed == null){
+                    System.out.println("null cell at:"+x+" "+y);
+                }else{
+                    if(processed.hasEntities()){
+                        System.out.println("Entity at: "+x+" "+y);
+                        entites.addAll(processed.getAllEntite());
+                    }
+                    if(processed.hasStaticEntities()){
+                        entites.add(processed.getStaticEntite());
+                    }
+                }
+            }
+        }
+        return entites;
     }
 }

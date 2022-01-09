@@ -8,7 +8,7 @@ import javafx.scene.image.WritableImage;
 public class ImageClipper {
     public static WritableImage clipSprite(Image source, int x, int y){
         PixelReader px = source.getPixelReader();
-        WritableImage wi = new WritableImage(px,x,y,14,14);
+        WritableImage wi = new WritableImage(px,x,y,16,16);
         return wi;
     }
 
@@ -26,7 +26,7 @@ public class ImageClipper {
 
     public static WritableImage getFrame(Image source, int id){
         PixelReader px = source.getPixelReader();
-        WritableImage wi = new WritableImage(px,id*16,0,14,14);
+        WritableImage wi = new WritableImage(px,id,0,16,16);
         return wi;
     }
 

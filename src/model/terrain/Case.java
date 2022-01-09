@@ -77,6 +77,10 @@ public class Case {
         return toReturn;
     }
 
+    public ArrayList<Entite> getAllEntite(){
+        return this.Entites;
+    }
+
     public ArrayList<Integer> getGhostIndexes(){
         ArrayList<Integer> indexs = new ArrayList<>();
         for(Entite e : Entites){

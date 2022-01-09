@@ -20,11 +20,11 @@
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="terrain" layoutX="300" layoutY="100" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="blinky" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pinky" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="inky" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="clyde" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Arc fx:id="pacman" rotate="45" fill="#fcff1f" layoutX="301.0" layoutY="183.0" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.0" type="ROUND" />
+            <ImageView fx:id="blinky" fitHeight="64.0" fitWidth="64.0" layoutX="337.0" layoutY="224.0" pickOnBounds="false" preserveRatio="false" />
+            <ImageView fx:id="pinky" fitHeight="16.0" fitWidth="16.0" layoutX="241.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inky" fitHeight="16.0" fitWidth="16.0" layoutX="249.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="clyde" fitHeight="16.0" fitWidth="16.0" layoutX="313.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" />
+            <Arc fx:id="pacman" fill="#fcff1f" layoutX="301.0" layoutY="183.0" length="270.0" radiusX="16.0" radiusY="16.0" rotate="45" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.0" type="ROUND" />
             <AnchorPane layoutX="200.0" layoutY="400" prefHeight="93.0" prefWidth="200.0">
                <children>
                   <Text layoutX="14.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score:" wrappingWidth="52.13671875" />

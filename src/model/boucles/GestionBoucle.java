@@ -1,7 +1,5 @@
 package model.boucles;
 
-import views.Animateurs.AnimateurPacMan;
-
 import java.util.ArrayList;
 
 public class GestionBoucle{
@@ -10,19 +8,23 @@ public class GestionBoucle{
     public void scheduleAll() {
     }
 
-    public void scheduleSpecific(){
-
-    }
-
-    public void schedulePacmanAnimation(AnimateurPacMan a, int periode){
+    public void schedule(Runnable r, int periode){
+        for(Boucleur b: boucles){
+            if(b.getPeriode() == periode)
+                b.addAbonne(r);
+        }
         Boucleur b = new Boucleur(periode);
-        b.addAbonne(a);
-        b.run();
+        b.addAbonne(r);
+        boucles.add(b);
     }
 
-    public void animateMortPacman() {
+    public void stop(){
+        for(Boucleur b : boucles)
+            b.stop();
     }
 
-    public void animateRespawnFantome() {
+    public void run(){
+        for(Boucleur b : boucles)
+            b.run();
     }
 }

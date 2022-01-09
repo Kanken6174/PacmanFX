@@ -26,7 +26,7 @@ public class Boucleur extends Observable {
     public Boucleur(int periodeMillis, ArrayList<Runnable> abonnes){
         this.abonnes = abonnes;
         this.periode = periodeMillis;
-        exec = Executors.newScheduledThreadPool(this.abonnes.size(),r -> {
+        exec = Executors.newScheduledThreadPool(this.abonnes.size()*10,r -> {
             Thread t = new Thread(r);
             t.setDaemon(true);
             return t ;
@@ -41,8 +41,13 @@ public class Boucleur extends Observable {
 
     public void run() {
         running = true;
-        for(Runnable r : abonnes)
+        for(Runnable r : abonnes) {
             exec.scheduleAtFixedRate(r, 0, this.periode, TimeUnit.MILLISECONDS);
+        }
+    }
+
+    public int getPeriode(){
+        return periode;
     }
 
     public void stop() {
