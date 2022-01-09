@@ -42,7 +42,7 @@ public class Boucleur extends Observable {
     public void run() {
         running = true;
         for(Runnable r : abonnes) {
-            exec.scheduleAtFixedRate(r, 0, this.periode, TimeUnit.MILLISECONDS);
+            exec.scheduleAtFixedRate(r, 100, this.periode, TimeUnit.MILLISECONDS);
         }
     }
 

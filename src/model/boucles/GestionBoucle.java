@@ -10,8 +10,11 @@ public class GestionBoucle{
 
     public void schedule(Runnable r, int periode){
         for(Boucleur b: boucles){
-            if(b.getPeriode() == periode)
+            if(b.getPeriode() == periode) {
                 b.addAbonne(r);
+                return;
+            }
+
         }
         Boucleur b = new Boucleur(periode);
         b.addAbonne(r);
