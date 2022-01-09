@@ -24,7 +24,7 @@
             <ImageView fx:id="pinky" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="inky" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="clyde" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Arc fx:id="pacman" fill="#fcff1f" layoutX="301.0" layoutY="183.0" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.0" type="ROUND" />
+            <Arc fx:id="pacman" rotate="45" fill="#fcff1f" layoutX="301.0" layoutY="183.0" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.0" type="ROUND" />
             <AnchorPane layoutX="200.0" layoutY="400" prefHeight="93.0" prefWidth="200.0">
                <children>
                   <Text layoutX="14.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score:" wrappingWidth="52.13671875" />

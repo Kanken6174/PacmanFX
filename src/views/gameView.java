@@ -50,7 +50,7 @@ public class gameView {
     }
 
     public void bindPacman(PacmanObject pac){
-        pacman.lengthProperty().bindBidirectional(pac.pacAngleProperty());
+        pacman.rotateProperty().bind(pac.pacAngleProperty());
     }
 
     public TableCell<Case, Canvas> TableCellFactory(){

@@ -18,7 +18,7 @@ public class GameController implements EventHandler<KeyEvent> {
         EJ = new EspaceDeJeu();
         EJ.LoadStage("level");
         gv.DrawPlayspace(EJ.assemblePlayspace());
-
+        gv.bindPacman(EJ.getPacman());
     }
 
     @Override
