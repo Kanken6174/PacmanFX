@@ -6,11 +6,13 @@ import org.junit.jupiter.api.Test;
 import tools.ImageRotate;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static testUtilities.jfxInititer.initInternalGraphics;
 
 class ImageMasterTest {
 
     @Test
     public void TestImageMasterFantome(){
+        initInternalGraphics();
         ImageMaster im = new ImageMaster();
         assertNotNull(im);
         WritableImage blinkySpritesheet = im.getSpritesheetForGhost(FantomeNom.BLINKY); //fantome rouge
@@ -30,6 +32,7 @@ class ImageMasterTest {
 
     @Test
     public void TestImageMasterGhostFreightened(){
+        initInternalGraphics();
         ImageMaster im = new ImageMaster();
         assertNotNull(im);
         WritableImage freghtened = im.getSpritesheetGhostFreightened();
@@ -38,6 +41,7 @@ class ImageMasterTest {
 
     @Test
     public void TestImageMasterTiles(){
+        initInternalGraphics();
         ImageMaster im = new ImageMaster();
         assertNotNull(im);
 

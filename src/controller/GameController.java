@@ -3,7 +3,7 @@ package controller;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
-import model.boucles.GestionBoucle;
+import model.boucles.GestionnaireBoucles;
 import model.terrain.EspaceDeJeu;
 import views.gameView;
 
@@ -12,7 +12,7 @@ public class GameController implements EventHandler<KeyEvent> {
     @FXML private gameView gv;
 
     private EspaceDeJeu EJ;
-    private GestionBoucle gb = new GestionBoucle();
+    private GestionnaireBoucles gb = new GestionnaireBoucles();
 
     public GameController(gameView view){
         gv = view;

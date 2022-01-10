@@ -1,20 +1,15 @@
 package views;
 
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
-import model.boucles.GestionBoucle;
+import model.boucles.GestionnaireBoucles;
 import model.entites.Entite;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
-import model.terrain.Case;
 import views.Animateurs.Animateur;
 import views.Animateurs.AnimateurPacMan;
 
@@ -25,7 +20,6 @@ public class gameView {
     private Stage stage;
     @FXML private BorderPane myBP;
     @FXML private Arc pacman;
-    @FXML private Button test;
     @FXML private ImageView blinky;
     @FXML private ImageView pinky;
     @FXML private ImageView inky;
@@ -46,7 +40,7 @@ public class gameView {
         terrain.setScaleY(terrain.getScaleY()*3);
     }
 
-    public void DrawEntities(GestionBoucle gb, ArrayList<Entite> entites){
+    public void DrawEntities(GestionnaireBoucles gb, ArrayList<Entite> entites){
         AnimateurPacMan a = new AnimateurPacMan(pacman);
 
         for(Entite e : entites){
@@ -83,26 +77,5 @@ public class gameView {
                 break;
         }
     }
-
-    public TableCell<Case, Canvas> TableCellFactory(){
-        return new TableCell<Case, Canvas>(){
-
-            public void updateItem(Case content){
-                GridPane g = new GridPane();
-                ImageView im = new ImageView();
-                im.setImage(content.getSprite().getImage());
-
-                g.add(im,0,0);
-
-            }
-        };
-    }
-
-/*    public void bindFantome(Fantome f){
-        ImageView toBind = fantomes[f.getFantomeNom().ordinal()];
-        toBind.xProperty().bindBidirectional(f.getPositionGraphique().xProperty());
-        toBind.yProperty().bindBidirectional(f.getPositionGraphique().yProperty());
-    }
- */
 
 }

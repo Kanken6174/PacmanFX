@@ -42,7 +42,7 @@ public class spriteLoader {
         Sprite sp = null;
         if(!toSkin.isObstacle()){
             if(toSkin.isGhostHouseDoor()){
-                sp = new Sprite(im.getTerrainTiles(13,12));  //porte de la maison à fantômes
+                sp = new Sprite(ImageRotate.RotateDegx90(im.getTerrainTiles(13,12),90));  //porte de la maison à fantômes
             }else{
                 sp = new Sprite(im.getTerrainTiles(0,10));    //bloc vide (noir)
             }

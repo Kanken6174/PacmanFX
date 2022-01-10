@@ -2,7 +2,7 @@ package model.boucles;
 
 import java.util.ArrayList;
 
-public class GestionBoucle{
+public class GestionnaireBoucles {
     public ArrayList<Boucleur> boucles = new ArrayList<>();
 
     public void scheduleAll() {
