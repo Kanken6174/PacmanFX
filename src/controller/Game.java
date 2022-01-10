@@ -38,10 +38,10 @@ public class Game {
 
     @FXML public PacmanObject pacmanobject = new PacmanObject();
     private EspaceDeJeu playspace = new EspaceDeJeu();
-    private Fantome clyde = new Fantome(FantomeNom.CLYDE);
-    private Fantome inky = new Fantome(FantomeNom.INKY);
-    private Fantome blinky = new Fantome(FantomeNom.BLINKY);
-    private Fantome pinky = new Fantome(FantomeNom.PINKY);
+    private Fantome clyde = new Fantome(FantomeNom.CLYDE, pacmanobject);
+    private Fantome inky = new Fantome(FantomeNom.INKY, pacmanobject);
+    private Fantome blinky = new Fantome(FantomeNom.BLINKY, pacmanobject);
+    private Fantome pinky = new Fantome(FantomeNom.PINKY, pacmanobject);
     private Fantome[] fantomes= {clyde, inky, blinky, pinky};
 
     private ImageMaster im = new ImageMaster( ImageLoader.loadRessources());

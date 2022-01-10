@@ -12,13 +12,24 @@ public class Fantome extends Entite{
 
     private FantomeNom identifier;     //définit spriteY et de quel fantome il s'agit
     private FantomeState fs = FantomeState.SCATTER;
+
+    private PacmanObject cible;
+
+    private ChasseComportement chasseComportement;
     /**
      *
      * @param fn l'id du fantome, de 0 à 3 (enum)
      */
+
     public Fantome(FantomeNom fn){
         identifier = fn;
         spriteY += 16*identifier.ordinal();    //0-3
+    }
+
+    public Fantome(FantomeNom fn, PacmanObject target){
+        identifier = fn;
+        spriteY += 16*identifier.ordinal();    //0-3
+        cible = target;
     }
 
     public FantomeNom getFantomeNom(){
@@ -32,4 +43,11 @@ public class Fantome extends Entite{
     public SpriteAnimable getSpriteAnimable(){
         return this.sa;
     }
+
+
+    public double getXCible() { return cible.getPacX(); }
+
+    public double getYCible() { return cible.getPacY(); }
+
+    public int getAngleCible() { return cible.getPacAngle(); }
 }
