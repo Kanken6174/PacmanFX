@@ -2,22 +2,20 @@
   <library name="lib">
     <CLASSES>
       <root url="file://$PATH_TO_JFX$" />
-      <root url="file://$PROJECT_DIR$/../../libs/lib" />
     </CLASSES>
     <JAVADOC />
     <NATIVE>
       <root url="file://$PATH_TO_JFX$" />
     </NATIVE>
     <SOURCES>
-      <root url="jar://$PATH_TO_JFX$!/javafx.base" />
-      <root url="jar://$PATH_TO_JFX$!/javafx.controls" />
-      <root url="jar://$PATH_TO_JFX$!/javafx.fxml" />
-      <root url="jar://$PATH_TO_JFX$!/javafx.graphics" />
-      <root url="jar://$PATH_TO_JFX$!/javafx.media" />
-      <root url="jar://$PATH_TO_JFX$!/javafx.swing" />
-      <root url="jar://$PATH_TO_JFX$!/javafx.web" />
+      <root url="jar://$PATH_TO_JFX$/src.zip!/javafx.base" />
+      <root url="jar://$PATH_TO_JFX$/src.zip!/javafx.controls" />
+      <root url="jar://$PATH_TO_JFX$/src.zip!/javafx.fxml" />
+      <root url="jar://$PATH_TO_JFX$/src.zip!/javafx.graphics" />
+      <root url="jar://$PATH_TO_JFX$/src.zip!/javafx.media" />
+      <root url="jar://$PATH_TO_JFX$/src.zip!/javafx.swing" />
+      <root url="jar://$PATH_TO_JFX$/src.zip!/javafx.web" />
     </SOURCES>
-    <jarDirectory url="file://$PROJECT_DIR$/../../libs/lib" recursive="false" />
     <jarDirectory url="file://$PATH_TO_JFX$" recursive="false" />
   </library>
 </component>
