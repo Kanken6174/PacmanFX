@@ -1,10 +1,9 @@
-package model.terrain.loaders;
+package views.Loaders;
 
 import javafx.scene.image.WritableImage;
 import model.entites.Fantome;
 import model.terrain.Case;
 import tools.ImageRotate;
-import views.Loaders.ImageMaster;
 import views.Sprites.Sprite;
 import views.Sprites.SpriteAnimable;
 
