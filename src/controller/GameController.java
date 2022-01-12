@@ -19,7 +19,7 @@ public class GameController implements EventHandler<KeyEvent> {
         EJ = new EspaceDeJeu();
         EJ.LoadStage("level");
         gv.loadRessources(EJ);
-        gv.DrawEntities(gb,EJ.getAllEntites());
+        gv.DrawEntities(gb);
         gb.run();
     }
 
