@@ -74,4 +74,8 @@ public class ImageMaster {  //Cette classe contient la spritesheet principale et
 
         return bi;
     }
+
+    public Image getMainRessource() {
+        return MainRessource;
+    }
 }

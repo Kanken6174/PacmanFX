@@ -10,8 +10,10 @@ import model.boucles.GestionnaireBoucles;
 import model.entites.Entite;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
+import model.terrain.EspaceDeJeu;
 import views.Animateurs.Animateur;
 import views.Animateurs.AnimateurPacMan;
+import views.Sprites.SpriteManager;
 
 import java.util.ArrayList;
 
@@ -28,9 +30,15 @@ public class gameView {
 
     @FXML private ImageView[] fantomes = {blinky,pinky,inky,clyde};
 
+    private SpriteManager sm = null;
 
     @FXML
     public void initialize(){
+    }
+
+    public void loadRessources(EspaceDeJeu ej){
+        sm = new SpriteManager(ej); //charge aussi toutes les données de tous les sprites
+        DrawPlayspace(sm.getTerrainBackground());
     }
 
     public void DrawPlayspace(WritableImage img){
