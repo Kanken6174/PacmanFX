@@ -2,6 +2,7 @@ package model.terrain.loaders;
 
 import model.entites.*;
 import model.enums.FantomeNom;
+import model.fileData.SpriteAnchor;
 import model.terrain.Case;
 
 import java.io.*;
@@ -19,26 +20,36 @@ public class entityLoader {
                     switch (c){
                         case '1':
                             Gomme g = new Gomme();
+                            g.setAnchor(null);
                             cases[i][j].ReceiveStaticEntity(g);
                             break;
                         case '2':
                             PacmanObject pacman = new PacmanObject();
+                            pacman.setAnchor(null);
                             cases[i][j].ReceiveEntity(pacman);
                             break;
                         case '3':
                             Fantome blinky = new Fantome(FantomeNom.BLINKY);
+                            blinky.setAnchor(new SpriteAnchor(456,16*blinky.getFantomeNom().ordinal(),0,
+                                    "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(blinky);
                             break;
                         case '4':
                             Fantome pinky = new Fantome(FantomeNom.INKY);
+                            pinky.setAnchor(new SpriteAnchor(456,16*pinky.getFantomeNom().ordinal(),0,
+                                    "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(pinky);
                             break;
                         case '5':
                             Fantome inky = new Fantome(FantomeNom.PINKY);
+                            inky.setAnchor(new SpriteAnchor(456,16*inky.getFantomeNom().ordinal(),0,
+                                    "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(inky);
                             break;
                         case '6':
                             Fantome clyde = new Fantome(FantomeNom.CLYDE);
+                            clyde.setAnchor(new SpriteAnchor(456,16*clyde.getFantomeNom().ordinal(),0,
+                                    "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(clyde);
                             break;
                         case '7':

@@ -17,4 +17,8 @@ public class EntiteVue {
     public WritableImage getImage(){
         return ressourceLocale.getImage();
     }
+
+    public Entite getSource(){
+        return source;
+    }
 }
