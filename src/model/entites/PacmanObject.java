@@ -21,6 +21,11 @@ public class PacmanObject extends Entite{
         public DoubleProperty pacYProperty(){return pacY;}
 
 
+    public void manger() {
+        int fanomeMange = 0;
+    }
+
+
     public void changePacOrient(KeyCode kc){
         switch (kc){
             case RIGHT:

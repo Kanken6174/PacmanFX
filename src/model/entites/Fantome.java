@@ -2,7 +2,10 @@ package model.entites;
 
 import model.enums.FantomeNom;
 import model.enums.FantomeState;
+import model.enums.Orients;
+import model.mouvement.ChasseComportement;
 import model.mouvement.Positions.PositionLogique;
+import model.mouvement.ScatterComportement;
 import views.Sprites.SpriteAnimable;
 
 public class Fantome extends Entite{
@@ -12,9 +15,11 @@ public class Fantome extends Entite{
     private PositionLogique scatterHome;
     private PositionLogique target;
 
+    public Orients dircetionYeux; //La direction des yeux indique la direction du fantome
+
     private SpriteAnimable sa;
 
-    private FantomeNom identifier;     //définit spriteY et de quel fantome il s'agit
+    public FantomeNom identifier;     //définit spriteY et de quel fantome il s'agit
     private FantomeState fs = FantomeState.SCATTER;
 
     private PacmanObject p;
@@ -53,10 +58,7 @@ public class Fantome extends Entite{
     }
 
 
-    public PositionLogique getTarget() { return p.getPositionLogique(); }
+    public void chasse() { hunt.chasse(p, this); }
 
-
-    public void chasse() { hunt.chasse(p, identifier); }
-
-    public void scatter() { scat.scatter(); }
+    public void scatter() { scat.scatter(scatterHome, this); }
 }

@@ -1,24 +1,20 @@
-package model.entites.ChasseType;
+package model.mouvement.ChasseType;
 
-import model.entites.ChasseComportement;
+import model.mouvement.ChasseComportement;
+import model.entites.Fantome;
 import model.entites.PacmanObject;
-import model.enums.FantomeNom;
 import model.mouvement.Positions.PositionLogique;
 
 public class InkyChasse implements ChasseComportement {
 
     @Override
-    public void goTo(PositionLogique pos) {}
-
-    @Override
-    public void chasse(PacmanObject cible, FantomeNom nom){
+    public void chasse(PacmanObject cible, Fantome nom){
         String nomGhost = "INKY";
-        if (!nom.equals(nomGhost)) {
+        if (!nom.identifier.equals(nomGhost)) {
             return;
         }
         else {
             PositionLogique posCible = cible.getPositionLogique();
-            goTo(posCible);
         }
     }
 }
