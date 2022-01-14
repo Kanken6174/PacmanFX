@@ -48,7 +48,7 @@ public class gameView {
 
     public void DrawPlayspace(WritableImage img){
         terrain.setImage(img);
-        terrain.setRotate(90);
+        terrain.setRotate(0);
         terrain.setScaleX(terrain.getScaleX()*3);
         terrain.setScaleY(terrain.getScaleY()*3);
     }

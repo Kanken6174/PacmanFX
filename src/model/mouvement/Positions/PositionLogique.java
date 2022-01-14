@@ -23,6 +23,10 @@ public class PositionLogique {
         setCaseY(y);
     }
 
+    public void setOrient(Orients direction){
+        Orient = direction;
+    }
+
     public void forceUpdate(){
         CaseX.set(CaseX.get());
         CaseY.set(CaseY.get());

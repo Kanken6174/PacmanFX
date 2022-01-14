@@ -33,6 +33,8 @@ public class Case {
     }
 
     public void ReceiveEntity(Entite e){
+        if(Entites.contains(e))
+            return;
         Entites.add(e);
         if(e instanceof PacmanObject)
             containsPacMan = true;
@@ -54,6 +56,7 @@ public class Case {
     public Entite passEntity(Entite e){
         if(Entites.contains(e)){
             Entites.remove(e);
+            containsPacMan = false;
             return e;
         }else{
             return null;

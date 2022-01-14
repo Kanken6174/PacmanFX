@@ -20,14 +20,35 @@ public abstract class Deplaceur implements Abonne {
     protected void deplacerEntite(){
         PositionLogique Posl = geree.getPositionLogique();  //quelle case
         PositionGraphique Posg = geree.getPositionGraphique();  //offset de -4 à 4
-        System.out.println("Entite a "+Posg.getx()+" , "+Posg.gety()+" | "+Posl.getCaseX()+" , "+Posl.getCaseY());
+        System.out.println("Entite a "+Posg.getx()+" , "+Posg.gety()+" | "+Posl.getCaseX()+" , "+Posl.getCaseY()+" | "+Posl.getOrient().toString());
         Orients DirectionVoulue =  Posl.getOrient();
-
-        if(Posg.getx() >= 4 || Posg.getx() <= -4 || Posg.gety() >= 4 || Posg.gety() <= -4){
+        if(Posg.getx() > 4 || Posg.getx() < -4 || Posg.gety() > 4 || Posg.gety() < -4){
             Case Destination = EJ.getCardinals(Posl).get(DirectionVoulue.ordinal()); //on teste que à droite pour le moment...
-            if(Destination == null || Destination.isObstacle())
+            if(Destination == null || Destination.isObstacle()) {
+                System.out.println("destination innateignable "+ ((Destination == null) ? "null" : "obstacle"));
                 return;
-            Destination.ReceiveEntity(EJ.getStage()[Posl.getCaseX()][Posl.getCaseY()].passEntity(geree));
+            }else
+                Destination.ReceiveEntity(EJ.getStage()[Posl.getCaseX()][Posl.getCaseY()].passEntity(geree));
+                switch (DirectionVoulue){
+                    case DROITE:
+                        Posl.setCaseX(Posl.getCaseX()+1);
+                        Posg.setx(-4);
+                        break;
+                    case GAUCHE:
+                        Posl.setCaseX(Posl.getCaseX()-1);
+                        Posg.setx(4);
+                        break;
+                    case HAUT:
+                        Posg.sety(-4);
+                        Posl.setCaseY(Posl.getCaseY()+1);
+                        break;
+                    case BAS:
+                        Posg.sety(4);
+                        Posl.setCaseY(Posl.getCaseY()-1);
+                        break;
+                    default:
+                        break;
+            }
         }else{
             switch (DirectionVoulue){
                 case DROITE:
