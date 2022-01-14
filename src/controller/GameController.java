@@ -3,7 +3,7 @@ package controller;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
-import model.boucles.wrong.GestionnaireBoucles;
+import model.boucles.GestionnaireBoucles;
 import model.mouvement.Deplaceurs.DeplaceurPacMan;
 import model.terrain.EspaceDeJeu;
 import views.gameView;
@@ -22,8 +22,8 @@ public class GameController implements EventHandler<KeyEvent> {
         gv.loadRessources(EJ);
         gv.DrawEntities(gb);
         DeplaceurPacMan test = new DeplaceurPacMan(EJ.getPacman(),EJ);
-        gb.schedule(test, 200);
-        gb.run();
+        gb.scheduleLoop(test, 200);
+        gb.Start();
     }
 
     @Override

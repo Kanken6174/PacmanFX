@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.boucles.wrong.GestionnaireBoucles;
 import views.gameView;
 
 public class Launcher extends Application{
@@ -20,8 +19,6 @@ public class Launcher extends Application{
 
         root.setOnKeyPressed(gm);   //ça devrait nous éviter d'avoir à demander le focus à chaque fois
         root.requestFocus();
-        GestionnaireBoucles gb = new GestionnaireBoucles();
-        gb.schedule(new Runnable(){@Override public void run(){root.requestFocus();}},100);
         Scene scene = new Scene(root);
 
         stage.setTitle("pacmanFX");
@@ -30,7 +27,6 @@ public class Launcher extends Application{
         stage.setScene(scene);
 
         stage.show();
-        gb.run();
         root.requestFocus();    //on le fait avant de perdre l'accès au root
     }
 

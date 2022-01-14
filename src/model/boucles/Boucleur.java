@@ -14,8 +14,9 @@ public class Boucleur implements Runnable{
     }
 
     public void start(){
-        Thread t = new Thread(this);
-        t.run();
+        running = true;
+        Thread t = new Thread(this::run);
+        t.start();
     }
 
     public void stop() throws InterruptedException {
@@ -26,8 +27,12 @@ public class Boucleur implements Runnable{
         abonnes.add(a);
     }
 
+    public int getPeriode(){
+        return this.periode;
+    }
+
     @Override
-    public void run() {
+    public void run() {     //boucle de jeu
         while(running) {
             try {
                 Thread.sleep(periode);

@@ -1,9 +1,10 @@
 package views.Animateurs;
 
+import model.boucles.Abonne;
 import views.Sprites.SpriteAnimable;
 
 
-public class Animateur implements Runnable {
+public class Animateur implements Abonne {
     private SpriteAnimable toAnimate;
 
     public Animateur(SpriteAnimable sa){
@@ -15,7 +16,7 @@ public class Animateur implements Runnable {
     }
 
     @Override
-    public void run(){
+    public void doAction() {
         Animate();
     }
 }

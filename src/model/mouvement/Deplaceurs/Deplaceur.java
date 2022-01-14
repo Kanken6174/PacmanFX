@@ -1,5 +1,6 @@
 package model.mouvement.Deplaceurs;
 
+import model.boucles.Abonne;
 import model.entites.Entite;
 import model.enums.Orients;
 import model.mouvement.Positions.PositionGraphique;
@@ -7,7 +8,7 @@ import model.mouvement.Positions.PositionLogique;
 import model.terrain.Case;
 import model.terrain.EspaceDeJeu;
 
-public abstract class Deplaceur implements Runnable{
+public abstract class Deplaceur implements Abonne {
     protected Entite geree;
     protected EspaceDeJeu EJ;
 
@@ -52,7 +53,8 @@ public abstract class Deplaceur implements Runnable{
         destination.ReceiveEntity(source.passEntity(geree));
     }
 
-    public void run(){
+    @Override
+    public void doAction(){
         deplacerEntite();
     }
 }

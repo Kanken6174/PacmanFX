@@ -7,7 +7,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
-import model.boucles.wrong.GestionnaireBoucles;
+import model.boucles.GestionnaireBoucles;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
 import model.enums.FantomeNom;
@@ -54,7 +54,7 @@ public class gameView {
 
     public void DrawEntities(GestionnaireBoucles gb){
         AnimateurPacMan a = new AnimateurPacMan(pacman);
-        gb.schedule(a,8);
+        gb.scheduleLoop(a,8);
         ArrayList<EntiteVue> ev = sm.getEntiteVues();
         for(EntiteVue e : ev){
             if(e.getSource() instanceof PacmanObject) {
@@ -62,7 +62,7 @@ public class gameView {
             }else if(e.getSource() instanceof Fantome){
                 Animateur af = new Animateur(((EntiteVueAnimable)e).getSpriteAnimable());
                 bindFantome((EntiteVueAnimable) e);
-                gb.schedule(af,200);
+                gb.scheduleLoop(af,200);
             }
         }
     }
