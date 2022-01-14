@@ -35,11 +35,15 @@ public class Entite {
         return posL.getCaseX();
     }
 
+    public void setLogicX(int val) { posL.setCaseX(val); }
+
     public int getLogicY(){
         return posL.getCaseY();
     }
 
-    public PositionGraphique getPositionGraphique(){return this.pos;}
+    public void setLogicY(int val) { posL.setCaseY(val); }
 
-    public PositionLogique getPositionLogique(){return this.posL;}
+    public PositionGraphique getPositionGraphique() {return this.pos;}
+
+    public PositionLogique getPositionLogique() {return this.posL;}
 }
