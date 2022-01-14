@@ -1,69 +1,42 @@
 package model.boucles;
 
-import model.Observers.Observable;
-
 import java.util.ArrayList;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
-public class Boucleur extends Observable {
-    private int periode = 100;
-    private Boolean running = false;
-    private ArrayList<Runnable> abonnes = new ArrayList<Runnable>();;
+public class Boucleur implements Runnable{
     private ScheduledExecutorService exec = null;
+    private ArrayList<Abonne> abonnes = new ArrayList<Abonne>();
+    private int periode = 100;
+    private boolean running;
 
-    public Boucleur(int periodeMillis){
-        this.periode = periodeMillis;
-        this.abonnes = new ArrayList<Runnable>();
-        exec = Executors.newScheduledThreadPool(this.abonnes.size(),r -> {
-            Thread t = new Thread(r);
-            t.setDaemon(true);
-            return t ;
-        });
+    public Boucleur(int periode){
+        this.periode = periode;
     }
 
-    public Boucleur(int periodeMillis, ArrayList<Runnable> abonnes){
-        this.abonnes = abonnes;
-        this.periode = periodeMillis;
-        exec = Executors.newScheduledThreadPool(this.abonnes.size()*10,r -> {
-            Thread t = new Thread(r);
-            t.setDaemon(true);
-            return t ;
-        });
+    public void start(){
+        Thread t = new Thread(this);
+        t.run();
     }
 
-    public void setPeriod(int periodeMillis){
-        this.periode = periodeMillis;
-        stop();
-        run();
+    public void stop() throws InterruptedException {
+        running = false;
     }
 
-    public void run() {
-        running = true;
-        for(Runnable r : abonnes) {
-            exec.scheduleAtFixedRate(r, 100, this.periode, TimeUnit.MILLISECONDS);
-        }
-    }
-
-    public int getPeriode(){
-        return periode;
-    }
-
-    public void stop() {
-        try {
-            running = false;
-            exec.awaitTermination(800, TimeUnit.MILLISECONDS);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
-    }
-
-    public Boolean isRunning() {
-        return this.running;
-    }
-
-    public void addAbonne(Runnable a){
+    public void subscribe(Abonne a){
         abonnes.add(a);
+    }
+
+    @Override
+    public void run() {
+        while(running) {
+            try {
+                Thread.sleep(periode);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            for (Abonne a : abonnes) {
+                a.doAction();
+            }
+        }
     }
 }

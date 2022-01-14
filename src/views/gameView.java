@@ -7,7 +7,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
-import model.boucles.GestionnaireBoucles;
+import model.boucles.wrong.GestionnaireBoucles;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
 import model.enums.FantomeNom;

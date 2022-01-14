@@ -19,13 +19,32 @@ public abstract class Deplaceur implements Runnable{
     protected void deplacerEntite(){
         PositionLogique Posl = geree.getPositionLogique();  //quelle case
         PositionGraphique Posg = geree.getPositionGraphique();  //offset de -4 à 4
-        if(Posg.getx() >= 4){
-            Case Destination = EJ.getCardinals(Posl).get(Orients.DROITE.ordinal()); //on teste que à droite pour le moment...
+
+        Orients DirectionVoulue =  Posl.getOrient();
+
+        if(Posg.getx() >= 4 || Posg.getx() <= -4 || Posg.gety() >= 4 || Posg.gety() <= -4){
+            Case Destination = EJ.getCardinals(Posl).get(DirectionVoulue.ordinal()); //on teste que à droite pour le moment...
             if(Destination == null || Destination.isObstacle())
                 return;
             Destination.ReceiveEntity(EJ.getStage()[Posl.getCaseX()][Posl.getCaseY()].passEntity(geree));
         }else{
-            Posg.setx(Posg.getx()+1);
+            switch (DirectionVoulue){
+                case DROITE:
+                    Posg.setx(Posg.getx()+1);
+                    break;
+                case GAUCHE:
+                    Posg.setx(Posg.getx()-1);
+                    break;
+                case HAUT:
+                    Posg.sety(Posg.gety()+1);
+                    break;
+                case BAS:
+                    Posg.sety(Posg.gety()-1);
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 

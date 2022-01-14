@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.boucles.GestionnaireBoucles;
+import model.boucles.wrong.GestionnaireBoucles;
 import views.gameView;
 
 public class Launcher extends Application{
