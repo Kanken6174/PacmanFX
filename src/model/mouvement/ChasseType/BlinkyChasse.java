@@ -1,9 +1,8 @@
 package model.mouvement.ChasseType;
 
-import model.mouvement.ChasseComportement;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
-import model.mouvement.Deplaceurs.DeplaceurFantome;
+import model.mouvement.ChasseComportement;
 import model.mouvement.Positions.PositionLogique;
 
 public class BlinkyChasse implements ChasseComportement{
@@ -16,7 +15,7 @@ public class BlinkyChasse implements ChasseComportement{
         }
         else {
             PositionLogique posCible = cible.getPositionLogique();
-            DeplaceurFantome.chasserPac(nom, cible, nom.dircetionYeux);
+            //DeplaceurFantome.chasserPac(nom, cible, nom.dircetionYeux);
         }
     }
 }

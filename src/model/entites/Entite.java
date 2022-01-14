@@ -7,8 +7,8 @@ import model.mouvement.Positions.PositionLogique;
 
 public class Entite {
     public int id;
-    protected PositionGraphique pos;
-    protected PositionLogique posL;
+    protected PositionGraphique pos = new PositionGraphique(0,0);
+    protected PositionLogique posL = new PositionLogique(0,0);
     protected SpriteAnchor sp;
 
     public void setAnchor(SpriteAnchor sp){

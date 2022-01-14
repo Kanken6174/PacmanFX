@@ -1,14 +1,22 @@
 package model.mouvement.Deplaceurs;
 
 import model.entites.Entite;
-import model.enums.Orients;
-import model.mouvement.Positions.PositionLogique;
+import model.mouvement.Navigateurs.Navigateur;
+import model.terrain.EspaceDeJeu;
 
 public class DeplaceurFantome extends Deplaceur {
 
-    public static void versScatter(PositionLogique posScatter) {}
+    public DeplaceurFantome(EspaceDeJeu EJ, Entite aGerer) {
+        super(EJ, aGerer);
+    }
 
-    public static void chasserPac(Entite source, Entite cible, Orients direction) {
-        deplacerEntite(source, cible, direction);
+    @Override protected void deplacerEntite(){
+
+    }
+
+
+
+    @Override public void run(){
+        deplacerEntite();
     }
 }
