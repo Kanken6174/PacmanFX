@@ -1,10 +1,10 @@
 package model.boucles;
 
+import javafx.application.Platform;
+
 import java.util.ArrayList;
-import java.util.concurrent.ScheduledExecutorService;
 
 public class Boucleur implements Runnable{
-    private ScheduledExecutorService exec = null;
     private ArrayList<Abonne> abonnes = new ArrayList<Abonne>();
     private int periode = 100;
     private boolean running;
@@ -31,6 +31,12 @@ public class Boucleur implements Runnable{
         return this.periode;
     }
 
+    public void notifyAbonnes() {
+        for (Abonne a : abonnes) {
+            a.doAction();
+        }
+    }
+    
     @Override
     public void run() {     //boucle de jeu
         while(running) {
@@ -39,9 +45,7 @@ public class Boucleur implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            for (Abonne a : abonnes) {
-                a.doAction();
+            Platform.runLater(this::notifyAbonnes);
             }
         }
     }
-}
