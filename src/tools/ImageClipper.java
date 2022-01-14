@@ -26,7 +26,7 @@ public class ImageClipper {
 
     public static WritableImage getFrame(Image source, int id){
         PixelReader px = source.getPixelReader();
-        WritableImage wi = new WritableImage(px,id,0,16,16);
+        WritableImage wi = new WritableImage(px,id,0,(int)source.getHeight(),(int)source.getHeight());
         return wi;
     }
 

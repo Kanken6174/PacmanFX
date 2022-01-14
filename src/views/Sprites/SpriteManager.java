@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class SpriteManager {
     private WritableImage TerrainBackground;
-    private ArrayList<EntiteVue> entiteVues = new ArrayList<>();
-    private ArrayList<ImageMaster> SpriteSheetsMasters = new ArrayList<>();  //contient tous les spritesheets, privé
+    private ArrayList<EntiteVue> entiteVues = new ArrayList<EntiteVue>();
+    private ArrayList<ImageMaster> SpriteSheetsMasters = new ArrayList<ImageMaster>();  //contient tous les spritesheets, privé
 
 
     public SpriteManager(EspaceDeJeu ej){
@@ -39,7 +39,7 @@ public class SpriteManager {
                 Sprite s = null;
                 if (sp.isAnimated()) {
                     if (e instanceof Fantome)
-                        s = new SpriteAnimable(im.getSpritePart(sp.getX(), sp.getY(), sp.getWidth(), sp.getHeight()), 2, 4);
+                        s = new SpriteAnimable(im.getSpritePart(sp.getX(), sp.getY()+64, sp.getWidth(), sp.getHeight()), 2, 4);
                     else {
                     }//les autres entité ici, pour l'instant il y a que le fantome qui utilise des sprites animées
                     ev = new EntiteVueAnimable((SpriteAnimable) s,e);

@@ -6,7 +6,6 @@ import model.enums.Orients;
 import model.mouvement.ChasseComportement;
 import model.mouvement.Positions.PositionLogique;
 import model.mouvement.ScatterComportement;
-import views.Sprites.SpriteAnimable;
 
 public class Fantome extends Entite{
     public int spriteX = 441;   //définit la position du sprite sur la palette (X)
@@ -16,8 +15,6 @@ public class Fantome extends Entite{
     private PositionLogique target;
 
     public Orients dircetionYeux; //La direction des yeux indique la direction du fantome
-
-    private SpriteAnimable sa;
 
     public FantomeNom identifier;     //définit spriteY et de quel fantome il s'agit
     private FantomeState fs = FantomeState.SCATTER;
@@ -48,15 +45,6 @@ public class Fantome extends Entite{
     public FantomeNom getFantomeNom(){
         return identifier;
     }
-
-    public void setSpriteAnimable(SpriteAnimable sa){
-        this.sa = sa;
-    }
-
-    public SpriteAnimable getSpriteAnimable(){
-        return this.sa;
-    }
-
 
     public void chasse() { hunt.chasse(p, this); }
 

@@ -29,7 +29,7 @@ public class ImageMaster {  //Cette classe contient la spritesheet principale et
             bi = ImageClipper.clip(MainRessource,x,y,width,height);
         }
         catch (IndexOutOfBoundsException e){
-
+            System.out.println("clip error");
         }
         return bi;
     }

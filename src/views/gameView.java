@@ -8,7 +8,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
 import model.boucles.GestionnaireBoucles;
-import model.entites.Entite;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
 import model.terrain.EspaceDeJeu;
@@ -52,19 +51,6 @@ public class gameView {
         terrain.setScaleY(terrain.getScaleY()*3);
     }
 
-    public void DrawEntities(GestionnaireBoucles gb, ArrayList<Entite> entites){
-        AnimateurPacMan a = new AnimateurPacMan(pacman);
-        gb.schedule(a,8);
-        for(Entite e : entites){
-            if(e instanceof PacmanObject) {
-                bindPacman((PacmanObject) e);
-            }else if(e instanceof Fantome){
-                Animateur af = new Animateur(((Fantome) e).getSpriteAnimable());
-                gb.schedule(af,200);
-            }
-        }
-    }
-
     public void DrawEntities(GestionnaireBoucles gb){
         AnimateurPacMan a = new AnimateurPacMan(pacman);
         gb.schedule(a,8);
@@ -73,7 +59,7 @@ public class gameView {
             if(e.getSource() instanceof PacmanObject) {
                 bindPacman((PacmanObject) e.getSource());
             }else if(e.getSource() instanceof Fantome){
-                Animateur af = new Animateur(((Fantome) e.getSource()).getSpriteAnimable());
+                Animateur af = new Animateur(((EntiteVueAnimable)e).getSpriteAnimable());
                 bindFantome((EntiteVueAnimable) e);
                 gb.schedule(af,200);
             }

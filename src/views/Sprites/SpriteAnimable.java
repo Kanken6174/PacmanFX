@@ -26,6 +26,7 @@ public class SpriteAnimable extends Sprite {
         SpritesAmountCycle = cycles-1;
         SpritesAmountTypes = types-1;
         FrameWidth = (int)bi.getHeight();    //chaque sprite est soit 8*XX ou 16*XX, et sur une seule ligne, donc si on prend la hauteur on a la largeur de chaque frame
+        refreshFrame();
     }
 
     public WritableImage getSpritesheet(){

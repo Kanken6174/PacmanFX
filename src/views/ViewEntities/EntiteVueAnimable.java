@@ -18,6 +18,10 @@ public class EntiteVueAnimable extends EntiteVue{
         return ((SpriteAnimable)this.ressourceLocale).CurrentFrameProperty();
     }
 
+    public SpriteAnimable getSpriteAnimable(){
+        return (SpriteAnimable) super.ressourceLocale;
+    }
+
     @Override
     public WritableImage getImage(){
         return ((SpriteAnimable)this.ressourceLocale).getFrame();
