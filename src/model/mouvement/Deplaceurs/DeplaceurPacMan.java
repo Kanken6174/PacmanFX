@@ -7,6 +7,6 @@ import model.terrain.EspaceDeJeu;
 public class DeplaceurPacMan extends Deplaceur {
 
     public DeplaceurPacMan(EspaceDeJeu EJ, Entite aGerer, Navigateur nav) {
-        super(EJ, aGerer, nav);
+        super(EJ, aGerer);
     }
 }
