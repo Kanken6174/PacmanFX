@@ -8,13 +8,8 @@ import model.mouvement.Positions.PositionLogique;
 public class PinkyChasse implements ChasseComportement {
 
     @Override
-    public void chasse(PacmanObject cible, Fantome nom) {
+    public void chasse(PacmanObject cible) {
         String nomGhost = "PINKY";
-        if (!nom.identifier.equals(nomGhost)) {
-            return;
-        }
-        else {
-            PositionLogique posCible = cible.getPositionLogique();
-        }
+        PositionLogique posCible = cible.getPositionLogique();
     }
 }
