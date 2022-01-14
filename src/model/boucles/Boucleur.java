@@ -1,13 +1,11 @@
 package model.boucles;
 
-import javafx.application.Platform;
-
 import java.util.ArrayList;
 
-public class Boucleur implements Runnable{
-    private ArrayList<Abonne> abonnes = new ArrayList<Abonne>();
-    private int periode = 100;
-    private boolean running;
+public abstract class Boucleur implements Runnable{
+    protected ArrayList<Abonne> abonnes = new ArrayList<Abonne>();
+    protected int periode = 100;
+    protected boolean running;
 
     public Boucleur(int periode){
         this.periode = periode;
@@ -36,7 +34,7 @@ public class Boucleur implements Runnable{
             a.doAction();
         }
     }
-    
+
     @Override
     public void run() {     //boucle de jeu
         while(running) {
@@ -45,7 +43,7 @@ public class Boucleur implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Platform.runLater(this::notifyAbonnes);
+            notifyAbonnes();
             }
         }
     }

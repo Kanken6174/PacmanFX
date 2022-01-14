@@ -17,7 +17,7 @@ public class GestionnaireBoucles {
             }
         }
         //pas trouvé
-        Boucleur boucleur = new Boucleur(periode);
+        BoucleurStd boucleur = new BoucleurStd(periode);
         boucleur.subscribe(a);
         boucles.add(boucleur);
     }

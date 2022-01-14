@@ -1,5 +1,6 @@
 package views.Animateurs;
 
+import javafx.application.Platform;
 import model.boucles.Abonne;
 import views.Sprites.SpriteAnimable;
 
@@ -17,6 +18,11 @@ public class Animateur implements Abonne {
 
     @Override
     public void doAction() {
-        Animate();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Animate();
+            }
+        });
     }
 }

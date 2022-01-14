@@ -11,6 +11,7 @@ import model.boucles.GestionnaireBoucles;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
 import model.enums.FantomeNom;
+import model.mouvement.Deplaceurs.DeplaceurPacMan;
 import model.terrain.EspaceDeJeu;
 import views.Animateurs.Animateur;
 import views.Animateurs.AnimateurPacMan;
@@ -34,15 +35,15 @@ public class gameView {
     @FXML private ImageView[] fantomes = {blinky,pinky,inky,clyde};
 
     private SpriteManager sm = null;
-
+    private EspaceDeJeu ej = null;
     @FXML
     public void initialize(){
     }
 
     public void loadRessources(EspaceDeJeu ej){
         sm = new SpriteManager(ej); //charge aussi toutes les données de tous les sprites
+        this.ej = ej;
         DrawPlayspace(sm.getTerrainBackground());
-        bindPacman(ej.getPacman());
     }
 
     public void DrawPlayspace(WritableImage img){
@@ -53,25 +54,28 @@ public class gameView {
     }
 
     public void DrawEntities(GestionnaireBoucles gb){
+        bindPacman(ej.getPacman(), gb);
         AnimateurPacMan a = new AnimateurPacMan(pacman);
         gb.scheduleLoop(a,8);
         ArrayList<EntiteVue> ev = sm.getEntiteVues();
         for(EntiteVue e : ev){
             if(e.getSource() instanceof PacmanObject) {
-                bindPacman((PacmanObject) e.getSource());
+                bindPacman((PacmanObject) e.getSource(), gb);
             }else if(e.getSource() instanceof Fantome){
                 Animateur af = new Animateur(((EntiteVueAnimable)e).getSpriteAnimable());
-                bindFantome((EntiteVueAnimable) e);
+                bindFantome((EntiteVueAnimable) e, gb);
                 gb.scheduleLoop(af,200);
             }
         }
     }
 
-    public void bindPacman(PacmanObject pac){
+    public void bindPacman(PacmanObject pac, GestionnaireBoucles gb){
         pacman.rotateProperty().bind(pac.pacAngleProperty());
+        DeplaceurPacMan df = new DeplaceurPacMan(ej, pac);
+        gb.scheduleLoop(df, 100);
     }
 
-    public void bindFantome(EntiteVueAnimable s){
+    public void bindFantome(EntiteVueAnimable s, GestionnaireBoucles gb){
         Fantome f = (Fantome) s.getSource();
         ObjectProperty<WritableImage> pr = s.getSpriteProperty();
         ImageView target  = getFantomeFromNom(f.getFantomeNom());
@@ -79,6 +83,9 @@ public class gameView {
         target.imageProperty().bind(pr);
         target.xProperty().bind(f.getPositionLogique().CaseXProperty());
         target.yProperty().bind(f.getPositionLogique().CaseYProperty());
+        f.getPositionLogique().forceUpdate();
+        //DeplaceurFantome df = new DeplaceurFantome(ej, f);
+        //gb.scheduleLoop(df, 100);
     }
 
     private ImageView getFantomeFromNom(FantomeNom fn){

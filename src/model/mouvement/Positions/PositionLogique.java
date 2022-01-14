@@ -23,6 +23,11 @@ public class PositionLogique {
         setCaseY(y);
     }
 
+    public void forceUpdate(){
+        CaseX.set(CaseX.get());
+        CaseY.set(CaseY.get());
+    }
+
     public int getOrientInt(){
         return Orient.ordinal();
     }

@@ -20,7 +20,7 @@ public abstract class Deplaceur implements Abonne {
     protected void deplacerEntite(){
         PositionLogique Posl = geree.getPositionLogique();  //quelle case
         PositionGraphique Posg = geree.getPositionGraphique();  //offset de -4 à 4
-
+        System.out.println("Entite a "+Posg.getx()+" , "+Posg.gety()+" | "+Posl.getCaseX()+" , "+Posl.getCaseY());
         Orients DirectionVoulue =  Posl.getOrient();
 
         if(Posg.getx() >= 4 || Posg.getx() <= -4 || Posg.gety() >= 4 || Posg.gety() <= -4){
