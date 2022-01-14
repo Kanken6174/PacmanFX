@@ -31,20 +31,28 @@ public abstract class Deplaceur implements Abonne {
                 Destination.ReceiveEntity(EJ.getStage()[Posl.getCaseX()][Posl.getCaseY()].passEntity(geree));
                 switch (DirectionVoulue){
                     case DROITE:
-                        Posl.setCaseX(Posl.getCaseX()+1);
+                        if(Posl.getCaseY() <= 2)
+                            return;
+                        Posl.setCaseX(Posl.getCaseX()-1);
                         Posg.setx(-4);
                         break;
                     case GAUCHE:
-                        Posl.setCaseX(Posl.getCaseX()-1);
+                        if(Posl.getCaseX() >= 13)
+                            return;
+                        Posl.setCaseX(Posl.getCaseX()+1);
                         Posg.setx(4);
                         break;
                     case HAUT:
+                        if(Posl.getCaseY() <= 2)
+                            return;
                         Posg.sety(-4);
-                        Posl.setCaseY(Posl.getCaseY()+1);
+                        Posl.setCaseY(Posl.getCaseY()-1);
                         break;
                     case BAS:
+                        if(Posl.getCaseY() >= 20)
+                            return;
                         Posg.sety(4);
-                        Posl.setCaseY(Posl.getCaseY()-1);
+                        Posl.setCaseY(Posl.getCaseY()+1);
                         break;
                     default:
                         break;

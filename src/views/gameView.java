@@ -73,6 +73,8 @@ public class gameView {
         pacman.rotateProperty().bind(pac.pacAngleProperty());
         DeplaceurPacMan df = new DeplaceurPacMan(ej, pac);
         gb.scheduleLoop(df, 100);
+        pacman.centerXProperty().bind(pac.getPositionLogique().ScaledXProperty());
+        pacman.centerYProperty().bind(pac.getPositionLogique().ScaledYProperty());
     }
 
     public void bindFantome(EntiteVueAnimable s, GestionnaireBoucles gb){

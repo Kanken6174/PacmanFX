@@ -23,7 +23,7 @@ public class GameController implements EventHandler<KeyEvent> {
         gv.loadRessources(EJ);
         gv.DrawEntities(gb);
         DeplaceurPacMan test = new DeplaceurPacMan(EJ.getPacman(),EJ);
-        gb.scheduleLoop(test, 800);
+        gb.scheduleLoop(test, 100);
         gb.Start();
     }
 
