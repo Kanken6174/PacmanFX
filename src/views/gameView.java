@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import model.boucles.GestionnaireBoucles;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
+import model.enums.FantomeNom;
 import model.terrain.EspaceDeJeu;
 import views.Animateurs.Animateur;
 import views.Animateurs.AnimateurPacMan;
@@ -73,22 +74,32 @@ public class gameView {
     public void bindFantome(EntiteVueAnimable s){
         Fantome f = (Fantome) s.getSource();
         ObjectProperty<WritableImage> pr = s.getSpriteProperty();
-        switch (f.getFantomeNom()){
+        ImageView target  = getFantomeFromNom(f.getFantomeNom());
+
+        target.imageProperty().bind(pr);
+        target.xProperty().bind(f.getPositionLogique().CaseXProperty());
+        target.yProperty().bind(f.getPositionLogique().CaseYProperty());
+    }
+
+    private ImageView getFantomeFromNom(FantomeNom fn){
+        ImageView target = null;
+        switch (fn){
             case BLINKY:
-                blinky.imageProperty().bind(pr);
+                target = blinky;
                 break;
             case INKY:
-                inky.imageProperty().bind(pr);
+                target = inky;
                 break;
             case CLYDE:
-                clyde.imageProperty().bind(pr);
+                target = clyde;
                 break;
             case PINKY:
-                pinky.imageProperty().bind(pr);
+                target = pinky;
                 break;
             default:
                 break;
         }
+        return target;
     }
 
 }

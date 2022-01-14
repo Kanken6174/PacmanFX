@@ -5,6 +5,7 @@ import model.mouvement.Deplaceurs.Deplaceur;
 import model.mouvement.ScatterComportement;
 import model.mouvement.Deplaceurs.DeplaceurFantome;
 import model.mouvement.Positions.PositionLogique;
+import model.mouvement.ScatterComportement;
 
 public class ScatterTopLeft implements ScatterComportement {
 

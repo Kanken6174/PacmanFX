@@ -1,10 +1,8 @@
 package model.mouvement.ChasseType;
 
-import model.collisions.Collisionneur;
-import model.mouvement.ChasseComportement;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
-import model.mouvement.Deplaceurs.DeplaceurFantome;
+import model.mouvement.ChasseComportement;
 import model.mouvement.Positions.PositionLogique;
 
 

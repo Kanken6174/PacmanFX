@@ -4,7 +4,7 @@ import model.entites.Fantome;
 import model.mouvement.Deplaceurs.Deplaceur;
 import model.mouvement.ScatterComportement;
 import model.mouvement.Positions.PositionLogique;
-import model.mouvement.Deplaceurs.DeplaceurFantome;
+import model.mouvement.ScatterComportement;
 
 public class ScatterBottomLeft implements ScatterComportement {
 

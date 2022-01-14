@@ -2,6 +2,7 @@ package model.entites;
 
 import javafx.beans.property.*;
 import javafx.scene.input.KeyCode;
+import model.enums.Orients;
 
 public class PacmanObject extends Entite{
 
@@ -20,6 +21,7 @@ public class PacmanObject extends Entite{
         public void setPacY(double value){pacY.set(value);}
         public DoubleProperty pacYProperty(){return pacY;}
 
+    Orients directionVoulue = Orients.HAUT;
 
     public void manger() {
         int fanomeMange = 0;

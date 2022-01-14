@@ -51,6 +51,15 @@ public class Case {
         return e;
     }
 
+    public Entite passEntity(Entite e){
+        if(Entites.contains(e)){
+            Entites.remove(e);
+            return e;
+        }else{
+            return null;
+        }
+    }
+
     public Entite getEntite(int i){
         if(i > Entites.size())
             return null;

@@ -3,6 +3,7 @@ package model.terrain;
 import model.entites.Entite;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
+import model.mouvement.Positions.PositionLogique;
 import model.terrain.loaders.collisionLoader;
 import model.terrain.loaders.entityLoader;
 
@@ -84,5 +85,27 @@ public class EspaceDeJeu {
             }
         }
         return entites;
+    }
+
+    public Case[][] get9CaseAround(PositionLogique pl){
+        Case[][] casesAutour =  new Case[3][3];
+        for(int x = 0; x < 3; x++)
+            for(int y = 0; y < 3; y++){
+                casesAutour[x][y] = getCaseOrNull(x+ pl.getCaseX(),y+ pl.getCaseY());
+            }
+        return casesAutour;
+    }
+
+    public ArrayList<Case> getCardinals(PositionLogique pl){
+        ArrayList<Case> cases4 = new ArrayList<Case>();
+        cases4.add(getCaseOrNull(1 + pl.getCaseX(), pl.getCaseY()));
+        cases4.add(getCaseOrNull(-1 + pl.getCaseX(), pl.getCaseY()));
+        cases4.add(getCaseOrNull(pl.getCaseX(),1 + pl.getCaseY()));
+        cases4.add(getCaseOrNull(pl.getCaseX(),-1 + pl.getCaseY()));
+        return cases4;
+    }
+
+    private Case getCaseOrNull(int x, int y){
+        return (x < maxX && y < maxY && x >= 0 && y >= 0) ? tiles[x][y] : null;
     }
 }

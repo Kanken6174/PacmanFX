@@ -18,6 +18,10 @@ public class PositionLogique {
 
     private Orients Orient = Orients.DROITE;    //on utilise un enum, DROITE = 0, GAUCHE = 1, HAUT = 2, BAS = 3; aussi utilise pour les sprites
 
+    public PositionLogique(int x, int y){
+        setCaseX(x);
+        setCaseY(y);
+    }
 
     public int getOrientInt(){
         return Orient.ordinal();
