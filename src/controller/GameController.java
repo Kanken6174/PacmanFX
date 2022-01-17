@@ -43,12 +43,12 @@ public class GameController implements EventHandler<KeyEvent> {
     public void handle(KeyEvent event) {
         switch (event.getCode()){
             case UP:
-                EJ.getPacman().setPacAngle(270);
-                EJ.getPacman().getPositionLogique().setOrient(Orients.HAUT);
+                EJ.getPacman().setPacAngle(-90);
+                EJ.getPacman().getPositionLogique().setOrient(Orients.BAS);
                 break;
             case DOWN:
                 EJ.getPacman().setPacAngle(90);
-                EJ.getPacman().getPositionLogique().setOrient(Orients.BAS);
+                EJ.getPacman().getPositionLogique().setOrient(Orients.HAUT);
                 break;
             case LEFT:
                 EJ.getPacman().setPacAngle(180);

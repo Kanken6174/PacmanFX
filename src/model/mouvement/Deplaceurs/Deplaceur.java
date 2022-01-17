@@ -33,28 +33,32 @@ public abstract class Deplaceur implements Abonne {
             }
                 switch (DirectionVoulue){
                     case DROITE:
-                        if(Posl.getCaseY() <= 2)
+                        if(Posl.getCaseY() >= 28)
                             return;
-                        Posl.setCaseX(Posl.getCaseX()-1);
+                        //Posl.setCaseX(Posl.getCaseX()-1);
+                        Posl.setCaseY(Posl.getCaseY()+1);
                         Posg.setx(-4);
                         break;
                     case GAUCHE:
-                        if(Posl.getCaseX() >= 13)
+                        if(Posl.getCaseY() <= 0)
                             return;
-                        Posl.setCaseX(Posl.getCaseX()+1);
+                        //Posl.setCaseX(Posl.getCaseX()+1);
+                        Posl.setCaseY(Posl.getCaseY()-1);
                         Posg.setx(4);
                         break;
                     case HAUT:
-                        if(Posl.getCaseY() <= 2)
+                        if(Posl.getCaseX() >= 15)
                             return;
                         Posg.sety(-4);
-                        Posl.setCaseY(Posl.getCaseY()-1);
+                        //Posl.setCaseY(Posl.getCaseY()-1);
+                        Posl.setCaseX(Posl.getCaseX()+1);
                         break;
                     case BAS:
-                        if(Posl.getCaseY() >= 20)
+                        if(Posl.getCaseX() <= 0)
                             return;
                         Posg.sety(4);
-                        Posl.setCaseY(Posl.getCaseY()+1);
+                        //Posl.setCaseY(Posl.getCaseY()+1);
+                        Posl.setCaseX(Posl.getCaseX()-1);
                         break;
                     default:
                         break;

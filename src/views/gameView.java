@@ -111,8 +111,8 @@ public class gameView {
         pacman.rotateProperty().bind(pac.pacAngleProperty());
         DeplaceurPacMan df = new DeplaceurPacMan(ej, pac);
         gb.scheduleLoop(df, 100);
-        pacman.centerXProperty().bind(pac.getPositionLogique().ScaledXProperty());
-        pacman.centerYProperty().bind(pac.getPositionLogique().ScaledYProperty());
+        pacman.centerXProperty().bind(pac.getPositionLogique().ScaledYProperty());
+        pacman.centerYProperty().bind(pac.getPositionLogique().ScaledXProperty());
     }
 
     public void bindFantome(EntiteVueAnimable s, GestionnaireBoucles gb){
@@ -121,8 +121,8 @@ public class gameView {
         ImageView target  = getFantomeFromNom(f.getFantomeNom());
 
         target.imageProperty().bind(pr);
-        target.xProperty().bind(f.getPositionLogique().CaseXProperty());
-        target.yProperty().bind(f.getPositionLogique().CaseYProperty());
+        target.xProperty().bind(f.getPositionLogique().CaseYProperty());
+        target.yProperty().bind(f.getPositionLogique().CaseXProperty());
         f.getPositionLogique().forceUpdate();
         //DeplaceurFantome df = new DeplaceurFantome(ej, f);
         //gb.scheduleLoop(df, 100);

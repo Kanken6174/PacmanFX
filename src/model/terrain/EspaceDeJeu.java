@@ -114,10 +114,10 @@ public class EspaceDeJeu {
 
     public ArrayList<Case> getCardinals(PositionLogique pl){
         ArrayList<Case> cases4 = new ArrayList<Case>();
-        cases4.add(getCaseOrNull(1 + pl.getCaseX(), pl.getCaseY()));    //droite
-        cases4.add(getCaseOrNull(-1 + pl.getCaseX(), pl.getCaseY()));   //gauche
-        cases4.add(getCaseOrNull(pl.getCaseX(),1 + pl.getCaseY()));     //haut
-        cases4.add(getCaseOrNull(pl.getCaseX(),-1 + pl.getCaseY()));    //bas
+        cases4.add(getCaseOrNull(pl.getCaseX(),1 + pl.getCaseY()));     //haut      -> droite
+        cases4.add(getCaseOrNull(pl.getCaseX(),-1 + pl.getCaseY()));    //bas       -> gauche
+        cases4.add(getCaseOrNull(1 + pl.getCaseX(), pl.getCaseY()));    //droite    -> haut
+        cases4.add(getCaseOrNull(-1 + pl.getCaseX(), pl.getCaseY()));   //gauche    -> bas
         return cases4;
     }
 
