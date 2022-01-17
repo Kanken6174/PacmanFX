@@ -27,8 +27,10 @@ public abstract class Deplaceur implements Abonne {
             if(Destination == null || Destination.isObstacle()) {
                 System.out.println("destination innateignable "+ ((Destination == null) ? "null" : "obstacle"));
                 return;
-            }else
-                Destination.ReceiveEntity(EJ.getStage()[Posl.getCaseX()][Posl.getCaseY()].passEntity(geree));
+            }else {
+                PositionLogique pol = EJ.getPoslPacmanDebug();
+                Destination.ReceiveEntity(EJ.getStage()[pol.getCaseX()][pol.getCaseY()].passEntity(geree));
+            }
                 switch (DirectionVoulue){
                     case DROITE:
                         if(Posl.getCaseY() <= 2)

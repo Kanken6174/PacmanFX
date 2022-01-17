@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 
 public class EspaceDeJeu {
-    private int maxX = 13;
-    private int maxY = 28;
+    private int maxX = 15;  //lignes
+    private int maxY = 28;  //colonnes
     private Case[][] tiles = new Case[maxX][maxY];
 
     public EspaceDeJeu(){
@@ -34,7 +34,7 @@ public class EspaceDeJeu {
             for (int y = 0; y < maxY; y++) {
                 Case processed = tiles[x][y];
                 if(processed == null){
-                    System.out.println("null cell at:"+x+" "+y);
+                    //System.out.println("null cell at:"+x+" "+y);
 
                 }else if(processed.containsPacMan()){
                     System.out.println("pacman at: "+x+" "+y);
@@ -46,13 +46,29 @@ public class EspaceDeJeu {
         return null;
     }
 
+    public PositionLogique getPoslPacmanDebug(){
+        PositionLogique pol = null;
+        for(int x = 0; x < maxX; x++) {
+            for (int y = 0; y < maxY; y++) {
+                Case processed = tiles[x][y];
+                if(processed == null){
+                    //System.out.println("null cell at:"+x+" "+y);
+
+                }else if(processed.containsPacMan()){
+                    pol = new PositionLogique(x,y);
+                }
+            }
+        }
+        return pol;
+    }
+
     public ArrayList<Fantome> getFantomes(){
         ArrayList<Fantome> fantomes = new ArrayList<Fantome>();
         for(int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
                 Case processed = tiles[x][y];
                 if(processed == null){
-                    System.out.println("null cell at:"+x+" "+y);
+                    //System.out.println("null cell at:"+x+" "+y);
                 }else if(processed.hasGhosts()){
                     System.out.println("ghost at: "+x+" "+y);
                     ArrayList<Integer> indexes = processed.getGhostIndexes();
@@ -72,7 +88,7 @@ public class EspaceDeJeu {
             for (int y = 0; y < maxY; y++) {
                 Case processed = tiles[x][y];
                 if(processed == null){
-                    System.out.println("null cell at:"+x+" "+y);
+                    //System.out.println("null cell at:"+x+" "+y);
                 }else{
                     if(processed.hasEntities()){
                         System.out.println("Entity at: "+x+" "+y);
@@ -98,10 +114,10 @@ public class EspaceDeJeu {
 
     public ArrayList<Case> getCardinals(PositionLogique pl){
         ArrayList<Case> cases4 = new ArrayList<Case>();
-        cases4.add(getCaseOrNull(1 + pl.getCaseX(), pl.getCaseY()));
-        cases4.add(getCaseOrNull(-1 + pl.getCaseX(), pl.getCaseY()));
-        cases4.add(getCaseOrNull(pl.getCaseX(),1 + pl.getCaseY()));
-        cases4.add(getCaseOrNull(pl.getCaseX(),-1 + pl.getCaseY()));
+        cases4.add(getCaseOrNull(1 + pl.getCaseX(), pl.getCaseY()));    //droite
+        cases4.add(getCaseOrNull(-1 + pl.getCaseX(), pl.getCaseY()));   //gauche
+        cases4.add(getCaseOrNull(pl.getCaseX(),1 + pl.getCaseY()));     //haut
+        cases4.add(getCaseOrNull(pl.getCaseX(),-1 + pl.getCaseY()));    //bas
         return cases4;
     }
 

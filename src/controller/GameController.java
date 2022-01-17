@@ -1,8 +1,10 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
+import model.boucles.Abonne;
 import model.boucles.GestionnaireBoucles;
 import model.enums.Orients;
 import model.mouvement.Deplaceurs.DeplaceurPacMan;
@@ -24,6 +26,16 @@ public class GameController implements EventHandler<KeyEvent> {
         gv.DrawEntities(gb);
         DeplaceurPacMan test = new DeplaceurPacMan(EJ.getPacman(),EJ);
         gb.scheduleLoop(test, 100);
+
+        gb.scheduleLoop(new Abonne(){@Override
+                public void doAction() {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            gv.DrawCollisionMapDebug();
+                        }
+                    });
+                }},100);
         gb.Start();
     }
 
