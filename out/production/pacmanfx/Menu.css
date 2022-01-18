@@ -1,0 +1,18 @@
+.MenuTextLabel {
+    -fx-font-size: 25pt;
+    -fx-font-family: "Bell MT 35px";
+    -fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #FFFFFF, #00d8ff);
+    -fx-opacity: 1;
+}
+
+.backgroundPane {
+    -fx-background-color: black;
+}
+
+.menuBtn {
+    -fx-background-color: linear-gradient(#FFF, #00e9fa), radial-gradient(center 10% -40%, radius 150%, rgb(0, 128, 202) 45%, #00e1ff 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.4), 5, 0.0, 0, 1);
+    -fx-text-fill: #000704;
+}

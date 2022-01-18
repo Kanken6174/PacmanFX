@@ -131,4 +131,8 @@ public class Case {
     public Sprite getSprite(){
         return this.sp;
     }
+
+    public void setEntiteStatique(Entite es){
+        this.EntiteStatique = es;
+    }
 }

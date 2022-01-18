@@ -119,7 +119,11 @@ public class spriteLoader {
 
                     for(int xbis = 0; xbis < xpixels; xbis++){
                         for(int ybis = 0; ybis < ypixels; ybis++){
-                            Color cbis = pr.getColor(xbis,ybis);
+                            Color cbis;
+                            if(xbis == 0 && ybis == 0)
+                                cbis = Color.BLUE;
+                            else
+                                cbis = pr.getColor(xbis,ybis);
                             pw.setColor(xbis+(x*xpixels),ybis+(y*ypixels),cbis);
                         }
                     }
