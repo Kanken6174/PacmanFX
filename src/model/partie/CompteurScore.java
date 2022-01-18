@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class CompteurScore {
-    public int score;
+    private int score;
     private StringProperty scoreValue = new SimpleStringProperty();
 
     public void incrementer(int ptsAjoutes){

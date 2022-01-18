@@ -4,12 +4,18 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
+import model.Events.ConcreteEmitter;
+import model.Events.EventEmitter;
 import model.boucles.Abonne;
 import model.boucles.GestionnaireBoucles;
+import model.entites.Fantome;
 import model.enums.Orients;
+import model.mouvement.Deplaceurs.DeplaceurFantome;
 import model.mouvement.Deplaceurs.DeplaceurPacMan;
 import model.terrain.EspaceDeJeu;
 import views.gameView;
+
+import java.util.ArrayList;
 
 public class GameController implements EventHandler<KeyEvent> {
 
@@ -24,18 +30,30 @@ public class GameController implements EventHandler<KeyEvent> {
         EJ.LoadStage("level");
         gv.loadRessources(EJ);
         gv.DrawEntities(gb);
-        DeplaceurPacMan test = new DeplaceurPacMan(EJ.getPacman(),EJ);
-        gb.scheduleLoop(test, 100);
+        SetupLoops();
+    }
+
+    private void SetupLoops(){
+        EventEmitter em = new ConcreteEmitter();
+        em.addListener(gb);
+        DeplaceurPacMan test = new DeplaceurPacMan(EJ,EJ.getPacman(),em);
+        gb.scheduleLoop(test, 50);
+
+        ArrayList<Fantome> fantomes =  EJ.getFantomes();
+        for(Fantome f : fantomes){
+            DeplaceurFantome df = new DeplaceurFantome(EJ, f, em);
+            gb.scheduleLoop(df,50);
+        }
 
         gb.scheduleLoop(new Abonne(){@Override
-                public void doAction() {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            gv.DrawCollisionMapDebug();
-                        }
-                    });
-                }},100);
+        public void doAction() {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    gv.DrawCollisionMapDebug();
+                }
+            });
+        }},50);
         gb.Start();
     }
 

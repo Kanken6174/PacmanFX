@@ -4,6 +4,8 @@ import model.entites.Entite;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
 import model.mouvement.Positions.PositionLogique;
+import model.partie.CompteurScore;
+import model.partie.CompteurVie;
 import model.terrain.loaders.collisionLoader;
 import model.terrain.loaders.entityLoader;
 
@@ -13,16 +15,30 @@ import java.util.ArrayList;
 public class EspaceDeJeu {
     private int maxX = 15;  //lignes
     private int maxY = 28;  //colonnes
+    private String levelName = "";
     private Case[][] tiles = new Case[maxX][maxY];
-
-    public EspaceDeJeu(){
-
-    }
+    private CompteurScore cs = new CompteurScore();
+    private CompteurVie cv = new CompteurVie();
 
     public void LoadStage(String StageName){
-        tiles = new Case[maxX][maxY];   //taille pacman original
+        levelName = StageName;
+        tiles = new Case[maxX][maxY];
         tiles = collisionLoader.loadCollisions(StageName, maxX, maxY);
         tiles = entityLoader.loadEntities(StageName, tiles,maxX, maxY);
+    }
+
+    public CompteurScore getCs(){
+        return cs;
+    }
+
+    public CompteurVie getCv(){
+        return cv;
+    }
+
+    public void reset(){
+        cs = new CompteurScore();
+        cv = new CompteurVie();
+        LoadStage(levelName);
     }
 
     public Case[][] getStage(){

@@ -17,14 +17,14 @@
       <Insets />
    </opaqueInsets>
    <center>
-      <Pane prefHeight="199.0" prefWidth="520.0" styleClass="playspace" stylesheets="@Game.css" BorderPane.alignment="CENTER">
+      <Pane prefHeight="202.0" prefWidth="520.0" styleClass="playspace" stylesheets="@Game.css" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="terrain" layoutX="300" layoutY="100" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="blinky" fitHeight="64.0" fitWidth="64.0" layoutX="337.0" layoutY="224.0" pickOnBounds="false" preserveRatio="false" />
-            <ImageView fx:id="pinky" fitHeight="16.0" fitWidth="16.0" layoutX="241.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="blinky" fitHeight="64.0" fitWidth="64.0" layoutX="335.0" layoutY="88.0" pickOnBounds="false" preserveRatio="false" />
+            <ImageView fx:id="pinky" fitHeight="16.0" fitWidth="16.0" layoutX="189.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="inky" fitHeight="16.0" fitWidth="16.0" layoutX="249.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="clyde" fitHeight="16.0" fitWidth="16.0" layoutX="313.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" />
-            <Arc fx:id="pacman" fill="#fcff1f" layoutX="261.0" layoutY="127.0" length="270.0" radiusX="16.0" radiusY="16.0" rotate="45" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.0" type="ROUND" />
+            <Arc fx:id="pacman" fill="#fcff1f" layoutX="261.0" layoutY="99.0" length="270.0" radiusX="16.0" radiusY="16.0" rotate="45" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.0" type="ROUND" />
          </children>
          <BorderPane.margin>
             <Insets bottom="100.0" left="40.0" right="40.0" top="-100.0" />
@@ -32,7 +32,7 @@
       </Pane>
    </center>
    <top>
-      <FlowPane prefHeight="200.0" BorderPane.alignment="CENTER">
+      <FlowPane prefHeight="200.0" styleClass="pacman" BorderPane.alignment="CENTER">
          <children>
             <Label styleClass="ScoreCounter" stylesheets="@Game.css" text="Score: 999">
                <FlowPane.margin>

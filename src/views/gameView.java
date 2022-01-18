@@ -14,7 +14,6 @@ import model.boucles.GestionnaireBoucles;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
 import model.enums.FantomeNom;
-import model.mouvement.Deplaceurs.DeplaceurPacMan;
 import model.mouvement.Positions.PositionLogique;
 import model.terrain.Case;
 import model.terrain.EspaceDeJeu;
@@ -105,13 +104,13 @@ public class gameView {
     }
 
     public void DrawEntities(GestionnaireBoucles gb){
-        bindPacman(ej.getPacman(), gb);
+        bindPacman(ej.getPacman());
         AnimateurPacMan a = new AnimateurPacMan(pacman);
         gb.scheduleLoop(a,8);
         ArrayList<EntiteVue> ev = sm.getEntiteVues();
         for(EntiteVue e : ev){
             if(e.getSource() instanceof PacmanObject) {
-                bindPacman((PacmanObject) e.getSource(), gb);
+                bindPacman((PacmanObject) e.getSource());
             }else if(e.getSource() instanceof Fantome){
                 Animateur af = new Animateur(((EntiteVueAnimable)e).getSpriteAnimable());
                 bindFantome((EntiteVueAnimable) e, gb);
@@ -120,10 +119,8 @@ public class gameView {
         }
     }
 
-    public void bindPacman(PacmanObject pac, GestionnaireBoucles gb){
+    public void bindPacman(PacmanObject pac){
         pacman.rotateProperty().bind(pac.pacAngleProperty());
-        DeplaceurPacMan df = new DeplaceurPacMan(ej, pac);
-        gb.scheduleLoop(df, 100);
         pacman.centerXProperty().bind(pac.getPositionLogique().ScaledYProperty());
         pacman.centerYProperty().bind(pac.getPositionLogique().ScaledXProperty());
     }

@@ -1,8 +1,12 @@
 package model.boucles;
 
+import model.Events.EventListener;
+import model.Events.Events.EndGameEvent;
+import model.Events.Events.Event;
+
 import java.util.ArrayList;
 
-public class GestionnaireBoucles {
+public class GestionnaireBoucles implements EventListener {
     private ArrayList<Boucleur> boucles = new ArrayList<Boucleur>();
 
     public GestionnaireBoucles(){
@@ -34,6 +38,13 @@ public class GestionnaireBoucles {
         }
         catch (InterruptedException e){
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void HandleEvent(Event e) {
+        if(e instanceof EndGameEvent){
+            Stop();
         }
     }
 }

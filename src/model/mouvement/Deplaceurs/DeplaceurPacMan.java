@@ -1,8 +1,11 @@
 package model.mouvement.Deplaceurs;
 
 import javafx.application.Platform;
-import model.entites.Entite;
+import model.Events.EventEmitter;
+import model.Events.Events.EndGameEvent;
+import model.Events.Events.ScoreObjectEatenEvent;
 import model.entites.PacmanObject;
+import model.entites.Type;
 import model.enums.Orients;
 import model.mouvement.Positions.PositionGraphique;
 import model.mouvement.Positions.PositionLogique;
@@ -11,16 +14,12 @@ import model.terrain.EspaceDeJeu;
 
 public class DeplaceurPacMan extends Deplaceur {
 
-    public DeplaceurPacMan(EspaceDeJeu EJ, Entite aGerer) {
-        super(EJ, aGerer);
-    }
-
-    public DeplaceurPacMan(PacmanObject pacman, EspaceDeJeu ej) {
-        super(ej, pacman);
+    public DeplaceurPacMan(EspaceDeJeu EJ, PacmanObject aGerer, EventEmitter em) {
+        super(EJ, aGerer,em);
     }
 
     @Override
-    protected void deplacerEntite(){
+    protected Case deplacement(){
         PositionLogique Posl = geree.getPositionLogique();  //quelle case
         PositionGraphique Posg = geree.getPositionGraphique();  //offset de -4 à 4
         System.out.println("Entite a "+Posg.getx()+" , "+Posg.gety()+" | "+Posl.getCaseX()+" , "+Posl.getCaseY()+" | "+Posl.getOrient().toString());
@@ -29,9 +28,9 @@ public class DeplaceurPacMan extends Deplaceur {
             Case Destination = EJ.getCardinals(Posl).get(DirectionVoulue.ordinal()); //on teste que à droite pour le moment...
             if(Destination == null || Destination.isObstacle()) {
                 System.out.println("destination innateignable "+ ((Destination == null) ? "null" : "obstacle"));
-                return;
+                return null;
             }else {
-                PositionLogique pol = EJ.getPoslPacmanDebug();
+                PositionLogique pol = geree.getPositionLogique();
                 Destination.ReceiveEntity(EJ.getStage()[pol.getCaseX()][pol.getCaseY()].passEntity(geree));
                 if(Destination.hasGhosts()) //game over
                 {
@@ -44,28 +43,28 @@ public class DeplaceurPacMan extends Deplaceur {
             switch (DirectionVoulue){
                 case DROITE:
                     if(Posl.getCaseY() >= 28)
-                        return;
+                        return null;
                     //Posl.setCaseX(Posl.getCaseX()-1);
                     Posl.setCaseY(Posl.getCaseY()+1);
                     Posg.setx(-4);
                     break;
                 case GAUCHE:
                     if(Posl.getCaseY() <= 0)
-                        return;
+                        return null;
                     //Posl.setCaseX(Posl.getCaseX()+1);
                     Posl.setCaseY(Posl.getCaseY()-1);
                     Posg.setx(4);
                     break;
                 case HAUT:
                     if(Posl.getCaseX() >= 15)
-                        return;
+                        return null;
                     Posg.sety(-4);
                     //Posl.setCaseY(Posl.getCaseY()-1);
                     Posl.setCaseX(Posl.getCaseX()+1);
                     break;
                 case BAS:
                     if(Posl.getCaseX() <= 0)
-                        return;
+                        return null;
                     Posg.sety(4);
                     //Posl.setCaseY(Posl.getCaseY()+1);
                     Posl.setCaseX(Posl.getCaseX()-1);
@@ -73,6 +72,7 @@ public class DeplaceurPacMan extends Deplaceur {
                 default:
                     break;
             }
+            return Destination;
         }else{
             switch (DirectionVoulue){
                 case DROITE:
@@ -91,6 +91,20 @@ public class DeplaceurPacMan extends Deplaceur {
                     break;
             }
 
+        }
+        return null;
+    }
+
+    @Override
+    protected void resolveEntityStates(Case locale) {
+        if(locale.hasStaticEntities()){
+            super.em.setLocalEvent(new ScoreObjectEatenEvent((Type)locale.getStaticEntite()));
+            locale.setEntiteStatique(null);
+            super.em.sendEvent();
+        }
+        if(locale.hasGhosts()){
+            super.em.setLocalEvent(new EndGameEvent());
+            super.em.sendEvent();
         }
     }
 }
