@@ -53,7 +53,7 @@ public class EspaceDeJeu {
                     //System.out.println("null cell at:"+x+" "+y);
 
                 }else if(processed.containsPacMan()){
-                    System.out.println("pacman at: "+x+" "+y);
+                    //System.out.println("pacman at: "+x+" "+y);
                     PacmanObject pac = (PacmanObject)processed.getEntite(processed.getPacmanIndex());
                     return pac;
                 }

@@ -33,7 +33,7 @@ public class Case {
     }
 
     public void ReceiveEntity(Entite e){
-        if(Entites.contains(e))
+        if(Entites.contains(e) || e == null)
             return;
         Entites.add(e);
         if(e instanceof PacmanObject)

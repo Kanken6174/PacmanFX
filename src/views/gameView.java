@@ -52,33 +52,34 @@ public class gameView {
     }
 
     public void DrawCollisionMapDebug(){
-        myBP.getChildren().removeIf(n -> (n instanceof Rectangle) || (n instanceof Circle));
+        //myBP.getChildren().removeIf(n -> (n instanceof Rectangle) || (n instanceof Circle));
+        myBP.getChildren().clear();
         PositionLogique pol = ej.getPacman().getPositionLogique();
-        System.out.println("Pacman posl at:"+pol.getCaseX()+" "+pol.getCaseY());
+        //System.out.println("Pacman posl at:"+pol.getCaseX()+" "+pol.getCaseY());
         int scaleFactor = 12;
 
         Case cases[][] = ej.getStage();
         for(int x = 0; x < cases[0].length; x++)
             for (int y = 0; y < cases.length ; y++) {
                 Case[] CaseRow = cases[y];
-
+                Case case1 = CaseRow[x];
                 Rectangle newRect = new Rectangle();
                 newRect.setX((x*scaleFactor)+100);
                 newRect.setY((y*scaleFactor)+450);
                 newRect.setHeight(8*scaleFactor);
                 newRect.setWidth(8*scaleFactor);
                 newRect.setSmooth(false);
-                if(CaseRow[x] != null && CaseRow[x].isObstacle())
+                if(case1 != null && case1.isObstacle())
                     newRect.setFill(Color.RED);
                 else
                     newRect.setFill(Color.BLACK);
-                if(CaseRow[x] != null && CaseRow[x].hasEntities())
+                if(case1 != null && case1.hasEntities() && !case1.containsPacMan())
                     newRect.setFill(Color.BLUE);
-                if(CaseRow[x] != null && CaseRow[x].containsPacMan())
+                if(case1 != null && case1.containsPacMan())
                     newRect.setFill(Color.YELLOW);
                 myBP.getChildren().add(newRect);
 
-                if(CaseRow[x] != null && CaseRow[x].hasStaticEntities()) {
+                if(case1 != null && case1.hasStaticEntities()) {
                     Circle gum = new Circle();
                     gum.setRadius(4);
                     gum.setFill(Color.YELLOW);

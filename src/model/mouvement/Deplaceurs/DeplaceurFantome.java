@@ -33,17 +33,22 @@ public class DeplaceurFantome extends Deplaceur{
             for(Case c : Cardinales){
                 if(!(c == null || (c.isObstacle() && !c.isGhostHouseDoor()) && index!=DirectionInverse.ordinal())) {
                     Destination = c;
+                    System.out.println("Ghost found valid goal at: "+index);
                     if(Cardinales.indexOf(c) == DirectionVoulue.ordinal())  //on la prend en priorité
                         break;
                 }
                 index++;
             }
             if(Destination == null)
-                if(Precedente != null && !(Precedente.isObstacle() && !Precedente.isGhostHouseDoor()))
+                if(Precedente != null && !(Precedente.isObstacle() || !Precedente.isGhostHouseDoor())) {
                     Destination = Precedente;
-                else
+                    System.out.println("Ghost defaulted to last one");
+                }else {
+                    System.out.println("Ghost stuck");
                     return null;
-            Case source = EJ.getStage()[Posl.getCaseX()][Posl.getCaseY()];
+                }
+            PositionLogique pol = geree.getPositionLogique();
+            Case source = EJ.getStage()[pol.getCaseX()][pol.getCaseY()];
             if(source == null)
                 return null;
 

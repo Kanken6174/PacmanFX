@@ -22,12 +22,12 @@ public class DeplaceurPacMan extends Deplaceur {
     protected Case deplacement(){
         PositionLogique Posl = geree.getPositionLogique();  //quelle case
         PositionGraphique Posg = geree.getPositionGraphique();  //offset de -4 à 4
-        System.out.println("Entite a "+Posg.getx()+" , "+Posg.gety()+" | "+Posl.getCaseX()+" , "+Posl.getCaseY()+" | "+Posl.getOrient().toString());
+        //System.out.println("Entite a "+Posg.getx()+" , "+Posg.gety()+" | "+Posl.getCaseX()+" , "+Posl.getCaseY()+" | "+Posl.getOrient().toString());
         Orients DirectionVoulue =  Posl.getOrient();
         if(Posg.getx() > 4 || Posg.getx() < -4 || Posg.gety() > 4 || Posg.gety() < -4){
             Case Destination = EJ.getCardinals(Posl).get(DirectionVoulue.ordinal()); //on teste que à droite pour le moment...
             if(Destination == null || Destination.isObstacle()) {
-                System.out.println("destination innateignable "+ ((Destination == null) ? "null" : "obstacle"));
+                //System.out.println("destination innateignable "+ ((Destination == null) ? "null" : "obstacle"));
                 return null;
             }else {
                 PositionLogique pol = geree.getPositionLogique();
