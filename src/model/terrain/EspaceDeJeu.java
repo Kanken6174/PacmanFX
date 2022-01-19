@@ -2,7 +2,7 @@ package model.terrain;
 
 import model.entites.Entite;
 import model.entites.Fantome;
-import model.entites.PacmanObject;
+import model.entites.Pacman;
 import model.mouvement.Positions.PositionLogique;
 import model.partie.CompteurScore;
 import model.partie.CompteurVie;
@@ -62,7 +62,7 @@ public class EspaceDeJeu {
         return this.tiles;
     }
 
-    public PacmanObject getPacman(){
+    public Pacman getPacman(){
         for(int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
                 Case processed = tiles[x][y];
@@ -71,7 +71,7 @@ public class EspaceDeJeu {
 
                 }else if(processed.containsPacMan()){
                     //System.out.println("pacman at: "+x+" "+y);
-                    PacmanObject pac = (PacmanObject)processed.getEntite(processed.getPacmanIndex());
+                    Pacman pac = (Pacman)processed.getEntite(processed.getPacmanIndex());
                     return pac;
                 }
             }

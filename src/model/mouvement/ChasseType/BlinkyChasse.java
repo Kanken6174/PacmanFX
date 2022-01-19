@@ -1,15 +1,9 @@
 package model.mouvement.ChasseType;
 
+import model.entites.Fantome;
 import model.enums.Orients;
 import model.mouvement.ChasseComportement;
-import model.entites.PacmanObject;
-import model.entites.Fantome;
-import model.entites.PacmanObject;
-import model.mouvement.ChasseComportement;
-import model.mouvement.Deplaceurs.Deplaceur;
-import model.mouvement.Deplaceurs.DeplaceurFantome;
 import model.mouvement.Positions.PositionLogique;
-import model.terrain.Case;
 import model.terrain.EspaceDeJeu;
 
 import static java.lang.Math.sqrt;

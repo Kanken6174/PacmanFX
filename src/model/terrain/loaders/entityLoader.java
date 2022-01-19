@@ -26,7 +26,7 @@ public class entityLoader {
                             cases[i][j].ReceiveStaticEntity(g);
                             break;
                         case '2':
-                            PacmanObject pacman = new PacmanObject();
+                            Pacman pacman = new Pacman();
                             pacman.setLogicX(i);
                             pacman.setLogicY(j);
                             pacman.setSpriteAnchor(null);

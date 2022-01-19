@@ -1,9 +1,12 @@
+/**@author Yorick Geoffre
+ * @brief Ce fichier contient les sources du Deplaceur d'entités pour Fantome*/
+
 package model.mouvement.Deplaceurs;
 
 import model.Events.EventEmitter;
 import model.Events.Events.EndGameEvent;
 import model.Events.Events.ScoreObjectEatenEvent;
-import model.entites.PacmanObject;
+import model.entites.Pacman;
 import model.entites.Type;
 import model.enums.Orients;
 import model.mouvement.Positions.PositionGraphique;
@@ -11,22 +14,21 @@ import model.mouvement.Positions.PositionLogique;
 import model.terrain.Case;
 import model.terrain.EspaceDeJeu;
 
+/**Ce Deplaceur est spécialisé pour le pacman*/
 public class DeplaceurPacMan extends Deplaceur {
 
-    public DeplaceurPacMan(EspaceDeJeu EJ, PacmanObject aGerer, EventEmitter em) {
+    public DeplaceurPacMan(EspaceDeJeu EJ, Pacman aGerer, EventEmitter em) {
         super(EJ, aGerer,em);
     }
 
     @Override
     protected Case deplacement(){
-        PositionLogique Posl = geree.getPositionLogique();  //quelle case
-        PositionGraphique Posg = geree.getPositionGraphique();  //offset de -4 à 4
-        //System.out.println("Entite a "+Posg.getx()+" , "+Posg.gety()+" | "+Posl.getCaseX()+" , "+Posl.getCaseY()+" | "+Posl.getOrient().toString());
-        Orients DirectionVoulue =  Posl.getOrient();
+        PositionLogique Posl = geree.getPositionLogique();      //quelle case dans le double tableau du terrain
+        PositionGraphique Posg = geree.getPositionGraphique();  //offset graphique de -4 à 4 par rapport à la case
+        Orients DirectionVoulue =  Posl.getOrient();            //l'orientation de l'entité
         if(Posg.getx() > 4 || Posg.getx() < -4 || Posg.gety() > 4 || Posg.gety() < -4){
             Case Destination = EJ.getCardinals(Posl).get(DirectionVoulue.ordinal()); //on teste que à droite pour le moment...
             if(Destination == null || Destination.isObstacle()) {
-                //System.out.println("destination innateignable "+ ((Destination == null) ? "null" : "obstacle"));
                 return null;
             }else {
                 PositionLogique pol = geree.getPositionLogique();

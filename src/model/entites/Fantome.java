@@ -1,6 +1,5 @@
 /**
- * @author Yorick geoffre
- * @brief Ce fichier contient les sources d
+ * @author Joseph Minchin
  */
 
 package model.entites;
@@ -28,7 +27,7 @@ public class Fantome extends Entite{
     public FantomeNom identifier;     //définit spriteY et de quel fantome il s'agit
     private FantomeState fs = FantomeState.SCATTER;
 
-    private PacmanObject p;
+    private Pacman p;
 
     private ChasseComportement c;
 
@@ -40,7 +39,7 @@ public class Fantome extends Entite{
      * @param fn l'id du fantome, de 0 à 3 (enum)
      */
 
-    public Fantome(FantomeNom fn, ScatterComportement scatType, PacmanObject target){
+    public Fantome(FantomeNom fn, ScatterComportement scatType, Pacman target){
         identifier = fn;
         spriteY += 16*identifier.ordinal();    //0-3
         p = target;

@@ -12,7 +12,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import model.boucles.GestionnaireBoucles;
 import model.entites.Fantome;
-import model.entites.PacmanObject;
+import model.entites.Pacman;
 import model.enums.FantomeNom;
 import model.mouvement.Positions.PositionLogique;
 import model.terrain.Case;
@@ -110,8 +110,8 @@ public class GameView {
         gb.scheduleLoop(a,8);
         ArrayList<EntiteVue> ev = sm.getEntiteVues();
         for(EntiteVue e : ev){
-            if(e.getSource() instanceof PacmanObject) {
-                bindPacman((PacmanObject) e.getSource());
+            if(e.getSource() instanceof Pacman) {
+                bindPacman((Pacman) e.getSource());
             }else if(e.getSource() instanceof Fantome){
                 Animateur af = new Animateur(((EntiteVueAnimable)e).getSpriteAnimable());
                 bindFantome((EntiteVueAnimable) e, gb);
@@ -120,7 +120,7 @@ public class GameView {
         }
     }
 
-    public void bindPacman(PacmanObject pac){
+    public void bindPacman(Pacman pac){
         pacman.rotateProperty().bind(pac.pacAngleProperty());
         pacman.centerXProperty().bind(pac.getPositionLogique().ScaledYProperty());
         pacman.centerYProperty().bind(pac.getPositionLogique().ScaledXProperty());

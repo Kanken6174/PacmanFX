@@ -50,7 +50,7 @@ class EspaceDeJeuTest {
                         if(e instanceof Fantome)
                             //toAdd = "\uD83D\uDC7B";
                             toAdd = "A";
-                        if(e instanceof PacmanObject)
+                        if(e instanceof Pacman)
                             toAdd = "C";
                     }
                     toWrite += toAdd;

@@ -1,9 +1,6 @@
 package model.mouvement.ChasseType;
 
-import model.collisions.Hitbox;
-import model.collisions.HitboxCircle;
 import model.entites.Fantome;
-import model.entites.PacmanObject;
 import model.enums.Orients;
 import model.mouvement.ChasseComportement;
 import model.mouvement.Positions.PositionLogique;

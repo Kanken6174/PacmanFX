@@ -2,7 +2,7 @@ package model.terrain;
 
 import model.entites.Entite;
 import model.entites.Fantome;
-import model.entites.PacmanObject;
+import model.entites.Pacman;
 import model.mouvement.Positions.PositionLogique;
 import views.viewClasses.Sprites.Sprite;
 
@@ -41,7 +41,7 @@ public class Case {
         if(Entites.contains(e) || e == null)
             return;
         Entites.add(e);
-        if(e instanceof PacmanObject)
+        if(e instanceof Pacman)
             containsPacMan = true;
     }
 
@@ -53,7 +53,7 @@ public class Case {
     public Entite passEntity(int index){    //"passe" l'entité à cet index à une autre case par exemple
         Entite e = Entites.get(index);
         Entites.remove(e);
-        if(e instanceof PacmanObject)
+        if(e instanceof Pacman)
             containsPacMan = false;
         return e;
     }
@@ -112,7 +112,7 @@ public class Case {
         if (containsPacMan) {
             int i = 0;
             for (Entite e : Entites) {
-                if (e instanceof PacmanObject) {
+                if (e instanceof Pacman) {
                     return i;
                 }
                 i++;
