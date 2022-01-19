@@ -3,6 +3,7 @@ package model.terrain;
 import model.entites.Entite;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
+import model.mouvement.Positions.PositionLogique;
 import views.viewClasses.Sprites.Sprite;
 
 import java.util.ArrayList;
@@ -11,11 +12,19 @@ public class Case {
     private boolean estObstacle = true;
     private boolean isGhostHouseDoor = false;
     private boolean containsPacMan = false;
-    private int SpriteIndex = -1;       //inutilisé
     private Sprite sp;
+    private final PositionLogique pl;
 
     private ArrayList<Entite> Entites = new ArrayList<>();
     private Entite EntiteStatique = null;
+
+    public Case(int X, int Y) {
+        pl = new PositionLogique(X,Y);
+    }
+
+    public PositionLogique getPositionLog(){
+        return pl;
+    }
 
     public void setEstObstacle(Boolean b){
         estObstacle = b;
@@ -27,10 +36,6 @@ public class Case {
     }
 
     public boolean isGhostHouseDoor(){return isGhostHouseDoor;}
-
-    public int getSpriteIndex(){
-        return SpriteIndex;
-    }
 
     public void ReceiveEntity(Entite e){
         if(Entites.contains(e) || e == null)

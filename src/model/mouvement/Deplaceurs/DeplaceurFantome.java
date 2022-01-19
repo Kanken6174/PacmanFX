@@ -22,7 +22,7 @@ public class DeplaceurFantome extends Deplaceur{
         PositionGraphique Posg = geree.getPositionGraphique();  //offset de -4 à 4
 
         Orients DirectionActuelle =  Posl.getOrient();
-        Orients DirectionVoulue = Orients.HAUT;
+        Orients DirectionVoulue = Orients.DROITE;
         Orients DirectionInverse = OrientTools.invertOrient(DirectionActuelle);
 
         if(Posg.getx() > 4 || Posg.getx() < -4 || Posg.gety() > 4 || Posg.gety() < -4){
@@ -47,41 +47,34 @@ public class DeplaceurFantome extends Deplaceur{
                     System.out.println("Ghost stuck");
                     return null;
                 }
-            PositionLogique pol = geree.getPositionLogique();
-            Case source = EJ.getStage()[pol.getCaseX()][pol.getCaseY()];
+            Case source = EJ.getCaseOrNull(Posl);
             if(source == null)
                 return null;
 
             Destination.ReceiveEntity(source.passEntity(geree));
+            geree.setLogicX(Destination.getPositionLog().getCaseX());
+            geree.setLogicY(Destination.getPositionLog().getCaseY());
 
             switch (DirectionActuelle){
                 case DROITE:
                     if(Posl.getCaseY() >= EJ.getMaxY())
                         return null;
-                    //Posl.setCaseX(Posl.getCaseX()-1);
-                    Posl.setCaseY(Posl.getCaseY()+1);
                     Posg.setx(-4);
                     break;
                 case GAUCHE:
                     if(Posl.getCaseY() <= 0)
                         return null;
-                    //Posl.setCaseX(Posl.getCaseX()+1);
-                    Posl.setCaseY(Posl.getCaseY()-1);
                     Posg.setx(4);
                     break;
                 case HAUT:
                     if(Posl.getCaseX() >= EJ.getMaxX())
                         return null;
                     Posg.sety(-4);
-                    //Posl.setCaseY(Posl.getCaseY()-1);
-                    Posl.setCaseX(Posl.getCaseX()+1);
                     break;
                 case BAS:
                     if(Posl.getCaseX() <= 0)
                         return null;
                     Posg.sety(4);
-                    //Posl.setCaseY(Posl.getCaseY()+1);
-                    Posl.setCaseX(Posl.getCaseX()-1);
                     break;
                 default:
                     break;

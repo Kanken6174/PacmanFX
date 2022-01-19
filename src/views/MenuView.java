@@ -1,6 +1,7 @@
 package views;
 
 import controller.GameController;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.event.ActionEvent;
@@ -37,12 +38,15 @@ public class MenuView{
         levelsList.itemsProperty().bindBidirectional(levels);
 
         levelsList.setCellFactory(__ ->
-                new ComboBoxListCell<>(){
+                new ComboBoxListCell<LevelFile>(){
+
                     @Override
                     public void updateItem(LevelFile item, boolean empty) {
+                        textProperty().unbind();
+                        textProperty().set("test");
                         super.updateItem(item, empty);
                         if (!empty) {
-                            //textProperty().bind(Bindings.format("Nom du niveau: %s Colonnes: %d Lignes: %d", item.FilenameProperty(), item.ColumnProperty(), item.RowProperty()));
+                            textProperty().bind(Bindings.format("Nom du niveau: %s ,taille: %d x %d", item.FilenameProperty(), item.RowProperty(),item.ColumnProperty()));
                         } else {
                             textProperty().unbind();
                             setText("");

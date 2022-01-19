@@ -157,4 +157,13 @@ public class EspaceDeJeu {
     private Case getCaseOrNull(int x, int y){
         return (x < maxX && y < maxY && x >= 0 && y >= 0) ? tiles[x][y] : null;
     }
+
+    public Case getCaseOrNull(PositionLogique pl){
+        for(Case[] caseRow : tiles)
+            for(Case c : caseRow)
+                if(c.getPositionLog().getCaseX() == pl.getCaseX() && c.getPositionLog().getCaseY() == pl.getCaseY())
+                    return c;
+
+        return null;
+    }
 }
