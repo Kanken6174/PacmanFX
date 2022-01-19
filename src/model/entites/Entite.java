@@ -42,16 +42,16 @@ public abstract class Entite {
     }
 
     public int getLogicX(){
-        return posL.getCaseX();
+        return posL.getCaseRow();
     }
 
-    public void setLogicX(int val) { posL.setCaseX(val); }
+    public void setLogicX(int val) { posL.setCaseRow(val); }
 
     public int getLogicY(){
-        return posL.getCaseY();
+        return posL.getCaseColumn();
     }
 
-    public void setLogicY(int val) { posL.setCaseY(val); }
+    public void setLogicY(int val) { posL.setCaseColumn(val); }
 
     public PositionGraphique getPositionGraphique() {return this.pos;}
 

@@ -60,30 +60,30 @@ public class DeplaceurFantome extends Deplaceur{
                 return null;
 
             Destination.ReceiveEntity(source.passEntity(geree));    //on demande à la case actuelle de "passer" l'entité à la case de destination
-            geree.setLogicX(Destination.getPositionLog().getCaseX());   //on met à jour la position logique de l'entité
-            geree.setLogicY(Destination.getPositionLog().getCaseY());
+            geree.setLogicX(Destination.getPositionLog().getCaseRow());   //on met à jour la position logique de l'entité
+            geree.setLogicY(Destination.getPositionLog().getCaseColumn());
 
             switch (DirectionActuelle){ //on gère les changements sur les offsets graphiques
                 case DROITE:
-                    if(Posl.getCaseY() >= EJ.getMaxY())
+                    if(Posl.getCaseColumn() >= EJ.getMaxY())
                         return null;
                     Posg.setx(-4);
                     Posg.sety(0);   //on remet ces offsets à 0 pour éviter les décalages, ou à une valeur spécifique pour que la transition soit fluide
                     break;
                 case GAUCHE:
-                    if(Posl.getCaseY() <= 0)
+                    if(Posl.getCaseColumn() <= 0)
                         return null;
                     Posg.setx(4);
                     Posg.sety(0);
                     break;
                 case HAUT:
-                    if(Posl.getCaseX() >= EJ.getMaxX())
+                    if(Posl.getCaseRow() >= EJ.getMaxX())
                         return null;
                     Posg.sety(-4);
                     Posg.setx(0);
                     break;
                 case BAS:
-                    if(Posl.getCaseX() <= 0)
+                    if(Posl.getCaseRow() <= 0)
                         return null;
                     Posg.sety(4);
                     Posg.setx(0);

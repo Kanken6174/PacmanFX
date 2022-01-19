@@ -1,11 +1,15 @@
 package views;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
+import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
@@ -16,6 +20,7 @@ import model.entites.Fantome;
 import model.entites.Pacman;
 import model.enums.FantomeNom;
 import model.mouvement.Positions.PositionLogique;
+import model.partie.CompteurScore;
 import model.terrain.Case;
 import model.terrain.EspaceDeJeu;
 import views.viewClasses.Animateurs.Animateur;
@@ -30,12 +35,14 @@ public class GameView {
     @FXML
     private Stage stage;
     @FXML private BorderPane myBP;
+    @FXML private Pane gamePane;
     @FXML private Arc pacman;
     @FXML private ImageView blinky;
     @FXML private ImageView pinky;
     @FXML private ImageView inky;
     @FXML private ImageView clyde;
     @FXML private ImageView terrain;
+    @FXML private Label scoreCounter;
 
     @FXML private ImageView[] fantomes = {blinky,pinky,inky,clyde};
 
@@ -49,12 +56,10 @@ public class GameView {
         sm = new SpriteManager(ej); //charge aussi toutes les données de tous les sprites
         this.ej = ej;
         DrawPlayspace(sm.getTerrainBackground());
-        DrawCollisionMapDebug();
     }
 
     public void DrawCollisionMapDebug(){
-        //myBP.getChildren().removeIf(n -> (n instanceof Rectangle) || (n instanceof Circle));
-        myBP.getChildren().clear();
+        gamePane.getChildren().removeIf(n -> (n instanceof Rectangle) || (n instanceof Circle));
         PositionLogique pol = ej.getPacman().getPositionLogique();
         //System.out.println("Pacman posl at:"+pol.getCaseX()+" "+pol.getCaseY());
         int scaleFactor = 12;
@@ -78,7 +83,7 @@ public class GameView {
                     newRect.setFill(Color.BLUE);
                 if(case1 != null && case1.containsPacMan())
                     newRect.setFill(Color.YELLOW);
-                myBP.getChildren().add(newRect);
+                gamePane.getChildren().add(newRect);
 
                 if(case1 != null && case1.hasStaticEntities()) {
                     Circle gum = new Circle();
@@ -86,23 +91,23 @@ public class GameView {
                     gum.setFill(Color.YELLOW);
                     gum.setCenterX((x*scaleFactor)+100+4);
                     gum.setCenterY((y*scaleFactor)+450+4);
-                    myBP.getChildren().add(gum);
+                    gamePane.getChildren().add(gum);
                 }
             }
 
         Circle circ = new Circle();
         circ.setRadius(4);
         circ.setFill(Color.GREEN);
-        circ.setCenterX((pol.getCaseY()*scaleFactor)+100+8);
-        circ.setCenterY((pol.getCaseX()*scaleFactor)+450+8);
-        myBP.getChildren().add(circ);
+        circ.setCenterX((pol.getCaseColumn()*scaleFactor)+100+8);
+        circ.setCenterY((pol.getCaseRow()*scaleFactor)+450+8);
+        gamePane.getChildren().add(circ);
     }
 
     public void DrawPlayspace(WritableImage img){
         terrain.setImage(img);
         terrain.setRotate(90);
-        terrain.setScaleX(terrain.getScaleX()*2);
-        terrain.setScaleY(terrain.getScaleY()*2);
+        terrain.setScaleX(1.7);
+        terrain.setScaleY(1.7);
     }
 
     public void DrawEntities(GestionnaireBoucles gb){
@@ -121,26 +126,31 @@ public class GameView {
         }
     }
 
+    public void bindCompteur(CompteurScore cs){
+        StringBinding sb = cs.Scoreproperty().asString();
+        scoreCounter.textProperty().bind(Bindings.format("Score: %s",sb));
+    }
+
     public void bindPacman(Pacman pac){
+        pacman.setLayoutX(terrain.getLayoutX());
+        pacman.setLayoutY(terrain.getLayoutY());
         pacman.rotateProperty().bind(pac.pacAngleProperty());
-        DoubleBinding xbind = (DoubleBinding) pac.getPositionLogique().CaseXProperty().add(pac.getPositionGraphique().xProperty()).multiply(10d);
-        DoubleBinding ybind = (DoubleBinding) pac.getPositionLogique().CaseYProperty().add(pac.getPositionGraphique().yProperty()).multiply(10d);
-        pacman.centerXProperty().bind(xbind);
-        pacman.centerYProperty().bind(ybind);
+        DoubleBinding pacxbind = (DoubleBinding) pac.getPositionLogique().CaseColProperty()/*.add(pac.getPositionGraphique().yProperty())*/.multiply(40d);
+        DoubleBinding pacybind = (DoubleBinding) pac.getPositionLogique().CaseRowProperty()/*.add(pac.getPositionGraphique().xProperty())*/.multiply(40d);
+        pacman.centerXProperty().bind(pacxbind);
+        pacman.centerYProperty().bind(pacybind);
     }
 
     public void bindFantome(EntiteVueAnimable s, GestionnaireBoucles gb){
         Fantome f = (Fantome) s.getSource();
         ObjectProperty<WritableImage> pr = s.getSpriteProperty();
         ImageView target  = getFantomeFromNom(f.getFantomeNom());
-
+        target.setLayoutX(terrain.getLayoutX());
+        target.setLayoutY(terrain.getLayoutY());
         target.imageProperty().bind(pr);
 
-        DoubleBinding xbind = (DoubleBinding) f.getPositionLogique().CaseXProperty().add(f.getPositionGraphique().xProperty()).multiply(10d);
-        DoubleBinding ybind = (DoubleBinding) f.getPositionLogique().CaseYProperty().add(f.getPositionGraphique().yProperty()).multiply(10d);
-        target.xProperty().bind(xbind);
-        target.yProperty().bind(ybind);
-        f.getPositionLogique().forceUpdate();
+        DoubleBinding xbind = (DoubleBinding) f.getPositionLogique().CaseRowProperty()/*.add(f.getPositionGraphique().xProperty())*/.multiply(terrain.getScaleX()*8);
+        DoubleBinding ybind = (DoubleBinding) f.getPositionLogique().CaseColProperty()/*.add(f.getPositionGraphique().yProperty())*/.multiply(terrain.getScaleY()*8);
     }
 
     private ImageView getFantomeFromNom(FantomeNom fn){

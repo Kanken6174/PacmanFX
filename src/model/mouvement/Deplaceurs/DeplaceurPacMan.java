@@ -32,36 +32,36 @@ public class DeplaceurPacMan extends Deplaceur {
                 return null;
             }else {
                 PositionLogique pol = geree.getPositionLogique();
-                Destination.ReceiveEntity(EJ.getStage()[pol.getCaseX()][pol.getCaseY()].passEntity(geree));
+                Destination.ReceiveEntity(EJ.getStage()[pol.getCaseRow()][pol.getCaseColumn()].passEntity(geree));
             }
             switch (DirectionVoulue){
                 case DROITE:
-                    if(Posl.getCaseY() >= EJ.getMaxY())
+                    if(Posl.getCaseColumn() >= EJ.getMaxY())
                         return null;
-                    Posl.setCaseY(Posl.getCaseY()+1);
+                    Posl.setCaseColumn(Posl.getCaseColumn()+1);
                     Posg.setx(-4);
                     Posg.sety(0);
                     break;
                 case GAUCHE:
-                    if(Posl.getCaseY() <= 0)
+                    if(Posl.getCaseColumn() <= 0)
                         return null;
-                    Posl.setCaseY(Posl.getCaseY()-1);
+                    Posl.setCaseColumn(Posl.getCaseColumn()-1);
                     Posg.setx(4);
                     Posg.sety(0);
                     break;
                 case HAUT:
-                    if(Posl.getCaseX() >= EJ.getMaxX())
+                    if(Posl.getCaseRow() >= EJ.getMaxX())
                         return null;
                     Posg.sety(-4);
                     Posg.setx(0);
-                    Posl.setCaseX(Posl.getCaseX()+1);
+                    Posl.setCaseRow(Posl.getCaseRow()+1);
                     break;
                 case BAS:
-                    if(Posl.getCaseX() <= 0)
+                    if(Posl.getCaseRow() <= 0)
                         return null;
                     Posg.sety(4);
                     Posg.setx(0);
-                    Posl.setCaseX(Posl.getCaseX()-1);
+                    Posl.setCaseRow(Posl.getCaseRow()-1);
                     break;
                 default:
                     break;

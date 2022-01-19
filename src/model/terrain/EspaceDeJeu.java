@@ -4,7 +4,6 @@ import model.entites.Entite;
 import model.entites.Fantome;
 import model.entites.Pacman;
 import model.mouvement.Positions.PositionLogique;
-import model.partie.CompteurScore;
 import model.partie.CompteurVie;
 import model.terrain.loaders.collisionLoader;
 import model.terrain.loaders.entityLoader;
@@ -17,7 +16,6 @@ public class EspaceDeJeu {
     private int maxY = 28;  //colonnes
     private String levelName = "";
     private Case[][] tiles = new Case[maxX][maxY];
-    private CompteurScore cs = new CompteurScore();
     private CompteurVie cv = new CompteurVie();
 
     public void LoadStage(String StageName){
@@ -44,17 +42,11 @@ public class EspaceDeJeu {
         return maxY;
     }
 
-    public CompteurScore getCs(){
-        return cs;
-    }
-
     public CompteurVie getCv(){
         return cv;
     }
 
     public void reset(){
-        cs = new CompteurScore();
-        cv = new CompteurVie();
         LoadStage(levelName);
     }
 
@@ -140,17 +132,17 @@ public class EspaceDeJeu {
         Case[][] casesAutour =  new Case[3][3];
         for(int x = 0; x < 3; x++)
             for(int y = 0; y < 3; y++){
-                casesAutour[x][y] = getCaseOrNull(x+ pl.getCaseX(),y+ pl.getCaseY());
+                casesAutour[x][y] = getCaseOrNull(x+ pl.getCaseRow(),y+ pl.getCaseColumn());
             }
         return casesAutour;
     }
 
     public ArrayList<Case> getCardinals(PositionLogique pl){
         ArrayList<Case> cases4 = new ArrayList<Case>();
-        cases4.add(getCaseOrNull(pl.getCaseX(),1 + pl.getCaseY()));     //haut      -> droite
-        cases4.add(getCaseOrNull(pl.getCaseX(),-1 + pl.getCaseY()));    //bas       -> gauche
-        cases4.add(getCaseOrNull(1 + pl.getCaseX(), pl.getCaseY()));    //droite    -> haut
-        cases4.add(getCaseOrNull(-1 + pl.getCaseX(), pl.getCaseY()));   //gauche    -> bas
+        cases4.add(getCaseOrNull(pl.getCaseRow(),1 + pl.getCaseColumn()));     //haut      -> droite
+        cases4.add(getCaseOrNull(pl.getCaseRow(),-1 + pl.getCaseColumn()));    //bas       -> gauche
+        cases4.add(getCaseOrNull(1 + pl.getCaseRow(), pl.getCaseColumn()));    //droite    -> haut
+        cases4.add(getCaseOrNull(-1 + pl.getCaseRow(), pl.getCaseColumn()));   //gauche    -> bas
         return cases4;
     }
 
@@ -161,7 +153,7 @@ public class EspaceDeJeu {
     public Case getCaseOrNull(PositionLogique pl){
         for(Case[] caseRow : tiles)
             for(Case c : caseRow)
-                if(c.getPositionLog().getCaseX() == pl.getCaseX() && c.getPositionLog().getCaseY() == pl.getCaseY())
+                if(c.getPositionLog().getCaseRow() == pl.getCaseRow() && c.getPositionLog().getCaseColumn() == pl.getCaseColumn())
                     return c;
 
         return null;

@@ -18,6 +18,7 @@ import model.enums.Orients;
 import model.fileData.LevelFile;
 import model.mouvement.Deplaceurs.DeplaceurFantome;
 import model.mouvement.Deplaceurs.DeplaceurPacMan;
+import model.partie.CompteurScore;
 import model.terrain.EspaceDeJeu;
 import views.GameView;
 
@@ -32,6 +33,9 @@ public class GameController implements EventHandler<KeyEvent> {
     @FXML private GameView gv;
 
     private EspaceDeJeu EJ;
+
+    private CompteurScore cs;
+
     private GestionnaireBoucles gb = new GestionnaireBoucles();
 
     /**
@@ -53,11 +57,13 @@ public class GameController implements EventHandler<KeyEvent> {
      * @param lf le descripteur du fichier de niveau à charger
      */
     public GameController(GameView view, LevelFile lf){
+        cs = new CompteurScore("lorem");
         gv = view;
         EJ = new EspaceDeJeu();
         EJ.LoadStage(lf.getFilename(), lf.getColumnAmount(), lf.getRowAmount());
         gv.loadRessources(EJ);
         gv.DrawEntities(gb);
+        gv.bindCompteur(cs);
         SetupLoops();
     }
 
@@ -67,6 +73,7 @@ public class GameController implements EventHandler<KeyEvent> {
     private void SetupLoops(){
         EventEmitter em = new ConcreteEmitter();
         em.addListener(gb);
+        em.addListener(cs);
         DeplaceurPacMan test = new DeplaceurPacMan(EJ,EJ.getPacman(),em);
         gb.scheduleLoop(test, 10);
 
