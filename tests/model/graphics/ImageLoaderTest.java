@@ -2,7 +2,7 @@ package model.graphics;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
-import views.Loaders.ImageLoader;
+import views.viewClasses.Loaders.ImageLoader;
 import tools.ImageConverter;
 import org.junit.jupiter.api.Test;
 

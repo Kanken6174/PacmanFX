@@ -1,6 +1,5 @@
 package model.mouvement.Deplaceurs;
 
-import javafx.application.Platform;
 import model.Events.EventEmitter;
 import model.Events.Events.EndGameEvent;
 import model.Events.Events.ScoreObjectEatenEvent;
@@ -32,41 +31,34 @@ public class DeplaceurPacMan extends Deplaceur {
             }else {
                 PositionLogique pol = geree.getPositionLogique();
                 Destination.ReceiveEntity(EJ.getStage()[pol.getCaseX()][pol.getCaseY()].passEntity(geree));
-                if(Destination.hasGhosts()) //game over
-                {
-                    Platform.exit();
-                }
-                if(Destination.hasStaticEntities()){//mange une gomme
-                    Destination.setEntiteStatique(null);
-                }
             }
             switch (DirectionVoulue){
                 case DROITE:
-                    if(Posl.getCaseY() >= 28)
+                    if(Posl.getCaseY() >= EJ.getMaxY())
                         return null;
-                    //Posl.setCaseX(Posl.getCaseX()-1);
                     Posl.setCaseY(Posl.getCaseY()+1);
                     Posg.setx(-4);
+                    Posg.sety(0);
                     break;
                 case GAUCHE:
                     if(Posl.getCaseY() <= 0)
                         return null;
-                    //Posl.setCaseX(Posl.getCaseX()+1);
                     Posl.setCaseY(Posl.getCaseY()-1);
                     Posg.setx(4);
+                    Posg.sety(0);
                     break;
                 case HAUT:
-                    if(Posl.getCaseX() >= 15)
+                    if(Posl.getCaseX() >= EJ.getMaxX())
                         return null;
                     Posg.sety(-4);
-                    //Posl.setCaseY(Posl.getCaseY()-1);
+                    Posg.setx(0);
                     Posl.setCaseX(Posl.getCaseX()+1);
                     break;
                 case BAS:
                     if(Posl.getCaseX() <= 0)
                         return null;
                     Posg.sety(4);
-                    //Posl.setCaseY(Posl.getCaseY()+1);
+                    Posg.setx(0);
                     Posl.setCaseX(Posl.getCaseX()-1);
                     break;
                 default:

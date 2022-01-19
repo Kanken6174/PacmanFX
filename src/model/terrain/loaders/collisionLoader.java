@@ -14,15 +14,13 @@ public class collisionLoader {
             while ((line = br.readLine()) != null && i < maxX) {
                 int j = 0;
                 for(char c : line.toCharArray()){
-                    cases[i][j] = new Case();
+                    cases[i][j] = new Case(i,j);
                     cases[i][j].setEstObstacle((c=='1'));
                     cases[i][j].setGhostHouseDoor((c=='2'));
                     j++;
                 }
                 i++;
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

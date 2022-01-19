@@ -1,7 +1,17 @@
+/**
+ * @author Yorick geoffre
+ * @brief Ce fichier contient les sources de l'ancien gestionnaire de collisions (inutilisé)
+ */
+
 package model.collisions;
 
 import model.mouvement.Positions.PositionGraphique;
 
+/**
+ * Le collisionneur était sensé gérer les collisions entre deux entités données. Dû à la nature du terrain en double tableau,
+ * il est inutile et donc non-commenté.
+ * @deprecated Collisionneur
+ */
 public class Collisionneur implements Runnable {
 
     @Override

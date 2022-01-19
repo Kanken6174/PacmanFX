@@ -1,3 +1,8 @@
+/**
+ * @author Yorick geoffre
+ * @brief Ce fichier contient les sources du contrôleur de jeu
+ */
+
 package controller;
 
 import javafx.application.Platform;
@@ -10,21 +15,30 @@ import model.boucles.Abonne;
 import model.boucles.GestionnaireBoucles;
 import model.entites.Fantome;
 import model.enums.Orients;
+import model.fileData.LevelFile;
 import model.mouvement.Deplaceurs.DeplaceurFantome;
 import model.mouvement.Deplaceurs.DeplaceurPacMan;
 import model.terrain.EspaceDeJeu;
-import views.gameView;
+import views.GameView;
 
 import java.util.ArrayList;
 
+/**
+ * Le GameController est le contrôleur qui va instancier l'espace de jeu et contrôller la GameView en appellant ses fonctions.
+ * Il implémente EventHandler<KeyEvent> et gère les entrées du clavier de l'utilisateur effectuées sur la vue qu'il contrôle
+ */
 public class GameController implements EventHandler<KeyEvent> {
 
-    @FXML private gameView gv;
+    @FXML private GameView gv;
 
     private EspaceDeJeu EJ;
     private GestionnaireBoucles gb = new GestionnaireBoucles();
 
-    public GameController(gameView view){
+    /**
+     * Le constructeur de débogage du gameController (sans LevelFile)
+     * @param view la vue à contrôler
+     */
+    public GameController(GameView view){
         gv = view;
         EJ = new EspaceDeJeu();
         EJ.LoadStage("level");
@@ -33,16 +47,33 @@ public class GameController implements EventHandler<KeyEvent> {
         SetupLoops();
     }
 
+    /**
+     * Le constructeur du gameController
+     * @param view la vue à contrôler
+     * @param lf le descripteur du fichier de niveau à charger
+     */
+    public GameController(GameView view, LevelFile lf){
+        gv = view;
+        EJ = new EspaceDeJeu();
+        EJ.LoadStage(lf.getFilename(), lf.getColumnAmount(), lf.getRowAmount());
+        gv.loadRessources(EJ);
+        gv.DrawEntities(gb);
+        SetupLoops();
+    }
+
+    /**
+     * Met en place les différentes boucles de jeu en instanciant le GestionnaireBoucles local
+     */
     private void SetupLoops(){
         EventEmitter em = new ConcreteEmitter();
         em.addListener(gb);
         DeplaceurPacMan test = new DeplaceurPacMan(EJ,EJ.getPacman(),em);
-        gb.scheduleLoop(test, 50);
+        gb.scheduleLoop(test, 10);
 
         ArrayList<Fantome> fantomes =  EJ.getFantomes();
         for(Fantome f : fantomes){
             DeplaceurFantome df = new DeplaceurFantome(EJ, f, em);
-            gb.scheduleLoop(df,50);
+            gb.scheduleLoop(df,10);
         }
 
         gb.scheduleLoop(new Abonne(){@Override
@@ -53,11 +84,15 @@ public class GameController implements EventHandler<KeyEvent> {
                     gv.DrawCollisionMapDebug();
                 }
             });
-        }},50);
+        }},10);
         gb.Start();
     }
 
     @Override
+    /**
+     * Va gérer les entrées du clavier de l'utilisateur
+     * @param event l'évenement de clavier survenu
+     */
     public void handle(KeyEvent event) {
         switch (event.getCode()){
             case UP:

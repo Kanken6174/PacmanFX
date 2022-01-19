@@ -22,21 +22,21 @@ public class entityLoader {
                             Gomme g = new Gomme();
                             g.setLogicX(i);
                             g.setLogicY(j);
-                            g.setAnchor(null);
+                            g.setSpriteAnchor(null);
                             cases[i][j].ReceiveStaticEntity(g);
                             break;
                         case '2':
                             PacmanObject pacman = new PacmanObject();
                             pacman.setLogicX(i);
                             pacman.setLogicY(j);
-                            pacman.setAnchor(null);
+                            pacman.setSpriteAnchor(null);
                             cases[i][j].ReceiveEntity(pacman);
                             break;
                         case '3':
                             Fantome blinky = new Fantome(FantomeNom.BLINKY);
                             blinky.setLogicX(i);
                             blinky.setLogicY(j);
-                            blinky.setAnchor(new SpriteAnchor(456,16*blinky.getFantomeNom().ordinal(),0,
+                            blinky.setSpriteAnchor(new SpriteAnchor(456,16*blinky.getFantomeNom().ordinal(),0,
                                     "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(blinky);
                             break;
@@ -44,7 +44,7 @@ public class entityLoader {
                             Fantome pinky = new Fantome(FantomeNom.INKY);
                             pinky.setLogicX(i);
                             pinky.setLogicY(j);
-                            pinky.setAnchor(new SpriteAnchor(456,16*pinky.getFantomeNom().ordinal(),0,
+                            pinky.setSpriteAnchor(new SpriteAnchor(456,16*pinky.getFantomeNom().ordinal(),0,
                                     "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(pinky);
                             break;
@@ -52,7 +52,7 @@ public class entityLoader {
                             Fantome inky = new Fantome(FantomeNom.PINKY);
                             inky.setLogicX(i);
                             inky.setLogicY(j);
-                            inky.setAnchor(new SpriteAnchor(456,16*inky.getFantomeNom().ordinal(),0,
+                            inky.setSpriteAnchor(new SpriteAnchor(456,16*inky.getFantomeNom().ordinal(),0,
                                     "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(inky);
                             break;
@@ -60,7 +60,7 @@ public class entityLoader {
                             Fantome clyde = new Fantome(FantomeNom.CLYDE);
                             clyde.setLogicX(i);
                             clyde.setLogicY(j);
-                            clyde.setAnchor(new SpriteAnchor(456,16*clyde.getFantomeNom().ordinal(),0,
+                            clyde.setSpriteAnchor(new SpriteAnchor(456,16*clyde.getFantomeNom().ordinal(),0,
                                     "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(clyde);
                             break;

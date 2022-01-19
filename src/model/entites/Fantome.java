@@ -1,3 +1,8 @@
+/**
+ * @author Yorick geoffre
+ * @brief Ce fichier contient les sources d
+ */
+
 package model.entites;
 
 import model.enums.FantomeNom;

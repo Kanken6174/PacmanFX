@@ -27,6 +27,23 @@ public class EspaceDeJeu {
         tiles = entityLoader.loadEntities(StageName, tiles,maxX, maxY);
     }
 
+    public void LoadStage(String StageName, int columns, int rows){
+        maxX = rows;
+        maxY = columns;
+        levelName = StageName;
+        tiles = new Case[maxX][maxY];
+        tiles = collisionLoader.loadCollisions(StageName, maxX, maxY);
+        tiles = entityLoader.loadEntities(StageName, tiles,maxX, maxY);
+    }
+
+    public int getMaxX(){
+        return maxX;
+    }
+
+    public int getMaxY(){
+        return maxY;
+    }
+
     public CompteurScore getCs(){
         return cs;
     }
@@ -139,5 +156,14 @@ public class EspaceDeJeu {
 
     private Case getCaseOrNull(int x, int y){
         return (x < maxX && y < maxY && x >= 0 && y >= 0) ? tiles[x][y] : null;
+    }
+
+    public Case getCaseOrNull(PositionLogique pl){
+        for(Case[] caseRow : tiles)
+            for(Case c : caseRow)
+                if(c.getPositionLog().getCaseX() == pl.getCaseX() && c.getPositionLog().getCaseY() == pl.getCaseY())
+                    return c;
+
+        return null;
     }
 }

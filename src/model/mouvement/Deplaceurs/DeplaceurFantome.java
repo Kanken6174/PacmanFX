@@ -10,6 +10,7 @@ import model.terrain.EspaceDeJeu;
 import tools.OrientTools;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class DeplaceurFantome extends Deplaceur{
 
@@ -18,11 +19,13 @@ public class DeplaceurFantome extends Deplaceur{
     }
 
     @Override protected Case deplacement(){
+        Random r = new Random();
+
         PositionLogique Posl = geree.getPositionLogique();  //quelle case
         PositionGraphique Posg = geree.getPositionGraphique();  //offset de -4 à 4
 
         Orients DirectionActuelle =  Posl.getOrient();
-        Orients DirectionVoulue = Orients.HAUT;
+        Orients DirectionVoulue = Orients.values()[r.nextInt(3)];
         Orients DirectionInverse = OrientTools.invertOrient(DirectionActuelle);
 
         if(Posg.getx() > 4 || Posg.getx() < -4 || Posg.gety() > 4 || Posg.gety() < -4){
@@ -47,41 +50,38 @@ public class DeplaceurFantome extends Deplaceur{
                     System.out.println("Ghost stuck");
                     return null;
                 }
-            PositionLogique pol = geree.getPositionLogique();
-            Case source = EJ.getStage()[pol.getCaseX()][pol.getCaseY()];
+            Case source = EJ.getCaseOrNull(Posl);
             if(source == null)
                 return null;
 
             Destination.ReceiveEntity(source.passEntity(geree));
+            geree.setLogicX(Destination.getPositionLog().getCaseX());
+            geree.setLogicY(Destination.getPositionLog().getCaseY());
 
             switch (DirectionActuelle){
                 case DROITE:
-                    if(Posl.getCaseY() >= 28)
+                    if(Posl.getCaseY() >= EJ.getMaxY())
                         return null;
-                    //Posl.setCaseX(Posl.getCaseX()-1);
-                    Posl.setCaseY(Posl.getCaseY()+1);
                     Posg.setx(-4);
+                    Posg.sety(0);
                     break;
                 case GAUCHE:
                     if(Posl.getCaseY() <= 0)
                         return null;
-                    //Posl.setCaseX(Posl.getCaseX()+1);
-                    Posl.setCaseY(Posl.getCaseY()-1);
                     Posg.setx(4);
+                    Posg.sety(0);
                     break;
                 case HAUT:
-                    if(Posl.getCaseX() >= 15)
+                    if(Posl.getCaseX() >= EJ.getMaxX())
                         return null;
                     Posg.sety(-4);
-                    //Posl.setCaseY(Posl.getCaseY()-1);
-                    Posl.setCaseX(Posl.getCaseX()+1);
+                    Posg.setx(0);
                     break;
                 case BAS:
                     if(Posl.getCaseX() <= 0)
                         return null;
                     Posg.sety(4);
-                    //Posl.setCaseY(Posl.getCaseY()+1);
-                    Posl.setCaseX(Posl.getCaseX()-1);
+                    Posg.setx(0);
                     break;
                 default:
                     break;
