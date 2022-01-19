@@ -33,19 +33,19 @@ public class DeplaceurPacMan extends Deplaceur {
             }else {
                 PositionLogique pol = geree.getPositionLogique();
                 Destination.ReceiveEntity(EJ.getStage()[pol.getCaseRow()][pol.getCaseColumn()].passEntity(geree));
+                geree.setLogicY(Destination.getPositionLog().getCaseColumn());
+                geree.setLogicX(Destination.getPositionLog().getCaseRow());
             }
             switch (DirectionVoulue){
                 case DROITE:
                     if(Posl.getCaseColumn() >= EJ.getMaxY())
                         return null;
-                    Posl.setCaseColumn(Posl.getCaseColumn()+1);
                     Posg.setx(-4);
                     Posg.sety(0);
                     break;
                 case GAUCHE:
                     if(Posl.getCaseColumn() <= 0)
                         return null;
-                    Posl.setCaseColumn(Posl.getCaseColumn()-1);
                     Posg.setx(4);
                     Posg.sety(0);
                     break;
@@ -54,14 +54,12 @@ public class DeplaceurPacMan extends Deplaceur {
                         return null;
                     Posg.sety(-4);
                     Posg.setx(0);
-                    Posl.setCaseRow(Posl.getCaseRow()+1);
                     break;
                 case BAS:
                     if(Posl.getCaseRow() <= 0)
                         return null;
                     Posg.sety(4);
                     Posg.setx(0);
-                    Posl.setCaseRow(Posl.getCaseRow()-1);
                     break;
                 default:
                     break;

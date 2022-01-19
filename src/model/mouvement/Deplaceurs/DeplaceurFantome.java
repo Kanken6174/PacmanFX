@@ -29,19 +29,19 @@ public class DeplaceurFantome extends Deplaceur{
         PositionGraphique Posg = geree.getPositionGraphique();  //offset graphique de -4 à 4 par rapport à la case
 
         Orients DirectionActuelle =  Posl.getOrient();  //l'orientation de l'entité
-        Orients DirectionVoulue = Orients.values()[r.nextInt(4)];  //la direction souhaitée par l'entité (devrait être donnée par une classe IA qui n'est pas implémentée)
+        Orients DirectionVoulue = Orients.values()[r.nextInt(3)];  //la direction souhaitée par l'entité (devrait être donnée par une classe IA qui n'est pas implémentée)
         Orients DirectionInverse = OrientTools.invertOrient(DirectionActuelle); //on inverse la direction actuelle pour savoir où le fantôme n'a pas le droit d'aller
 
         if(Posg.getx() > 4 || Posg.getx() < -4 || Posg.gety() > 4 || Posg.gety() < -4){ //si on est au bord d'une case
             ArrayList<Case> Cardinales = EJ.getCardinals(Posl); //on récupère les 4 cases autout de celle de l'entité (de sa position logique)
             Case Destination = null;    //on met la case de destination à NULL
-            Case Precedente = Cardinales.get(DirectionInverse.ordinal());   //on met la case précédente à la case dans la direction inverse de l'actuelle
+            //Case Precedente = Cardinales.get(DirectionInverse.ordinal());   //on met la case précédente à la case dans la direction inverse de l'actuelle
             int index = 0;
             for(Case c : Cardinales){
-                if(!(c == null || (c.isObstacle() && !c.isGhostHouseDoor()) && index!=DirectionInverse.ordinal())) {    //si ce n'est pas un obstacle, et pas la case précédente
+                if(!(c == null || (c.isObstacle() && !c.isGhostHouseDoor()) /*&& index!=DirectionInverse.ordinal()*/)) {    //si ce n'est pas un obstacle, et pas la case précédente
                     Destination = c;    //on a trouvé une potentielle destination
                     //System.out.println("Ghost found valid goal at: "+index);
-                    if(Cardinales.indexOf(c) == DirectionVoulue.ordinal())  //si c'est la direction voulue, on la prend et on arrête la recherche
+                    if(index == DirectionVoulue.ordinal())  //si c'est la direction voulue, on la prend et on arrête la recherche
                         break;
                 }
                 index++;
@@ -95,7 +95,7 @@ public class DeplaceurFantome extends Deplaceur{
         }else{  //si on n'a pas encore attein le bord d'une case
             switch (DirectionVoulue){
                 case DROITE:
-                    Posg.setx(Posg.getx()+1);   //on incrémente dans la direction actuelle
+                    Posg.setx(Posg.getx()+1);
                     break;
                 case GAUCHE:
                     Posg.setx(Posg.getx()-1);

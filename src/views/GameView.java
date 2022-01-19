@@ -61,7 +61,6 @@ public class GameView {
     public void DrawCollisionMapDebug(){
         gamePane.getChildren().removeIf(n -> (n instanceof Rectangle) || (n instanceof Circle));
         PositionLogique pol = ej.getPacman().getPositionLogique();
-        //System.out.println("Pacman posl at:"+pol.getCaseX()+" "+pol.getCaseY());
         int scaleFactor = 12;
 
         Case cases[][] = ej.getStage();
@@ -71,7 +70,7 @@ public class GameView {
                 Case case1 = CaseRow[x];
                 Rectangle newRect = new Rectangle();
                 newRect.setX((x*scaleFactor)+100);
-                newRect.setY((y*scaleFactor)+450);
+                newRect.setY((y*scaleFactor)+100);
                 newRect.setHeight(8*scaleFactor);
                 newRect.setWidth(8*scaleFactor);
                 newRect.setSmooth(false);
@@ -90,7 +89,7 @@ public class GameView {
                     gum.setRadius(4);
                     gum.setFill(Color.YELLOW);
                     gum.setCenterX((x*scaleFactor)+100+4);
-                    gum.setCenterY((y*scaleFactor)+450+4);
+                    gum.setCenterY((y*scaleFactor)+100+4);
                     gamePane.getChildren().add(gum);
                 }
             }
@@ -99,7 +98,7 @@ public class GameView {
         circ.setRadius(4);
         circ.setFill(Color.GREEN);
         circ.setCenterX((pol.getCaseColumn()*scaleFactor)+100+8);
-        circ.setCenterY((pol.getCaseRow()*scaleFactor)+450+8);
+        circ.setCenterY((pol.getCaseRow()*scaleFactor)+100+8);
         gamePane.getChildren().add(circ);
     }
 

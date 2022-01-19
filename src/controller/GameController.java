@@ -80,7 +80,7 @@ public class GameController implements EventHandler<KeyEvent> {
         ArrayList<Fantome> fantomes =  EJ.getFantomes();
         for(Fantome f : fantomes){
             DeplaceurFantome df = new DeplaceurFantome(EJ, f, em);
-            gb.scheduleLoop(df,10);
+            gb.scheduleLoop(df,40);
         }
 
         gb.scheduleLoop(new Abonne(){@Override
