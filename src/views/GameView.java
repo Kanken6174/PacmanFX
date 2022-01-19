@@ -1,5 +1,6 @@
 package views;
 
+import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -122,8 +123,10 @@ public class GameView {
 
     public void bindPacman(Pacman pac){
         pacman.rotateProperty().bind(pac.pacAngleProperty());
-        pacman.centerXProperty().bind(pac.getPositionLogique().ScaledYProperty());
-        pacman.centerYProperty().bind(pac.getPositionLogique().ScaledXProperty());
+        DoubleBinding xbind = (DoubleBinding) pac.getPositionLogique().CaseXProperty().add(pac.getPositionGraphique().xProperty()).multiply(10d);
+        DoubleBinding ybind = (DoubleBinding) pac.getPositionLogique().CaseYProperty().add(pac.getPositionGraphique().yProperty()).multiply(10d);
+        pacman.centerXProperty().bind(xbind);
+        pacman.centerYProperty().bind(ybind);
     }
 
     public void bindFantome(EntiteVueAnimable s, GestionnaireBoucles gb){
@@ -132,11 +135,12 @@ public class GameView {
         ImageView target  = getFantomeFromNom(f.getFantomeNom());
 
         target.imageProperty().bind(pr);
-        target.xProperty().bind(f.getPositionLogique().CaseYProperty());
-        target.yProperty().bind(f.getPositionLogique().CaseXProperty());
+
+        DoubleBinding xbind = (DoubleBinding) f.getPositionLogique().CaseXProperty().add(f.getPositionGraphique().xProperty()).multiply(10d);
+        DoubleBinding ybind = (DoubleBinding) f.getPositionLogique().CaseYProperty().add(f.getPositionGraphique().yProperty()).multiply(10d);
+        target.xProperty().bind(xbind);
+        target.yProperty().bind(ybind);
         f.getPositionLogique().forceUpdate();
-        //DeplaceurFantome df = new DeplaceurFantome(ej, f);
-        //gb.scheduleLoop(df, 100);
     }
 
     private ImageView getFantomeFromNom(FantomeNom fn){
