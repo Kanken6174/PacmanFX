@@ -25,7 +25,7 @@ import views.viewClasses.ViewEntities.EntiteVueAnimable;
 
 import java.util.ArrayList;
 
-public class gameView {
+public class GameView {
     @FXML
     private Stage stage;
     @FXML private BorderPane myBP;

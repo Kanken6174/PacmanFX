@@ -31,7 +31,7 @@ public class SpriteManager {
         ArrayList<EntiteVue> EVs = new ArrayList<>();
 
         for(Entite e : allEntites){
-            SpriteAnchor sp = e.getSp();
+            SpriteAnchor sp = e.getSpriteAnchor();
             EntiteVue ev = null;
             if(sp!=null) {
                 ImageMaster im = getSpritesheetMasterOrLoad(sp); //désormais, im contient l'imageMaster qui possède l'image voulue

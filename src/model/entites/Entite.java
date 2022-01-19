@@ -1,3 +1,8 @@
+/**
+ * @author Yorick geoffre
+ * @brief Ce fichier contient les sources des entités
+ */
+
 package model.entites;
 
 import model.enums.Orients;
@@ -5,25 +10,30 @@ import model.fileData.SpriteAnchor;
 import model.mouvement.Positions.PositionGraphique;
 import model.mouvement.Positions.PositionLogique;
 
-public class Entite {
-    public int id;
+/**
+ * Une Entite représente un élément dont l'état peut changer, mobile ou non, comme le Pacman, les fantomes ou les gommes...
+ */
+public abstract class Entite {
+    /**La position Graphique (offset -4 4) de l'entité sur le terrain*/
     protected PositionGraphique pos = new PositionGraphique(0,0);
+    /**La position logique X et Y de la case contenant l'entité sur le terrain*/
     protected PositionLogique posL = new PositionLogique(0,0);
+    /**Informations nécessaires pour récupérer le sprite de cette entité*/
     protected SpriteAnchor sp;
 
-    public void setAnchor(SpriteAnchor sp){
+    public void setSpriteAnchor(SpriteAnchor sp){
         this.sp = sp;
     }
 
-    public SpriteAnchor getSp(){
+    public SpriteAnchor getSpriteAnchor(){
         return this.sp;
     }
 
-    public double getX(){
+    public double getGfxX(){
         return (int) pos.getx();
     }
 
-    public double getY(){
+    public double getGfxY(){
         return pos.gety();
     }
 

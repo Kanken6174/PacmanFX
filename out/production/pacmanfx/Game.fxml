@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Arc?>
 
-<BorderPane fx:id="myBP" prefHeight="700.0" prefWidth="800.0" styleClass="backgroundPane" stylesheets="@Game.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.gameView">
+<BorderPane fx:id="myBP" prefHeight="700.0" prefWidth="800.0" styleClass="backgroundPane" stylesheets="@Game.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GameView">
    <cursor>
       <Cursor fx:constant="DISAPPEAR" />
    </cursor>

@@ -10,6 +10,7 @@ import model.terrain.EspaceDeJeu;
 import tools.OrientTools;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class DeplaceurFantome extends Deplaceur{
 
@@ -18,11 +19,13 @@ public class DeplaceurFantome extends Deplaceur{
     }
 
     @Override protected Case deplacement(){
+        Random r = new Random();
+
         PositionLogique Posl = geree.getPositionLogique();  //quelle case
         PositionGraphique Posg = geree.getPositionGraphique();  //offset de -4 à 4
 
         Orients DirectionActuelle =  Posl.getOrient();
-        Orients DirectionVoulue = Orients.DROITE;
+        Orients DirectionVoulue = Orients.values()[r.nextInt(3)];
         Orients DirectionInverse = OrientTools.invertOrient(DirectionActuelle);
 
         if(Posg.getx() > 4 || Posg.getx() < -4 || Posg.gety() > 4 || Posg.gety() < -4){
@@ -60,21 +63,25 @@ public class DeplaceurFantome extends Deplaceur{
                     if(Posl.getCaseY() >= EJ.getMaxY())
                         return null;
                     Posg.setx(-4);
+                    Posg.sety(0);
                     break;
                 case GAUCHE:
                     if(Posl.getCaseY() <= 0)
                         return null;
                     Posg.setx(4);
+                    Posg.sety(0);
                     break;
                 case HAUT:
                     if(Posl.getCaseX() >= EJ.getMaxX())
                         return null;
                     Posg.sety(-4);
+                    Posg.setx(0);
                     break;
                 case BAS:
                     if(Posl.getCaseX() <= 0)
                         return null;
                     Posg.sety(4);
+                    Posg.setx(0);
                     break;
                 default:
                     break;
