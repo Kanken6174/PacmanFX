@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.stage.Stage;
@@ -19,6 +20,7 @@ import java.io.IOException;
 public class MenuView{
     @FXML private Parent root;
     @FXML private Stage stage;
+    @FXML private Button PlyBtn;
 
     @FXML
     private ComboBox<LevelFile> levelsList;
@@ -28,6 +30,8 @@ public class MenuView{
 
     @FXML
     public void initialize(){
+        PlyBtn.disableProperty().bind(levelsList.valueProperty().isNull());
+
         levels = FileUtils.discoverFiles();
 
         levelsList.itemsProperty().bindBidirectional(levels);
@@ -46,6 +50,8 @@ public class MenuView{
                     }
                 }
         );
+
+
     }
 
     @FXML

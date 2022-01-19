@@ -56,7 +56,7 @@ public class DeplaceurFantome extends Deplaceur{
 
             switch (DirectionActuelle){
                 case DROITE:
-                    if(Posl.getCaseY() >= 28)
+                    if(Posl.getCaseY() >= EJ.getMaxY())
                         return null;
                     //Posl.setCaseX(Posl.getCaseX()-1);
                     Posl.setCaseY(Posl.getCaseY()+1);
@@ -70,7 +70,7 @@ public class DeplaceurFantome extends Deplaceur{
                     Posg.setx(4);
                     break;
                 case HAUT:
-                    if(Posl.getCaseX() >= 15)
+                    if(Posl.getCaseX() >= EJ.getMaxX())
                         return null;
                     Posg.sety(-4);
                     //Posl.setCaseY(Posl.getCaseY()-1);
