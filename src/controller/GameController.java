@@ -10,6 +10,7 @@ import model.boucles.Abonne;
 import model.boucles.GestionnaireBoucles;
 import model.entites.Fantome;
 import model.enums.Orients;
+import model.fileData.LevelFile;
 import model.mouvement.Deplaceurs.DeplaceurFantome;
 import model.mouvement.Deplaceurs.DeplaceurPacMan;
 import model.terrain.EspaceDeJeu;
@@ -28,6 +29,15 @@ public class GameController implements EventHandler<KeyEvent> {
         gv = view;
         EJ = new EspaceDeJeu();
         EJ.LoadStage("level");
+        gv.loadRessources(EJ);
+        gv.DrawEntities(gb);
+        SetupLoops();
+    }
+
+    public GameController(gameView view, LevelFile lf){
+        gv = view;
+        EJ = new EspaceDeJeu();
+        EJ.LoadStage(lf.getFilename(), lf.getColumnAmount(), lf.getRowAmount());
         gv.loadRessources(EJ);
         gv.DrawEntities(gb);
         SetupLoops();

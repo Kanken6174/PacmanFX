@@ -1,8 +1,8 @@
-package views.Animateurs;
+package views.viewClasses.Animateurs;
 
 import javafx.scene.image.WritableImage;
 import javafx.scene.shape.Arc;
-import views.Sprites.SpriteAnimable;
+import views.viewClasses.Sprites.SpriteAnimable;
 
 public class AnimateurPacMan extends Animateur{
     private Arc pacman;

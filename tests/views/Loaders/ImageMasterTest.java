@@ -4,6 +4,7 @@ import javafx.scene.image.WritableImage;
 import model.enums.FantomeNom;
 import org.junit.jupiter.api.Test;
 import tools.ImageRotate;
+import views.viewClasses.Loaders.ImageMaster;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static testUtilities.jfxInititer.initInternalGraphics;

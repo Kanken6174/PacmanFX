@@ -1,4 +1,4 @@
-package views.Sprites;
+package views.viewClasses.Sprites;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;

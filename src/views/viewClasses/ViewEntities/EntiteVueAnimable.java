@@ -1,10 +1,10 @@
-package views.ViewEntities;
+package views.viewClasses.ViewEntities;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.image.WritableImage;
 import model.entites.Entite;
-import views.Animateurs.Animateur;
-import views.Sprites.SpriteAnimable;
+import views.viewClasses.Animateurs.Animateur;
+import views.viewClasses.Sprites.SpriteAnimable;
 
 public class EntiteVueAnimable extends EntiteVue{
     protected Animateur anim;

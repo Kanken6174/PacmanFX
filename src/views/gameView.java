@@ -17,11 +17,11 @@ import model.enums.FantomeNom;
 import model.mouvement.Positions.PositionLogique;
 import model.terrain.Case;
 import model.terrain.EspaceDeJeu;
-import views.Animateurs.Animateur;
-import views.Animateurs.AnimateurPacMan;
-import views.Sprites.SpriteManager;
-import views.ViewEntities.EntiteVue;
-import views.ViewEntities.EntiteVueAnimable;
+import views.viewClasses.Animateurs.Animateur;
+import views.viewClasses.Animateurs.AnimateurPacMan;
+import views.viewClasses.Sprites.SpriteManager;
+import views.viewClasses.ViewEntities.EntiteVue;
+import views.viewClasses.ViewEntities.EntiteVueAnimable;
 
 import java.util.ArrayList;
 

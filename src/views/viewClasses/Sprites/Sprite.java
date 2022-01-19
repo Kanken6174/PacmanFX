@@ -1,4 +1,4 @@
-package views.Sprites;
+package views.viewClasses.Sprites;
 
 
 import javafx.scene.image.WritableImage;

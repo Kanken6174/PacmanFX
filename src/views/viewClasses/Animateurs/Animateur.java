@@ -1,8 +1,8 @@
-package views.Animateurs;
+package views.viewClasses.Animateurs;
 
 import javafx.application.Platform;
 import model.boucles.Abonne;
-import views.Sprites.SpriteAnimable;
+import views.viewClasses.Sprites.SpriteAnimable;
 
 
 public class Animateur implements Abonne {

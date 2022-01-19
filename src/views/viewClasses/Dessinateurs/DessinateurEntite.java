@@ -1,4 +1,4 @@
-package views.Dessinateurs;
+package views.viewClasses.Dessinateurs;
 
 import javafx.scene.image.ImageView;
 import model.entites.Entite;

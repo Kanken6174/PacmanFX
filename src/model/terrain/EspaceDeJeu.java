@@ -27,6 +27,23 @@ public class EspaceDeJeu {
         tiles = entityLoader.loadEntities(StageName, tiles,maxX, maxY);
     }
 
+    public void LoadStage(String StageName, int columns, int rows){
+        maxX = rows;
+        maxY = columns;
+        levelName = StageName;
+        tiles = new Case[maxX][maxY];
+        tiles = collisionLoader.loadCollisions(StageName, maxX, maxY);
+        tiles = entityLoader.loadEntities(StageName, tiles,maxX, maxY);
+    }
+
+    public int getMaxX(){
+        return maxX;
+    }
+
+    public int getMaxY(){
+        return maxY;
+    }
+
     public CompteurScore getCs(){
         return cs;
     }

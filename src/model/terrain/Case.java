@@ -3,7 +3,7 @@ package model.terrain;
 import model.entites.Entite;
 import model.entites.Fantome;
 import model.entites.PacmanObject;
-import views.Sprites.Sprite;
+import views.viewClasses.Sprites.Sprite;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package views.Sprites;
+package views.viewClasses.Sprites;
 
 import javafx.scene.image.WritableImage;
 import model.entites.Entite;
@@ -6,11 +6,11 @@ import model.entites.Fantome;
 import model.fileData.SpriteAnchor;
 import model.terrain.Case;
 import model.terrain.EspaceDeJeu;
-import views.Loaders.ImageLoader;
-import views.Loaders.ImageMaster;
-import views.Loaders.spriteLoader;
-import views.ViewEntities.EntiteVue;
-import views.ViewEntities.EntiteVueAnimable;
+import views.viewClasses.Loaders.ImageLoader;
+import views.viewClasses.Loaders.ImageMaster;
+import views.viewClasses.Loaders.spriteLoader;
+import views.viewClasses.ViewEntities.EntiteVue;
+import views.viewClasses.ViewEntities.EntiteVueAnimable;
 
 import java.util.ArrayList;
 

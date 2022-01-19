@@ -1,4 +1,4 @@
-package views.Loaders;
+package views.viewClasses.Loaders;
 
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
@@ -7,7 +7,7 @@ import javafx.scene.image.WritablePixelFormat;
 import javafx.scene.paint.Color;
 import model.terrain.Case;
 import tools.ImageRotate;
-import views.Sprites.Sprite;
+import views.viewClasses.Sprites.Sprite;
 
 import java.nio.ByteBuffer;
 
@@ -25,7 +25,7 @@ public class spriteLoader {
                             ((y-1 > 0) ? cases[x][y-1] : null),
                             ((x+1 < maxX) ? cases[x+1][y] : null),
                             (x-1 > 0) ? cases[x-1][y] : null,
-                            ((y-1 < maxY && x+1 < maxX) ? cases[x+1][y+1] : null),
+                            ((y+1 > maxY && x+1 < maxX) ? cases[x+1][y+1] : null),
                             ((y+1 < maxY && x-1 > 0) ? cases[x-1][y+1] : null),
                             ((x+1 < maxX && y-1 > 0) ? cases[x+1][y-1] : null),
                             (x-1 > 0 && y-1 > 0) ? cases[x-1][y-1] : null,

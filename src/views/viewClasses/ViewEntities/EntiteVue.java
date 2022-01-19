@@ -1,8 +1,8 @@
-package views.ViewEntities;
+package views.viewClasses.ViewEntities;
 
 import javafx.scene.image.WritableImage;
 import model.entites.Entite;
-import views.Sprites.Sprite;
+import views.viewClasses.Sprites.Sprite;
 
 public class EntiteVue {
 

@@ -1,4 +1,4 @@
-package views.Loaders;
+package views.viewClasses.Loaders;
 
 import javafx.scene.image.Image;
 

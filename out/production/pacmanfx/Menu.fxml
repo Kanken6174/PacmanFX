@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.paint.Color?>
@@ -11,41 +12,23 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane fx:controller="views.MenuView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundPane" stylesheets="@Menu.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" styleClass="backgroundPane" stylesheets="@Menu.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MenuView">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="PlyBtn" layoutX="363.0" layoutY="154.0" mnemonicParsing="false" styleClass="menuBtn" stylesheets="@Menu.css" text="Play" onAction="#PlayClicked"/>
-            <ComboBox id="levelsList" layoutX="199.0" layoutY="154.0" prefWidth="150.0" styleClass="menuBtn" stylesheets="@Menu.css" />
-            <Button id="LdBtn" layoutX="256.0" layoutY="73.0" mnemonicParsing="false" styleClass="menuBtn" stylesheets="@Menu.css" text="LeaderBoards" />
+            <ListView layoutX="197.0" layoutY="48.0" prefHeight="236.0" prefWidth="407.0" styleClass="menuBtn" />
          </children>
       </AnchorPane>
    </center>
    <top>
-      <Label styleClass="MenuTextLabel" stylesheets="@Menu.css" text="PacmanFX" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="Bell MT" size="35.0" />
-         </font>
-         <BorderPane.margin>
-            <Insets top="20.0" />
-         </BorderPane.margin>
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color green="0.8470588326454163" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </Label>
+      <Label styleClass="MenuTextLabel" stylesheets="@Menu.css" text="PacmanFX" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER"/>
    </top>
+   <bottom>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ComboBox fx:id="levelsList" layoutX="373.0" layoutY="75.0" prefWidth="150.0" promptText="Select a level" styleClass="menuBtn" stylesheets="@Menu.css" />
+            <Button fx:id="PlyBtn" layoutX="307.0" layoutY="75.0" mnemonicParsing="false" onAction="#PlayClicked" styleClass="menuBtn" stylesheets="@Menu.css" text="Play" />
+         </children>
+      </AnchorPane>
+   </bottom>
 </BorderPane>
