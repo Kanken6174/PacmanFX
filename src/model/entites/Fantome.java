@@ -76,6 +76,10 @@ public class Fantome extends Entite{
         return typeChasse;
     }
 
+    public void setDircetionYeux(Orients orientYeux){
+        dircetionYeux = orientYeux;
+    }
+
     public String getC() {
         String typeChasse = null;
 
@@ -97,7 +101,7 @@ public class Fantome extends Entite{
         return typeChasse;
     }
 
-    public void chasse() { c.chasse(p); }
+    public void chasse() { c.chasse(p.getPositionLogique(), this); }
 
     public void scatter() { s.scatter(scatterHome, this); }
 }
