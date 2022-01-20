@@ -78,6 +78,7 @@ public class GameController implements EventHandler<KeyEvent> {
         em.addListener(gb);
         em.addListener(cs);
         em.addListener(cv);
+        em.addListener(gv);
         DeplaceurPacMan dpac = new DeplaceurPacMan(EJ,EJ.getPacman(),em);
         em.addListener(dpac);
         gb.scheduleLoop(dpac, 10);

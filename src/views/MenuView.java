@@ -76,7 +76,7 @@ public class MenuView{
         }
 
         GameView view = loader.getController();
-
+        view.receiveStage(stage);
         Scene scene = new Scene(root);
         stage.setTitle("pacmanFX - en jeu");
         stage.setScene(scene);

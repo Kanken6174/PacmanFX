@@ -1,11 +1,15 @@
 package views;
 
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -16,6 +20,9 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import model.Events.EventListener;
+import model.Events.Events.EndGameEvent;
+import model.Events.Events.Event;
 import model.boucles.GestionnaireBoucles;
 import model.entites.Fantome;
 import model.entites.Pacman;
@@ -31,9 +38,10 @@ import views.viewClasses.Sprites.SpriteManager;
 import views.viewClasses.ViewEntities.EntiteVue;
 import views.viewClasses.ViewEntities.EntiteVueAnimable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class GameView {
+public class GameView implements EventListener {
     @FXML
     private Stage stage;
     @FXML private BorderPane myBP;
@@ -55,6 +63,10 @@ public class GameView {
     private EspaceDeJeu ej = null;
     @FXML
     public void initialize(){
+    }
+
+    public void receiveStage(Stage s){
+        stage = s;
     }
 
     public void loadRessources(EspaceDeJeu ej){
@@ -138,6 +150,8 @@ public class GameView {
         BooleanBinding alive2 = cv.Viesproperty().greaterThanOrEqualTo(2);
         BooleanBinding alive3 = cv.Viesproperty().greaterThanOrEqualTo(3);
 
+
+
         Life1.visibleProperty().bind(alive3);
         Life2.visibleProperty().bind(alive2);
         Life3.visibleProperty().bind(alive1);
@@ -189,4 +203,28 @@ public class GameView {
         return target;
     }
 
+    private void EndGame(){
+        myBP.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GameOver.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        GameOverView view = loader.getController();
+        view.receiveStage(stage);
+        view.passScore(scoreCounter.getText());
+        Scene scene = new Scene(root);
+        stage.setTitle("pacmanFX - Game Over");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void HandleEvent(Event e) {
+        if(e instanceof EndGameEvent){
+            Platform.runLater(() -> {EndGame();});
+        }
+    }
 }
