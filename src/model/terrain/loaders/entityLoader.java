@@ -12,18 +12,27 @@ import model.terrain.Case;
 
 import java.io.*;
 
+/**L'entity loader va charger les entités depuis le fichier .entityMap qui va de paire avec le fichier .collisionMap*/
 public class entityLoader {
+    /**
+     * va charger les entités (pacman, fantomes, fruits, gommes...) depuis le fichier .entityMap
+     * @param StageName le nom du niveau à charger
+     * @param cases Le double tableau rendu par le chargeur de collision (terrain sans entités)
+     * @param maxX  La taille du tableau en X
+     * @param maxY  La taille du tableau en Y
+     * @return  Le double tableau du terrain avec collisions+entités chargées
+     */
     public static Case[][] loadEntities(String StageName, Case[][] cases, int maxX, int maxY){
         File entityMap = new File("./out/production/pacmanfx/Cartes/"+StageName+"/"+StageName+".entityMap");
 
-        try (BufferedReader br = new BufferedReader(new FileReader(entityMap))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(entityMap))) {   //on lit le fichier
             String line;
             int i = 0;
-            while ((line = br.readLine()) != null && i < maxX) {
+            while ((line = br.readLine()) != null && i < maxX) {    //ligne par ligne
                 int j = 0;
-                for(char c : line.toCharArray()){
+                for(char c : line.toCharArray()){       //caractère par caractère
                     switch (c){
-                        case '1':
+                        case '1':   //on utilise le chiffre lu pour déterminer quoi mettre à cet emplacement
                             Gomme g = new Gomme();
                             g.setLogicRow(i);
                             g.setLogicColumn(j);

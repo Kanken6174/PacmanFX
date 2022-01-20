@@ -1,3 +1,5 @@
+/**@Author Joseph Minchin*/
+
 package model.mouvement.ChasseType;
 
 import model.entites.Fantome;

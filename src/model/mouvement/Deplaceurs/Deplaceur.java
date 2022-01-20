@@ -52,6 +52,10 @@ public abstract class Deplaceur implements Abonne, EventListener {
      */
     protected abstract void resolveEntityStates(Case locale);
 
+    /**
+     * La méthode qui gère la remise à zéro de la position de l'entité gérée.
+     * Habituellement appellée quand le PacmanDeathEvent survient
+     */
     protected void resetPositionForManaged(){
         PositionLogique actual = geree.getPositionLogique();
         PositionLogique home = geree.getHome();

@@ -11,7 +11,8 @@ import model.terrain.EspaceDeJeu;
 import java.util.ArrayList;
 
 /**Un navigateur représente l'IA derrière une entité, elle aide le déplaceur à choisir une case en proposant une direction
- * souhaitée.*/
+ * souhaitée.
+ * @deprecated pas implémenté jusqu'au bout...*/
 public abstract class Navigateur {
     /**
      * Permet de donner une direction à prendre au Deplaceur

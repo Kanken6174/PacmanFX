@@ -9,19 +9,22 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Events.EventListener;
+import model.Events.Events.EndGameEvent;
 import model.Events.Events.Event;
 import model.Events.Events.ScoreObjectEatenEvent;
 
 /**
  * Le compteur de score répond à un évènement du type ScoreObjectEatenEvent et
  * garde le compte du score actuel.
+ * L'évènement EndGameEvent va le forcer à enregistrer ce score.
  */
 public class CompteurScore implements EventListener {
+    /**Le score actuel*/
     private IntegerProperty score = new SimpleIntegerProperty();
         public int getScore() {return score.get();}
         public void setScoreValue(int value){this.score.set(value);}
         public IntegerProperty Scoreproperty(){return score;}
-
+    /**Le nom du joueur qui a effectué ce score*/
     private StringProperty playerName = new SimpleStringProperty();
         public String getPlayerName() {return playerName.get();}
         public void setPlayerName(String scoreValue) {this.playerName.set(scoreValue);}
@@ -46,6 +49,9 @@ public class CompteurScore implements EventListener {
         if(e instanceof ScoreObjectEatenEvent){
             int score = ((ScoreObjectEatenEvent) e).getScore();
             Platform.runLater(incrementer(score));
+        }
+        if(e instanceof EndGameEvent){
+            //sauvegarder le score
         }
     }
 
