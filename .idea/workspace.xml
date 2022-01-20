@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c77f738a-bb31-4da1-b74b-d58828cb7e79" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/pacmanfx/Cartes/bigLevel/bigLevel.score" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pacmanfx/Cartes/bigLevel/bigLevel.score" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Kotlin Class" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/model/mouvement/Deplaceurs/DeplaceurPacMan.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/mouvement/Deplaceurs/DeplaceurFantome.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/terrain/loaders/entityLoader.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/controller/GameController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/terrain/Case.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/mouvement/Positions/PositionLogique.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/terrain/EspaceDeJeu.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ressources/Cartes/level/level.collisionMap" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/mouvement/Deplaceurs/Deplaceur.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="21hA57iKEWkNyUFIPF5RxFaIUhj" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
+    <property name="last_opened_file_path" value="$PATH_TO_JFX$/src.zip" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/out/test/pacmanfx/model/graphics" />
+      <recent name="$PROJECT_DIR$/ressources/Images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Controller" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="views.Loaders" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.PacmanFX">
+    <configuration name="PacmanFX" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="launcher.Launcher" />
+      <module name="pacmanfx" />
+      <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_JFX} --add-modules javafx.controls,javafx.fxml -Djdk.gtk.version=2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in pacmanfx" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pacmanfx" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EspaceDeJeuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pacmanfx" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.terrain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.terrain" />
+      <option name="MAIN_CLASS_NAME" value="model.terrain.EspaceDeJeuTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_JFX}:$USER_HOME$ --add-modules javafx.fxml,javafx.controls,javafx.graphics,org.junit.jupiter -Djdk.gtk.version=2" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <envs>
+        <env name="JAVAFX_PATH" value="$PATH_TO_JFX$/" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EspaceDeJeuTest.TestLoad" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pacmanfx" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.terrain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.terrain" />
+      <option name="MAIN_CLASS_NAME" value="model.terrain.EspaceDeJeuTest" />
+      <option name="METHOD_NAME" value="TestLoad" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ImageLoaderTest.TestImageLoader" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pacmanfx" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.graphics.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.graphics" />
+      <option name="MAIN_CLASS_NAME" value="model.graphics.ImageLoaderTest" />
+      <option name="METHOD_NAME" value="TestImageLoader" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.PacmanFX" />
+      <item itemvalue="JUnit.EspaceDeJeuTest" />
+      <item itemvalue="JUnit.ImageLoaderTest.TestImageLoader" />
+      <item itemvalue="JUnit.EspaceDeJeuTest.TestLoad" />
+      <item itemvalue="JUnit.All in pacmanfx" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in pacmanfx" />
+        <item itemvalue="JUnit.ImageLoaderTest.TestImageLoader" />
+        <item itemvalue="JUnit.EspaceDeJeuTest.TestLoad" />
+        <item itemvalue="JUnit.EspaceDeJeuTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c77f738a-bb31-4da1-b74b-d58828cb7e79" name="Changes" comment="" />
+      <created>1638382765060</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638382765060</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Creating idea project">
+      <created>1638382943983</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1638382943983</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Updated and now working base config.">
+      <created>1638396095740</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1638396095740</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added working Launcher/controller couple, with demo pacman animation.">
+      <created>1638399948770</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1638399948770</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Refactored packages to make the project easier to work with, too many unneeded empty classes!!!">
+      <created>1639732799438</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1639732799438</updated>
+    </task>
+    <task id="LOCAL-00005" summary="done work on collisions, commit before device change.">
+      <created>1640710168174</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1640710168174</updated>
+    </task>
+    <task id="LOCAL-00006" summary="temporary fix on requesting focus (added runnable asking for focus ever 100ms)">
+      <created>1641822870432</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1641822870432</updated>
+    </task>
+    <task id="LOCAL-00007" summary="working on model/views separation">
+      <created>1641983329271</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1641983329271</updated>
+    </task>
+    <task id="LOCAL-00008" summary="réparé les fantomes et leur animation, la séparation modèle/vue est terminée.">
+      <created>1642162538539</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1642162538539</updated>
+    </task>
+    <task id="LOCAL-00009" summary="working on movement">
+      <created>1642166798002</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1642166798002</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fixed wrong super">
+      <created>1642166840283</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1642166840283</updated>
+    </task>
+    <task id="LOCAL-00011" summary="added deplaceur proof-of-concept">
+      <created>1642168184839</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1642168184839</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added correct game loop">
+      <created>1642170482499</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1642170482499</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fixed the threads completely, new architecture and deleted the deprecated one.">
+      <created>1642172810502</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1642172810502</updated>
+    </task>
+    <task id="LOCAL-00014" summary="further thread-related improvements">
+      <created>1642173449878</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1642173449878</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Worked on threads and movement, issue with logic position being 0,0 need to correct that.">
+      <created>1642174805449</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1642174805449</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fixed positionLogique being 0,0 (missing loader statement)">
+      <created>1642175090640</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1642175090640</updated>
+    </task>
+    <task id="LOCAL-00017" summary="working movement (not visible yet)">
+      <created>1642176590421</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1642176590421</updated>
+    </task>
+    <task id="LOCAL-00018" summary="working movement (not visible yet)">
+      <created>1642718338481</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1642718338481</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Creating idea project" />
+    <MESSAGE value="Updated and now working base config." />
+    <MESSAGE value="Added working Launcher/controller couple, with demo pacman animation." />
+    <MESSAGE value="Refactored packages to make the project easier to work with, too many unneeded empty classes!!!" />
+    <MESSAGE value="done work on collisions, commit before device change." />
+    <MESSAGE value="temporary fix on requesting focus (added runnable asking for focus ever 100ms)" />
+    <MESSAGE value="working on model/views separation" />
+    <MESSAGE value="réparé les fantomes et leur animation, la séparation modèle/vue est terminée." />
+    <MESSAGE value="working on movement" />
+    <MESSAGE value="fixed wrong super" />
+    <MESSAGE value="added deplaceur proof-of-concept" />
+    <MESSAGE value="added correct game loop" />
+    <MESSAGE value="fixed the threads completely, new architecture and deleted the deprecated one." />
+    <MESSAGE value="further thread-related improvements" />
+    <MESSAGE value="Worked on threads and movement, issue with logic position being 0,0 need to correct that." />
+    <MESSAGE value="fixed positionLogique being 0,0 (missing loader statement)" />
+    <MESSAGE value="working movement (not visible yet)" />
+    <option name="LAST_COMMIT_MESSAGE" value="working movement (not visible yet)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/Controller.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/pacmanfx$PacmanFX.ic" NAME="PacmanFX Coverage Results" MODIFIED="1641984014492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
