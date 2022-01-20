@@ -13,6 +13,7 @@ import model.Events.Events.EndGameEvent;
 import model.Events.Events.Event;
 import model.Events.Events.GhostEatenEvent;
 import model.Events.Events.ScoreObjectEatenEvent;
+import tools.files.ScoreSaver;
 
 /**
  * Le compteur de score répond à un évènement du type ScoreObjectEatenEvent et
@@ -31,8 +32,14 @@ public class CompteurScore implements EventListener {
         public void setPlayerName(String scoreValue) {this.playerName.set(scoreValue);}
         public StringProperty playerNameProperty() {return playerName;}
 
-    public CompteurScore(String playerName){
+    private StringProperty levelName = new SimpleStringProperty();
+        public String getLevelName() {return levelName.get();}
+        public void setLevelName(String scoreValue) {this.levelName.set(scoreValue);}
+        public StringProperty LevelNameProperty() {return levelName;}
+
+    public CompteurScore(String playerName, String levelName){
             this.playerName.set(playerName);
+            this.levelName.set(levelName);
             this.score.set(0);
     }
 
@@ -52,7 +59,7 @@ public class CompteurScore implements EventListener {
             Platform.runLater(incrementer(score));
         }
         if(e instanceof EndGameEvent){
-            //sauvegarder le score
+            ScoreSaver.saveScore(levelName.getValue(), playerName.getValue(), getScore());
         }
         if(e instanceof GhostEatenEvent){
             Platform.runLater(incrementer(200));
