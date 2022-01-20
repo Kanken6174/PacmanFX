@@ -73,7 +73,8 @@ public abstract class Deplaceur implements Abonne, EventListener {
 
     public void HandleEvent(Event e){
         if(e instanceof PacmanDeathEvent){
-            resetPositionForManaged();
+            if(geree.getPositionLogique().getCaseColumn() != geree.getHome().getCaseColumn() || geree.getPositionLogique().getCaseRow() != geree.getHome().getCaseRow())
+                resetPositionForManaged();
         }
     }
 

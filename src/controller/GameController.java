@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 /**
  * Le GameController est le contrôleur qui va instancier l'espace de jeu et contrôller la GameView en appellant ses fonctions.
- * Il implémente EventHandler<KeyEvent> et gère les entrées du clavier de l'utilisateur effectuées sur la vue qu'il contrôle
+ * Il implémente EventHandler et gère les entrées du clavier de l'utilisateur effectuées sur la vue qu'il contrôle
  */
 public class GameController implements EventHandler<KeyEvent> {
 
@@ -90,6 +90,7 @@ public class GameController implements EventHandler<KeyEvent> {
         }
         if(false) //affichage de debug
             gb.scheduleLoop(() -> {Platform.runLater(() ->{gv.DrawCollisionMapDebug();});},10);
+
         gb.Start();
     }
 

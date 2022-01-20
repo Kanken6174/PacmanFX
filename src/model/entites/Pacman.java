@@ -5,7 +5,10 @@
 
 package model.entites;
 
+import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 /**
@@ -21,4 +24,17 @@ public class Pacman extends Entite{
         public double getPacAngle(){return pacAngle.get();}
         public void setPacAngle(int value){pacAngle.set(value);}
         public DoubleProperty pacAngleProperty(){return pacAngle;}
+
+    private final BooleanProperty SuperPacman = new SimpleBooleanProperty();
+        public boolean isSuper() {return SuperPacman.get();}
+        public void becomeSuper(){if(SuperPacman.get()){return;}; this.SuperPacman.set(true);
+                                    Thread superTime = new Thread(()->{
+                                        try {
+                                            Thread.sleep(10000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        Platform.runLater(()->{SuperPacman.set(false);});});
+                                    superTime.start();}
+        public BooleanProperty SuperPacmanProperty(){return SuperPacman;}
 }

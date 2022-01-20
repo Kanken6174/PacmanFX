@@ -110,7 +110,7 @@ public class TerrainBackgroundSpriteMaker {
      * @param maxX  la taille maximum en X du tableau
      * @param maxY  la taille maximum en Y du tableau
      * @return une seule WritableImage avec toutes les Sprites assemblées
-     * @implNote Un bug existe sur cette méthode - ou celles la précédant, où l'image finale est tournée de 90°. Il n'a pas encore été résolu.
+     * Un bug existe sur cette méthode - ou celles la précédant, où l'image finale est tournée de 90°. Il n'a pas encore été résolu.
      */
     public static WritableImage assemblePlayspace(Sprite[][] sprites, int maxX, int maxY){
         WritableImage[][] bis = new WritableImage[maxX][maxY];

@@ -5,11 +5,10 @@ package model.mouvement.Deplaceurs;
 
 import model.Events.EventEmitter;
 import model.Events.Events.EndGameEvent;
+import model.Events.Events.GhostEatenEvent;
 import model.Events.Events.PacmanDeathEvent;
 import model.Events.Events.ScoreObjectEatenEvent;
-import model.entites.Gomme;
-import model.entites.Mangeable;
-import model.entites.Pacman;
+import model.entites.*;
 import model.enums.Orients;
 import model.mouvement.Positions.PositionGraphique;
 import model.mouvement.Positions.PositionLogique;
@@ -27,14 +26,20 @@ public class DeplaceurPacMan extends Deplaceur {
     protected Case deplacement(){
         PositionLogique Posl = geree.getPositionLogique();      //quelle case dans le double tableau du terrain
         PositionGraphique Posg = geree.getPositionGraphique();  //offset graphique de -4 à 4 par rapport à la case
+        Case source = EJ.getCaseOrNull(Posl);
+        if(source == null || source.isObstacle() || source.isGhostHouseDoor())
+            super.resetPositionForManaged();
         Orients DirectionVoulue =  Posl.getOrient();            //l'orientation de l'entité
         if(Posg.getx() > 4 || Posg.getx() < -4 || Posg.gety() > 4 || Posg.gety() < -4){
             Case Destination = EJ.getCardinals(Posl).get(DirectionVoulue.ordinal()); //on teste que à droite pour le moment...
             if(Destination == null || Destination.isObstacle()) {
-                return null;
+                PositionLogique dPos = EJ.getPoslPacmanDebug();
+                if(dPos == null)    //ce cas est un interaction particulière où le pacman n'existe plus sur le terrain (dpos est sa position trouvée en parcourant le terrain)
+                    super.resetPositionForManaged();    //on va donc reset le pacman pour se décoincer (observé quand on a la gomme de puissance et qu'on mange un fantome
+                return null;                            //dans un coin
             }else {
                 PositionLogique pol = geree.getPositionLogique();
-                Destination.ReceiveEntity(EJ.getStage()[pol.getCaseRow()][pol.getCaseColumn()].passEntity(geree));
+                Destination.ReceiveEntity(source.passEntity(geree));
                 geree.setLogicColumn(Destination.getPositionLog().getCaseColumn());
                 geree.setLogicRow(Destination.getPositionLog().getCaseRow());
             }
@@ -98,7 +103,10 @@ public class DeplaceurPacMan extends Deplaceur {
             locale.getStaticEntite().setVisible(false);
             super.em.setLocalEvent(new ScoreObjectEatenEvent((Mangeable) locale.getStaticEntite()));
             super.em.sendEvent();
-            if(locale.getStaticEntite() instanceof Gomme) {
+
+            if(locale.getStaticEntite() instanceof SuperGomme){
+                ((Pacman)geree).becomeSuper();
+            }else if(locale.getStaticEntite() instanceof Gomme) {
                 EJ.decrementPellets();
                 if(EJ.getPelletsRemaining() <= 0) {
                     super.em.setLocalEvent(new EndGameEvent());
@@ -109,8 +117,15 @@ public class DeplaceurPacMan extends Deplaceur {
             locale.getStaticEntite().setVisible(false);
         }
         if(locale.hasGhosts()){
-            super.em.setLocalEvent(new PacmanDeathEvent());
-            super.em.sendEvent();
+            if(((Pacman)geree).isSuper()){
+                for(Fantome f : locale.getGhosts()) {
+                    super.em.setLocalEvent(new GhostEatenEvent(f));
+                    super.em.sendEvent();
+                }
+            }else {
+                super.em.setLocalEvent(new PacmanDeathEvent());
+                super.em.sendEvent();
+            }
         }
     }
 }

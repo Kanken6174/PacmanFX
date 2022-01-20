@@ -4,6 +4,9 @@
 package model.mouvement.Deplaceurs;
 
 import model.Events.EventEmitter;
+import model.Events.Events.Event;
+import model.Events.Events.GhostEatenEvent;
+import model.Events.Events.PacmanDeathEvent;
 import model.entites.Entite;
 import model.enums.Orients;
 import model.mouvement.Positions.PositionGraphique;
@@ -116,7 +119,13 @@ public class DeplaceurFantome extends Deplaceur{
 
     @Override
     protected void resolveEntityStates(Case locale) {
+    }
 
+    @Override
+    public void HandleEvent(Event e){
+        if(e instanceof PacmanDeathEvent || (e instanceof GhostEatenEvent && geree == ((GhostEatenEvent) e).getGhost())){
+            resetPositionForManaged();
+        }
     }
 
     /**Implémentation de la méthode requise par l'interface Abonne, appellé depuis une boucle de jeu*/

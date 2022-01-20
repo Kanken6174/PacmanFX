@@ -11,6 +11,7 @@ import javafx.beans.property.StringProperty;
 import model.Events.EventListener;
 import model.Events.Events.EndGameEvent;
 import model.Events.Events.Event;
+import model.Events.Events.GhostEatenEvent;
 import model.Events.Events.ScoreObjectEatenEvent;
 
 /**
@@ -52,6 +53,9 @@ public class CompteurScore implements EventListener {
         }
         if(e instanceof EndGameEvent){
             //sauvegarder le score
+        }
+        if(e instanceof GhostEatenEvent){
+            Platform.runLater(incrementer(200));
         }
     }
 

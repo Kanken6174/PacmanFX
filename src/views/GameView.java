@@ -5,10 +5,7 @@
 package views;
 
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.binding.IntegerBinding;
-import javafx.beans.binding.StringBinding;
+import javafx.beans.binding.*;
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -88,7 +85,7 @@ public class GameView implements EventListener {
     /**
      * Une mode de dessin de la carte et des entités STRICTEMENT pour le débogage, qui est assez sale et peu efficace car
      * il va parcourir la totalité du terrain à chaque tick... mais il fonctionne
-     * @implNote vraiment juste pour débugger
+     * vraiment juste pour débugger
      */
     public void DrawCollisionMapDebug(){
         gamePane.getChildren().removeIf(n -> (n instanceof Rectangle) || (n instanceof Circle));
@@ -159,6 +156,7 @@ public class GameView implements EventListener {
      * @param gb
      */
     public void DrawEntities(GestionnaireBoucles gb) {
+        gb.scheduleLoop(()->{Platform.runLater(()->{stage.requestFocus();});},50);
         bindPacman(ej.getPacman());
         AnimateurPacMan a = new AnimateurPacMan(pacman);
         gb.scheduleLoop(a, 8);
@@ -220,6 +218,8 @@ public class GameView implements EventListener {
         pacman.rotateProperty().bind(pac.pacAngleProperty());
         IntegerBinding xpos = pac.getPositionLogique().CaseColProperty().multiply(scaleFactor).add(58).add(2);
         IntegerBinding ypos = pac.getPositionLogique().CaseRowProperty().multiply(scaleFactor).add(68).add(2);
+        ObjectBinding<Color> paintProperty = Bindings.when(pac.SuperPacmanProperty()).then(Color.RED).otherwise(Color.YELLOW);
+        pacman.fillProperty().bind(paintProperty);
         pacman.centerXProperty().bind(xpos);
         pacman.centerYProperty().bind(ypos);
     }

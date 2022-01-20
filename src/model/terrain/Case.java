@@ -152,6 +152,15 @@ public class Case {
         return indexs;
     }
 
+    public ArrayList<Fantome> getGhosts(){
+        ArrayList<Fantome> ghosts = new ArrayList<Fantome>();
+        for(Entite e : Entites)
+            if(e instanceof Fantome)
+                ghosts.add((Fantome) e);
+
+        return ghosts;
+    }
+
     public int getPacmanIndex() {
         if (containsPacMan) {
             int i = 0;
