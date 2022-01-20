@@ -4,8 +4,10 @@
 package model.mouvement.Deplaceurs;
 
 import model.Events.EventEmitter;
+import model.Events.Events.EndGameEvent;
 import model.Events.Events.PacmanDeathEvent;
 import model.Events.Events.ScoreObjectEatenEvent;
+import model.entites.Gomme;
 import model.entites.Mangeable;
 import model.entites.Pacman;
 import model.enums.Orients;
@@ -91,8 +93,16 @@ public class DeplaceurPacMan extends Deplaceur {
     protected void resolveEntityStates(Case locale) {
         if(locale.hasStaticEntities()){
             super.em.setLocalEvent(new ScoreObjectEatenEvent((Mangeable) locale.getStaticEntite()));
-            locale.setEntiteStatique(null);
             super.em.sendEvent();
+            if(locale.getStaticEntite() instanceof Gomme) {
+                EJ.decrementPellets();
+                if(EJ.getPelletsRemaining() <= 0) {
+                    super.em.setLocalEvent(new EndGameEvent());
+                    super.em.sendEvent();
+                    return;
+                }
+            }
+            locale.setEntiteStatique(null);
         }
         if(locale.hasGhosts()){
             super.em.setLocalEvent(new PacmanDeathEvent());

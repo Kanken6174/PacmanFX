@@ -2,6 +2,7 @@ package model.terrain;
 
 import model.entites.Entite;
 import model.entites.Fantome;
+import model.entites.Gomme;
 import model.entites.Pacman;
 import model.mouvement.Positions.PositionLogique;
 import model.terrain.loaders.CollisionLoader;
@@ -13,6 +14,9 @@ import java.util.ArrayList;
 public class EspaceDeJeu {
     private int maxX = 15;  //lignes
     private int maxY = 28;  //colonnes
+
+    private int PelletsRemaining = 999;
+
     private String levelName = "";
     private Case[][] tiles = new Case[maxX][maxY];
 
@@ -21,6 +25,7 @@ public class EspaceDeJeu {
         tiles = new Case[maxX][maxY];
         tiles = CollisionLoader.loadCollisions(StageName, maxX, maxY);
         tiles = entityLoader.loadEntities(StageName, tiles,maxX, maxY);
+        countPellets();
     }
 
     public void LoadStage(String StageName, int columns, int rows){
@@ -30,6 +35,27 @@ public class EspaceDeJeu {
         tiles = new Case[maxX][maxY];
         tiles = CollisionLoader.loadCollisions(StageName, maxX, maxY);
         tiles = entityLoader.loadEntities(StageName, tiles,maxX, maxY);
+        countPellets();
+    }
+
+    public int getPelletsRemaining(){
+        return PelletsRemaining;
+    }
+
+    public void countPellets(){
+        int pellets = 0;
+        for(int x = 0; x < maxX; x++) {
+            for (int y = 0; y < maxY; y++) {
+                Case traitee =  getCaseOrNull(x,y);
+                if(traitee != null && traitee.hasStaticEntities() && traitee.getStaticEntite() instanceof Gomme)
+                    pellets++;
+            }
+        }
+        PelletsRemaining = pellets;
+    }
+
+    public void decrementPellets(){
+        PelletsRemaining--;
     }
 
     public int getMaxX(){
