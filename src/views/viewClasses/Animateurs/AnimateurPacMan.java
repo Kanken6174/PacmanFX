@@ -15,12 +15,18 @@ public class AnimateurPacMan extends Animateur{
     private Arc pacman;
     private boolean closingAnimation = false;
 
+    /**
+     * Le constructeur de l'animateur pacman remplace la spriteAnimable de l'animateur standard par un simple pixel
+     * @param pacman le pacman des vues à animer (arc)
+     */
     public AnimateurPacMan(Arc pacman){
         super(new SpriteAnimable(new WritableImage(1,1),0,0));
         this.pacman = pacman;
     }
 
     @Override
+    /**Anime le pacman en ouvrant ou fermant son arc de cercle tout en corrigeant sa rotation pour donner l'illusion
+     * que les 2 côtés bougent*/
     protected void Animate(){
         double rotation = pacman.getRotate();
         if(pacman.getLength() >= 345){

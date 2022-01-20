@@ -124,7 +124,7 @@ public class GameView implements EventListener {
 
     public void DrawPlayspace(WritableImage img){
         terrain.setImage(img);
-        terrain.setRotate(90);
+        terrain.setRotate(90); /*correction du bug précisé dans la doc de assemblePlayspace()*/
         terrain.setScaleX(1.7);
         terrain.setScaleY(1.7);
     }

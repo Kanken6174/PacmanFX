@@ -1,3 +1,7 @@
+/**@author Yorick Geoffre
+ * @brief contient les sources du constructeur d'arrière-plan de terrain
+ */
+
 package views.viewClasses.Loaders;
 
 import javafx.scene.image.PixelReader;
@@ -11,8 +15,18 @@ import views.viewClasses.Sprites.Sprite;
 
 import java.nio.ByteBuffer;
 
+/**
+ * Cette classe va effectuer toutes les opérations requises pour dynamiquement dessiner un terrain d'arrière-plan pour le jeu
+ */
 public class TerrainBackgroundSpriteMaker {
 
+    /**
+     * La méthode principale pour dessiner le terrain
+     * @param cases le terrain, sous forme d'un double tableau de cases
+     * @param maxX  la taille maximum en X du tableau
+     * @param maxY  la taille maximum en Y du tableau
+     * @return Un double tableau de Sprites correspondants chacun à une case (assembler pour obtenir l'arrière-plan)
+     */
     public static Sprite[][] makeCellSprites(Case[][] cases, int maxX, int maxY){
         ImageMaster im = new ImageMaster();
         Sprite[][] sprites = new Sprite[maxX][maxY];
@@ -35,7 +49,7 @@ public class TerrainBackgroundSpriteMaker {
         }
         return sprites;
     }
-
+    /**Va choisir une apparence pour une case en fonction des 9 cases autour de cette case*/
     private static Sprite getSpriteForCell(Case toSkin, Case Top, Case Bottom, Case Left, Case Right, Case TopRight, Case TopLeft, Case BtRight, Case Btleft,ImageMaster im){
         Sprite sp = null;
         if(!toSkin.isObstacle()){
@@ -90,6 +104,14 @@ public class TerrainBackgroundSpriteMaker {
         return sp;
     }
 
+    /**
+     * Utilisé pour assembler le terrain à partir du retour de makeCellSprites()
+     * @param sprites les sprites de chaque case du tableau
+     * @param maxX  la taille maximum en X du tableau
+     * @param maxY  la taille maximum en Y du tableau
+     * @return une seule WritableImage avec toutes les Sprites assemblées
+     * @implNote Un bug existe sur cette méthode - ou celles la précédant, où l'image finale est tournée de 90°. Il n'a pas encore été résolu.
+     */
     public static WritableImage assemblePlayspace(Sprite[][] sprites, int maxX, int maxY){
         WritableImage[][] bis = new WritableImage[maxX][maxY];
         int pixelsX = maxX*8;

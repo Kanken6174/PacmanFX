@@ -1,8 +1,16 @@
+/**@author Yorick Geoffre
+ * @brief contient les sources du dessinateur d'entités
+ */
+
 package views.viewClasses.Dessinateurs;
 
 import javafx.scene.image.ImageView;
 import model.entites.Entite;
 
+/**
+ * @deprecated le dessinateur d'entite était sensé dessiner chaque entité en la plaçant sur la vue, il est rendu redondant
+ * par les bindings dans les vues elle-mêmes
+ */
 public class DessinateurEntite implements Runnable {
     ImageView toDraw = null;
     Entite entity = null;

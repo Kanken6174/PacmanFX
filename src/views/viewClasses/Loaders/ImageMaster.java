@@ -1,3 +1,7 @@
+/**@author Yorick Geoffre
+ * @brief contient les sources de l'Image master
+ */
+
 package views.viewClasses.Loaders;
 
 import javafx.scene.image.Image;
@@ -6,23 +10,48 @@ import model.enums.FantomeNom;
 import tools.ImageClipper;
 import tools.ImageConverter;
 
-
-public class ImageMaster {  //Cette classe contient la spritesheet principale et existe dans le manager
+/**
+ * L'imageMaster sert à obtenir des parties d'images depuis une ressource donnée, qui lui a été passée lors de sa création.
+ * Il est dont le "master" de cette ressource
+ */
+public class ImageMaster {
+    /**La spritesheet contenue dans cet ImageMaster*/
     private Image MainRessource;
 
+    /**
+     * @deprecated l'ancien constructeur de l'imageMaster, qui prend la ressource par défaut
+     */
     public ImageMaster(){
        MainRessource = ImageConverter.ImageToWriteableImage(ImageLoader.loadRessources());
     }
 
+    /**
+     * Ce constructeur de l'ImageMaster prend sa ressource en argument
+     * @param MainRessource la ressource à passer à
+     */
     public ImageMaster(Image MainRessource){
         this.MainRessource = MainRessource;
     }
 
+    /**
+     * @deprecated l'ancienne méthode qui permettait d'obtenir une image à un point XY sans préciser la taille
+     * @param x dimension X
+     * @param y dimension Y
+     * @return l'image découpée
+     */
     public Image getImageAt(int x, int y){
         Image img = ImageClipper.clipSprite(ImageLoader.loadRessources(),x,y);
         return img;
     }
 
+    /**
+     * Identique à getImageAt mais avec une hauteur et largeur spécifiée
+     * @param x dimension X
+     * @param y dimension Y
+     * @param width largeur
+     * @param height hauteur
+     * @return l'image découpée
+     */
     public WritableImage getSpritePart(int x, int y, int width, int height){
         WritableImage bi = null;
         try{
@@ -34,6 +63,12 @@ public class ImageMaster {  //Cette classe contient la spritesheet principale et
         return bi;
     }
 
+    /**
+     * Permet de récupérer une tile du terrain souhaitée (taille 8x8)
+     * @param Xtile
+     * @param Ytile
+     * @return
+     */
     public WritableImage getTerrainTiles(int Xtile, int Ytile){
         int x = 228+(8*Xtile);//début des tiles de terrain à 228:0
         int y = 0+(8*Ytile);
@@ -47,6 +82,9 @@ public class ImageMaster {  //Cette classe contient la spritesheet principale et
         return bi;
     }
 
+    /**@deprecated les SpriteAnchors rendent cette méthode obsolète
+     * @return la sprite effrayée des fantômes (bleu)
+     */
     public WritableImage getSpritesheetGhostFreightened(){
         int x = 456+(16*8);
         int y = 64;
@@ -60,6 +98,11 @@ public class ImageMaster {  //Cette classe contient la spritesheet principale et
         return bi;
     }
 
+    /**
+     * @deprecated les SpriteAnchors rendent cette méthode obsolète
+     * @param fn le nom du fantome (enum)
+     * @return la spritesheet pour ce fantôme spécifique
+     */
     public WritableImage getSpritesheetForGhost(FantomeNom fn){
         int x = 456;
         int y = 64;

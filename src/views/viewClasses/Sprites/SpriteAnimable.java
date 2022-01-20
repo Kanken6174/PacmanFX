@@ -1,3 +1,7 @@
+/**@author Yorick Geoffre
+ * @brief contient les sources du Sprite Animable
+ */
+
 package views.viewClasses.Sprites;
 
 import javafx.beans.property.ObjectProperty;
@@ -5,10 +9,14 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.WritableImage;
 import tools.ImageClipper;
 
-
+/**
+ * Le sprite Animable permet d'utiliser une image contenant plusieurs frames (une spriteheet de fantome a 2 frames par direction et 4 directions)
+ * dans les vues.
+ */
 public class SpriteAnimable extends Sprite {
+    /**La spritesheet contenant les frames et cycles de l'animation*/
     private WritableImage Spritesheet = null;
-
+    /**L'image simple utilisée pour bind avec les vues, elle ne correspond qu'à une frame du spritesheet à la fois.*/
     private ObjectProperty<WritableImage> CurrentFrame = new SimpleObjectProperty<>();
         public WritableImage getCurrentFrame() {return CurrentFrame.get();}
         public void setCurrentFrame(WritableImage value){this.CurrentFrame.set(value);}
