@@ -1,21 +1,37 @@
+/**@Author Yorick Geoffre
+ * @brief contient les sources de la Case*/
+
 package model.terrain;
 
 import model.entites.Entite;
 import model.entites.Fantome;
 import model.entites.Pacman;
 import model.mouvement.Positions.PositionLogique;
-import views.viewClasses.Sprites.Sprite;
 
 import java.util.ArrayList;
 
+/**
+ * Une case est un objet utilisé par l'EspaceDeJeu pour sotcker des informations relatives au terrain et
+ * aux entité présentes.
+ * <br/>
+ * Une case peut avoir une seule entité statique à la fois (une gomme, un fruit... ect) et plusieurs entités
+ * "dynamiques" (fantomes, pacman).
+ * <br/>
+ * La case contient aussi une SpriteAnchor pour que les vues sachent comment la représenter, ainsi qu'une position logique
+ * pour faciliter les transferts d'entités (c'est la position de la case dans le double tableau du terrain - EspaceDeJeu)
+ */
 public class Case {
+    /**Si la case est un obstacle ou non*/
     private boolean estObstacle = true;
+    /**Si la case est une porte à fantômes ou non*/
     private boolean isGhostHouseDoor = false;
+    /**Si la case contient actuellement le pacman ou non*/
     private boolean containsPacMan = false;
-    private Sprite sp;
+    /**La position de la case dans le double tabelau du terrain*/
     private final PositionLogique pl;
-
+    /**La liste des entités actuellement dans cette case*/
     private ArrayList<Entite> Entites = new ArrayList<>();
+    /**L'entité statique actuellement contenue dans cette case*/
     private Entite EntiteStatique = null;
 
     public Case(int X, int Y) {
@@ -37,6 +53,10 @@ public class Case {
 
     public boolean isGhostHouseDoor(){return isGhostHouseDoor;}
 
+    /**
+     * Cette méthode permet à une case de recevoir une entité (habituellement passée depuis une autre case)
+     * @param e l'entité à recevoir
+     */
     public void ReceiveEntity(Entite e){
         if(Entites.contains(e) || e == null)
             return;
@@ -45,11 +65,20 @@ public class Case {
             containsPacMan = true;
     }
 
+    /**
+     * Cette méthode permet à une case de recevoir une entite statique
+     * @param e l'entité à recevoir
+     */
     public void ReceiveStaticEntity(Entite e){
         if(EntiteStatique == null)
             EntiteStatique = e;
     }
 
+    /**
+     * @deprecated utiliser passEntity(Entite e) à la place
+     * @param index l'idex de l'entité à passer
+     * @return l'entité passée
+     */
     public Entite passEntity(int index){    //"passe" l'entité à cet index à une autre case par exemple
         Entite e = Entites.get(index);
         Entites.remove(e);
@@ -58,6 +87,12 @@ public class Case {
         return e;
     }
 
+    /**
+     * Permet à une case de "passer" une entité spécifique à une autre case en prenant sa référence, l'enlevant de sa liste,
+     * et en la retournant.
+     * @param e l'entité à passer
+     * @return l'entité à passer
+     */
     public Entite passEntity(Entite e){
         if(Entites.contains(e)){
             Entites.remove(e);
@@ -67,7 +102,11 @@ public class Case {
             return null;
         }
     }
-
+    /**
+     * Permet de récupérer une entité depuis son index
+     * @param i l'index de l'entite
+     * @return l'entite
+     */
     public Entite getEntite(int i){
         if(i > Entites.size())
             return null;
@@ -127,14 +166,6 @@ public class Case {
 
     public boolean containsPacMan(){
         return containsPacMan;
-    }
-
-    public void setSprite(Sprite sp){
-        this.sp = sp;
-    }
-
-    public Sprite getSprite(){
-        return this.sp;
     }
 
     public void setEntiteStatique(Entite es){
