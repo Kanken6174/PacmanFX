@@ -11,12 +11,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.stage.Stage;
 import model.fileData.LevelFile;
+import tools.files.ArchivedScore;
 import tools.files.FileUtils;
+import tools.files.ScoreSaver;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MenuView{
     @FXML private Parent root;
@@ -25,7 +30,10 @@ public class MenuView{
 
     @FXML
     private ComboBox<LevelFile> levelsList;
+    @FXML
+    private ListView<String> ScoreList;
 
+    @FXML private Label BoardTitle;
 
     private ListProperty<LevelFile> levels = new SimpleListProperty<LevelFile>();
 
@@ -54,8 +62,9 @@ public class MenuView{
                     }
                 }
         );
-
-
+        levelsList.getSelectionModel().select(0);
+        selectionChanged(new ActionEvent());
+        BoardTitle.textProperty().bind(Bindings.format("Leaderboard du niveau: %s",levelsList.valueProperty().getValue().getFilename()));
     }
 
     @FXML
@@ -86,5 +95,14 @@ public class MenuView{
         GameController gm = new GameController(view, toLoad);
         root.setOnKeyPressed(gm);   //ça devrait nous éviter d'avoir à demander le focus à chaque fois
         root.requestFocus();
+    }
+
+    public void selectionChanged(ActionEvent actionEvent) {
+        ScoreList.getItems().clear();
+        ArrayList<ArchivedScore> scores = ScoreSaver.GetScoresForMap(levelsList.getValue().getFilename());
+        for(ArchivedScore score : scores) {
+            String toAdd = new String(score.getPlayerName()+" | "+score.getScore()+" points");
+            ScoreList.getItems().add(toAdd);
+        }
     }
 }

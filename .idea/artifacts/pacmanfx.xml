@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="pacmanfx">
+    <output-path>$PROJECT_DIR$/out/artifacts/pacmanfx</output-path>
+    <root id="root">
+      <element id="archive" name="pacmanfx.jar">
+        <element id="module-output" name="pacmanfx" />
+      </element>
+    </root>
+  </artifact>
+</component>

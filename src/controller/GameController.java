@@ -58,7 +58,7 @@ public class GameController implements EventHandler<KeyEvent> {
      * @param lf le descripteur du fichier de niveau à charger
      */
     public GameController(GameView view, LevelFile lf){
-        cs = new CompteurScore("lorem");
+        cs = new CompteurScore("lorem", lf.getFilename());
         gv = view;
         EJ = new EspaceDeJeu();
         EJ.LoadStage(lf.getFilename(), lf.getColumnAmount(), lf.getRowAmount());
