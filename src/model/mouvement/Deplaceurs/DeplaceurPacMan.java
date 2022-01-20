@@ -4,10 +4,10 @@
 package model.mouvement.Deplaceurs;
 
 import model.Events.EventEmitter;
-import model.Events.Events.EndGameEvent;
+import model.Events.Events.PacmanDeathEvent;
 import model.Events.Events.ScoreObjectEatenEvent;
+import model.entites.Mangeable;
 import model.entites.Pacman;
-import model.entites.Type;
 import model.enums.Orients;
 import model.mouvement.Positions.PositionGraphique;
 import model.mouvement.Positions.PositionLogique;
@@ -33,8 +33,8 @@ public class DeplaceurPacMan extends Deplaceur {
             }else {
                 PositionLogique pol = geree.getPositionLogique();
                 Destination.ReceiveEntity(EJ.getStage()[pol.getCaseRow()][pol.getCaseColumn()].passEntity(geree));
-                geree.setLogicY(Destination.getPositionLog().getCaseColumn());
-                geree.setLogicX(Destination.getPositionLog().getCaseRow());
+                geree.setLogicColumn(Destination.getPositionLog().getCaseColumn());
+                geree.setLogicRow(Destination.getPositionLog().getCaseRow());
             }
             switch (DirectionVoulue){
                 case DROITE:
@@ -90,12 +90,12 @@ public class DeplaceurPacMan extends Deplaceur {
     @Override
     protected void resolveEntityStates(Case locale) {
         if(locale.hasStaticEntities()){
-            super.em.setLocalEvent(new ScoreObjectEatenEvent((Type)locale.getStaticEntite()));
+            super.em.setLocalEvent(new ScoreObjectEatenEvent((Mangeable) locale.getStaticEntite()));
             locale.setEntiteStatique(null);
             super.em.sendEvent();
         }
         if(locale.hasGhosts()){
-            super.em.setLocalEvent(new EndGameEvent());
+            super.em.setLocalEvent(new PacmanDeathEvent());
             super.em.sendEvent();
         }
     }

@@ -1,11 +1,12 @@
 package model.entites;
 
-public class Fruits extends Type{
-    public String type;
-    Type t;
-    int points = 1000;
+import model.entites.FruitsPac.Galboss;
 
-    private int getScore(Type t){
+public class Fruits extends Entite implements Mangeable{
+    public String type;
+    Type t = new Galboss();
+
+    public int getScore(){
         return t.getPoints();
     }
 }

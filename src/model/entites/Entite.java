@@ -18,6 +18,9 @@ public abstract class Entite {
     protected PositionGraphique pos = new PositionGraphique(0,0);
     /**La position logique X et Y de la case contenant l'entité sur le terrain*/
     protected PositionLogique posL = new PositionLogique(0,0);
+    /**La position logique X et Y de la case d'origine de l'entité*/
+    protected PositionLogique posHome = new PositionLogique(0,0);
+
     /**Informations nécessaires pour récupérer le sprite de cette entité*/
     protected SpriteAnchor sp;
 
@@ -41,17 +44,20 @@ public abstract class Entite {
         return posL.getOrient();
     }
 
-    public int getLogicX(){
+    public int getLogicRow(){
         return posL.getCaseRow();
     }
 
-    public void setLogicX(int val) { posL.setCaseRow(val); }
+    public void setLogicRow(int val) { posL.setCaseRow(val); }
 
-    public int getLogicY(){
+    public int getLogicColumn(){
         return posL.getCaseColumn();
     }
 
-    public void setLogicY(int val) { posL.setCaseColumn(val); }
+    public void setLogicColumn(int val) { posL.setCaseColumn(val); }
+
+    public void setHome(int row, int col){posHome.setCaseRow(row); posHome.setCaseColumn(col);}
+    public PositionLogique getHome(){return this.posHome;}
 
     public PositionGraphique getPositionGraphique() {return this.pos;}
 

@@ -18,8 +18,8 @@ public class DessinateurEntite implements Runnable {
             return;
         }
 
-        toDraw.setX((entity.getLogicX()*10)+entity.getGfxX());
-        toDraw.setY((entity.getLogicY()*10)+entity.getGfxY());
+        toDraw.setX((entity.getLogicRow()*10)+entity.getGfxX());
+        toDraw.setY((entity.getLogicColumn()*10)+entity.getGfxY());
     }
 
     @Override

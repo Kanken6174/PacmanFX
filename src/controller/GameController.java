@@ -14,6 +14,7 @@ import model.Events.EventEmitter;
 import model.boucles.Abonne;
 import model.boucles.GestionnaireBoucles;
 import model.entites.Fantome;
+import model.entites.Pacman;
 import model.enums.Orients;
 import model.fileData.LevelFile;
 import model.mouvement.Deplaceurs.DeplaceurFantome;
@@ -74,12 +75,14 @@ public class GameController implements EventHandler<KeyEvent> {
         EventEmitter em = new ConcreteEmitter();
         em.addListener(gb);
         em.addListener(cs);
-        DeplaceurPacMan test = new DeplaceurPacMan(EJ,EJ.getPacman(),em);
-        gb.scheduleLoop(test, 10);
+        DeplaceurPacMan dpac = new DeplaceurPacMan(EJ,EJ.getPacman(),em);
+        em.addListener(dpac);
+        gb.scheduleLoop(dpac, 10);
 
         ArrayList<Fantome> fantomes =  EJ.getFantomes();
         for(Fantome f : fantomes){
             DeplaceurFantome df = new DeplaceurFantome(EJ, f, em);
+            em.addListener(df);
             gb.scheduleLoop(df,40);
         }
 
@@ -101,22 +104,25 @@ public class GameController implements EventHandler<KeyEvent> {
      * @param event l'évenement de clavier survenu
      */
     public void handle(KeyEvent event) {
+        Pacman pac = EJ.getPacman();
+        if(pac == null)
+            return;
         switch (event.getCode()){
             case UP:
-                EJ.getPacman().setPacAngle(-90);
-                EJ.getPacman().getPositionLogique().setOrient(Orients.BAS);
+                pac.setPacAngle(-90);
+                pac.getPositionLogique().setOrient(Orients.BAS);
                 break;
             case DOWN:
-                EJ.getPacman().setPacAngle(90);
-                EJ.getPacman().getPositionLogique().setOrient(Orients.HAUT);
+                pac.setPacAngle(90);
+                pac.getPositionLogique().setOrient(Orients.HAUT);
                 break;
             case LEFT:
-                EJ.getPacman().setPacAngle(180);
-                EJ.getPacman().getPositionLogique().setOrient(Orients.GAUCHE);
+                pac.setPacAngle(180);
+                pac.getPositionLogique().setOrient(Orients.GAUCHE);
                 break;
             case RIGHT:
-                EJ.getPacman().setPacAngle(0);
-                EJ.getPacman().getPositionLogique().setOrient(Orients.DROITE);
+                pac.setPacAngle(0);
+                pac.getPositionLogique().setOrient(Orients.DROITE);
                 break;
             default:
                 break;

@@ -1,3 +1,8 @@
+/**@Author Yorick Geoffre
+ * @brief ce fichier contient les sources du chargeur d'entités
+ * */
+
+
 package model.terrain.loaders;
 
 import model.entites.*;
@@ -20,60 +25,68 @@ public class entityLoader {
                     switch (c){
                         case '1':
                             Gomme g = new Gomme();
-                            g.setLogicX(i);
-                            g.setLogicY(j);
+                            g.setLogicRow(i);
+                            g.setLogicColumn(j);
+                            g.setHome(i,j);
                             g.setSpriteAnchor(null);
                             cases[i][j].ReceiveStaticEntity(g);
                             break;
                         case '2':
                             Pacman pacman = new Pacman();
-                            pacman.setLogicX(i);
-                            pacman.setLogicY(j);
+                            pacman.setLogicRow(i);
+                            pacman.setLogicColumn(j);
+                            pacman.setHome(i,j);
                             pacman.setSpriteAnchor(null);
                             cases[i][j].ReceiveEntity(pacman);
                             break;
                         case '3':
                             Fantome blinky = new Fantome(FantomeNom.BLINKY);
-                            blinky.setLogicX(i);
-                            blinky.setLogicY(j);
+                            blinky.setLogicRow(i);
+                            blinky.setLogicColumn(j);
+                            blinky.setHome(i,j);
                             blinky.setSpriteAnchor(new SpriteAnchor(456,16*blinky.getFantomeNom().ordinal(),0,
                                     "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(blinky);
                             break;
                         case '4':
                             Fantome pinky = new Fantome(FantomeNom.INKY);
-                            pinky.setLogicX(i);
-                            pinky.setLogicY(j);
+                            pinky.setLogicRow(i);
+                            pinky.setLogicColumn(j);
+                            pinky.setHome(i,j);
                             pinky.setSpriteAnchor(new SpriteAnchor(456,16*pinky.getFantomeNom().ordinal(),0,
                                     "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(pinky);
                             break;
                         case '5':
                             Fantome inky = new Fantome(FantomeNom.PINKY);
-                            inky.setLogicX(i);
-                            inky.setLogicY(j);
+                            inky.setLogicRow(i);
+                            inky.setLogicColumn(j);
+                            inky.setHome(i,j);
                             inky.setSpriteAnchor(new SpriteAnchor(456,16*inky.getFantomeNom().ordinal(),0,
                                     "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(inky);
                             break;
                         case '6':
                             Fantome clyde = new Fantome(FantomeNom.CLYDE);
-                            clyde.setLogicX(i);
-                            clyde.setLogicY(j);
+                            clyde.setLogicRow(i);
+                            clyde.setLogicColumn(j);
+                            clyde.setHome(i,j);
                             clyde.setSpriteAnchor(new SpriteAnchor(456,16*clyde.getFantomeNom().ordinal(),0,
                                     "./out/production/pacmanfx/Images/sprites.png",16,16*8,true));
                             cases[i][j].ReceiveEntity(clyde);
                             break;
                         case '7':
                             SuperGomme sg = new SuperGomme();
-                            sg.setLogicX(i);
-                            sg.setLogicY(j);
+                            sg.setLogicRow(i);
+                            sg.setLogicColumn(j);
+                            sg.setHome(i,j);
                             cases[i][j].ReceiveStaticEntity(sg);
                             break;
                         case '8':
                             Fruits f = new Fruits();
-                            f.setLogicX(i);
-                            f.setLogicY(j);
+                            f.setLogicRow(i);
+                            f.setLogicColumn(j);
+                            f.setHome(i,j);
                             cases[i][j].ReceiveStaticEntity(f);
                         default: break;
                     }

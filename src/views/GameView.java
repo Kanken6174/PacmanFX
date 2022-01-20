@@ -60,7 +60,10 @@ public class GameView {
 
     public void DrawCollisionMapDebug(){
         gamePane.getChildren().removeIf(n -> (n instanceof Rectangle) || (n instanceof Circle));
-        PositionLogique pol = ej.getPacman().getPositionLogique();
+        Pacman pac = ej.getPacman();
+        if(pac == null)
+            return;
+        PositionLogique pol = pac.getPositionLogique();
         int scaleFactor = 12;
 
         Case cases[][] = ej.getStage();

@@ -1,5 +1,8 @@
 package model.entites;
 
-public class SuperGomme extends Gomme{
-    public final int points = 100;
+public class SuperGomme extends Gomme implements Mangeable{
+    @Override
+    public int getScore(){
+        return 100;
+    }
 }

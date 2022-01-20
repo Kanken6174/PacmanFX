@@ -5,7 +5,7 @@ import model.entites.Fantome;
 import model.entites.Pacman;
 import model.mouvement.Positions.PositionLogique;
 import model.partie.CompteurVie;
-import model.terrain.loaders.collisionLoader;
+import model.terrain.loaders.CollisionLoader;
 import model.terrain.loaders.entityLoader;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class EspaceDeJeu {
     public void LoadStage(String StageName){
         levelName = StageName;
         tiles = new Case[maxX][maxY];
-        tiles = collisionLoader.loadCollisions(StageName, maxX, maxY);
+        tiles = CollisionLoader.loadCollisions(StageName, maxX, maxY);
         tiles = entityLoader.loadEntities(StageName, tiles,maxX, maxY);
     }
 
@@ -30,7 +30,7 @@ public class EspaceDeJeu {
         maxY = columns;
         levelName = StageName;
         tiles = new Case[maxX][maxY];
-        tiles = collisionLoader.loadCollisions(StageName, maxX, maxY);
+        tiles = CollisionLoader.loadCollisions(StageName, maxX, maxY);
         tiles = entityLoader.loadEntities(StageName, tiles,maxX, maxY);
     }
 
@@ -58,11 +58,7 @@ public class EspaceDeJeu {
         for(int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
                 Case processed = tiles[x][y];
-                if(processed == null){
-                    //System.out.println("null cell at:"+x+" "+y);
-
-                }else if(processed.containsPacMan()){
-                    //System.out.println("pacman at: "+x+" "+y);
+                if(processed != null && processed.containsPacMan()){
                     Pacman pac = (Pacman)processed.getEntite(processed.getPacmanIndex());
                     return pac;
                 }

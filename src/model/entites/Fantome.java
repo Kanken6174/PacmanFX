@@ -15,7 +15,7 @@ import model.mouvement.ChasseType.PinkyChasse;
 import model.mouvement.Positions.PositionLogique;
 import model.mouvement.ScatterComportement;
 
-public class Fantome extends Entite{
+public class Fantome extends Entite implements Mangeable{
     public int spriteX = 441;   //définit la position du sprite sur la palette (X)
     public int spriteY = 49;    //début du sprite des fantomes  (Y)
 
@@ -108,4 +108,9 @@ public class Fantome extends Entite{
     public void chasse() { c.chasse(p.getPositionLogique(), this); }
 
     public void scatter() { s.scatter(scatterHome, this); }
+
+    @Override
+    public int getScore() {
+        return 200;
+    }
 }

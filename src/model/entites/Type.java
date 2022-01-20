@@ -1,3 +1,4 @@
+/**@Author Joseph Minchin*/
 package model.entites;
 
 public abstract class Type extends Entite{
