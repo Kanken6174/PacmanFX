@@ -1,8 +1,15 @@
+/**@author Yorick Geoffre
+ * @brief contient les sources des anciens flippers d'images (par axe)
+ */
+
 package tools;
 
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 
+/**
+ * @deprecated Cet ancien flipper d'image servait à mirror les images sur un axe, il utilisait AWT et a donc été retiré.
+ */
 public class ImageFlipper {
     public static WritableImage flipHorizontal(WritableImage bi){
         /*

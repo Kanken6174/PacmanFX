@@ -11,7 +11,7 @@ import views.viewClasses.Sprites.Sprite;
 
 import java.nio.ByteBuffer;
 
-public class spriteLoader {
+public class TerrainBackgroundSpriteMaker {
 
     public static Sprite[][] makeCellSprites(Case[][] cases, int maxX, int maxY){
         ImageMaster im = new ImageMaster();

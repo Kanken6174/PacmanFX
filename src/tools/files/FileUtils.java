@@ -1,3 +1,8 @@
+/**
+ * @Author Yorick Geoffre
+ * @brief ce fichier contient les sources de l'utilitaire de fichiers pour le menu principal
+ */
+
 package tools.files;
 
 import javafx.beans.property.ListProperty;
@@ -7,7 +12,14 @@ import model.fileData.LevelFile;
 
 import java.io.*;
 
+/**
+ * La classe FileUtils contient les méthodes statiques liées à la découverte de fichiers de niveau
+ */
 public class FileUtils {
+    /**
+     * Va découvrir les fichiers de niveau valides et les renvoyer dans une liste observable
+     * @return une list observable des niveaux valides
+     */
     public static ListProperty<LevelFile> discoverFiles(){
         ListProperty<LevelFile> levelFiles = new SimpleListProperty<>();
         levelFiles.setValue(FXCollections.observableArrayList());
@@ -28,6 +40,11 @@ public class FileUtils {
         return levelFiles;
     }
 
+    /**
+     * Permet de vérifier la présence de fichiers de niveau dans un dossier spécifique
+     * @param directory le dossier à vérifier, il devra contenir un fichier .collisionMap et un fichier .entityMap pour être considéré valide
+     * @return le LevelFile décrivant ce dossier (si invalide null)
+     */
     private static LevelFile getLevelFileFromDirectory(File directory){
         File[] localFiles = directory.listFiles(new FilenameFilter() {
             @Override
@@ -58,6 +75,11 @@ public class FileUtils {
         return lf;
     }
 
+    /**
+     * utilitaire pour conserver uniquement le nom d'un fichier
+     * @param fileName nom+extension
+     * @return nom uniquement
+     */
     private static String trimExtension(String fileName){
         String toReturn = fileName.substring(0, fileName.lastIndexOf('.'));
         return toReturn;

@@ -1,3 +1,7 @@
+/**@author Yorick Geoffre
+ * @brief contient les sources des outils de rotation d'image
+ */
+
 package tools;
 
 import javafx.scene.image.PixelReader;
@@ -5,6 +9,9 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
+/**
+ * Les méthodes de ImageRotate permettent de tourner
+ */
 public class ImageRotate {
     public static WritableImage RotateDegx90(WritableImage bi, double degresPos){
         if(bi.getWidth() != bi.getHeight())

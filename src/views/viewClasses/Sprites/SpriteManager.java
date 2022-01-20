@@ -8,7 +8,7 @@ import model.terrain.Case;
 import model.terrain.EspaceDeJeu;
 import views.viewClasses.Loaders.ImageLoader;
 import views.viewClasses.Loaders.ImageMaster;
-import views.viewClasses.Loaders.spriteLoader;
+import views.viewClasses.Loaders.TerrainBackgroundSpriteMaker;
 import views.viewClasses.ViewEntities.EntiteVue;
 import views.viewClasses.ViewEntities.EntiteVueAnimable;
 
@@ -23,8 +23,8 @@ public class SpriteManager {
     public SpriteManager(EspaceDeJeu ej){
         entiteVues = makeEntiteVuesFromEntites(ej.getAllEntites());
         Case[][] cases = ej.getStage();
-        Sprite[][] sprites = spriteLoader.makeCellSprites(cases,cases.length, cases[0].length);
-        TerrainBackground = spriteLoader.assemblePlayspace(sprites, sprites.length, sprites[0].length);
+        Sprite[][] sprites = TerrainBackgroundSpriteMaker.makeCellSprites(cases,cases.length, cases[0].length);
+        TerrainBackground = TerrainBackgroundSpriteMaker.assemblePlayspace(sprites, sprites.length, sprites[0].length);
     }
 
     private ArrayList<EntiteVue> makeEntiteVuesFromEntites(ArrayList<Entite> allEntites){
