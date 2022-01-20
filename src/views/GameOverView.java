@@ -1,3 +1,7 @@
+/**@author Yorick Geoffre
+ * @brief contient les sources de la vue de fin de jeu
+ */
+
 package views;
 
 import javafx.event.ActionEvent;
@@ -24,10 +28,18 @@ public class GameOverView {
         this.stage = s;
     }
 
+    /**
+     * permet de recevoir le score de la vue précédente
+     * @param score le score précédent
+     */
     public void passScore(String score){
         scoreLabel.textProperty().set(score);
     }
 
+    /**
+     * Va relancer l'application pour revenir au menu
+     * @param actionEvent l'évènement du bouton
+     */
     public void goMenu(ActionEvent actionEvent) {
         Launcher l = new Launcher();
         try {

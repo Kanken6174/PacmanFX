@@ -10,7 +10,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import model.Events.ConcreteEmitter;
-import model.boucles.Abonne;
 import model.boucles.GestionnaireBoucles;
 import model.entites.Fantome;
 import model.entites.Pacman;
@@ -89,16 +88,8 @@ public class GameController implements EventHandler<KeyEvent> {
             em.addListener(df);
             gb.scheduleLoop(df,40);
         }
-
-        gb.scheduleLoop(new Abonne(){@Override
-        public void doAction() {
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    gv.DrawCollisionMapDebug();
-                }
-            });
-        }},10);
+        if(false) //affichage de debug
+            gb.scheduleLoop(() -> {Platform.runLater(() ->{gv.DrawCollisionMapDebug();});},10);
         gb.Start();
     }
 

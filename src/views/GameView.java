@@ -1,10 +1,11 @@
+/**@author Yorick Geoffre
+ * @brief contient les sources du code-behind de la vue de fin de jeu
+ */
+
 package views;
 
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.binding.StringBinding;
+import javafx.beans.binding.*;
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +25,7 @@ import model.Events.EventListener;
 import model.Events.Events.EndGameEvent;
 import model.Events.Events.Event;
 import model.boucles.GestionnaireBoucles;
-import model.entites.Fantome;
-import model.entites.Pacman;
+import model.entites.*;
 import model.enums.FantomeNom;
 import model.mouvement.Positions.PositionLogique;
 import model.partie.CompteurScore;
@@ -41,6 +41,9 @@ import views.viewClasses.ViewEntities.EntiteVueAnimable;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * La vue principale du jeu, quand un niveau est chargé
+ */
 public class GameView implements EventListener {
     @FXML
     private Stage stage;
@@ -58,7 +61,7 @@ public class GameView implements EventListener {
     @FXML private Label scoreCounter;
 
     @FXML private ImageView[] fantomes = {blinky,pinky,inky,clyde};
-
+    private final int scaleFactor = 12;
     private SpriteManager sm = null;
     private EspaceDeJeu ej = null;
     @FXML
@@ -69,19 +72,27 @@ public class GameView implements EventListener {
         stage = s;
     }
 
+    /**
+     * Va instancier le spriteManager et charger toutes les ressources graphiques
+     * @param ej l'espace de jeu actuel
+     */
     public void loadRessources(EspaceDeJeu ej){
         sm = new SpriteManager(ej); //charge aussi toutes les données de tous les sprites
         this.ej = ej;
         DrawPlayspace(sm.getTerrainBackground());
     }
 
+    /**
+     * Une mode de dessin de la carte et des entités STRICTEMENT pour le débogage, qui est assez sale et peu efficace car
+     * il va parcourir la totalité du terrain à chaque tick... mais il fonctionne
+     * @implNote vraiment juste pour débugger
+     */
     public void DrawCollisionMapDebug(){
         gamePane.getChildren().removeIf(n -> (n instanceof Rectangle) || (n instanceof Circle));
         Pacman pac = ej.getPacman();
         if(pac == null)
             return;
         PositionLogique pol = pac.getPositionLogique();
-        int scaleFactor = 12;
 
         Case cases[][] = ej.getStage();
         for(int x = 0; x < cases[0].length; x++)
@@ -95,7 +106,7 @@ public class GameView implements EventListener {
                 newRect.setWidth(8*scaleFactor);
                 newRect.setSmooth(false);
                 if(case1 != null && case1.isObstacle())
-                    newRect.setFill(Color.RED);
+                    newRect.setFill(Color.FIREBRICK);
                 else
                     newRect.setFill(Color.BLACK);
                 if(case1 != null && case1.hasEntities() && !case1.containsPacMan())
@@ -108,6 +119,8 @@ public class GameView implements EventListener {
                     Circle gum = new Circle();
                     gum.setRadius(4);
                     gum.setFill(Color.YELLOW);
+                    if(case1.getStaticEntite() instanceof Fruits)
+                        gum.setFill(Color.RED);
                     gum.setCenterX((x*scaleFactor)+100+4);
                     gum.setCenterY((y*scaleFactor)+100+4);
                     gamePane.getChildren().add(gum);
@@ -122,27 +135,60 @@ public class GameView implements EventListener {
         gamePane.getChildren().add(circ);
     }
 
+    /**
+     * Va dessiner l'arrière-plan du terrain
+     * @param img l'image à dessiner
+     */
     public void DrawPlayspace(WritableImage img){
+        terrain = new ImageView();
+        myBP.getChildren().add(terrain);
         terrain.setImage(img);
         terrain.setRotate(90); /*correction du bug précisé dans la doc de assemblePlayspace()*/
-        terrain.setScaleX(1.7);
-        terrain.setScaleY(1.7);
+        terrain.setX(300);
+        terrain.setY(150);
+        terrain.setScaleX(1.5);
+        terrain.setScaleY(1.5);
+        terrain.toBack();
     }
 
-    public void DrawEntities(GestionnaireBoucles gb){
+    /**
+     * Va dessiner les différentes entités sur e terrain, en les bindant
+     * @param gb
+     */
+    public void DrawEntities(GestionnaireBoucles gb) {
         bindPacman(ej.getPacman());
         AnimateurPacMan a = new AnimateurPacMan(pacman);
-        gb.scheduleLoop(a,8);
+        gb.scheduleLoop(a, 8);
         ArrayList<EntiteVue> ev = sm.getEntiteVues();
-        for(EntiteVue e : ev){
-            if(e.getSource() instanceof Pacman) {
+        for (EntiteVue e : ev) {
+            if (e.getSource() instanceof Pacman) {
                 bindPacman((Pacman) e.getSource());
-            }else if(e.getSource() instanceof Fantome){
-                Animateur af = new Animateur(((EntiteVueAnimable)e).getSpriteAnimable());
+            } else if (e.getSource() instanceof Fantome) {
+                Animateur af = new Animateur(((EntiteVueAnimable) e).getSpriteAnimable());
                 bindFantome((EntiteVueAnimable) e, gb);
-                gb.scheduleLoop(af,200);
+                gb.scheduleLoop(af, 200);
             }
         }
+        Case cases[][] = ej.getStage();
+        for (int x = 0; x < cases[0].length; x++)
+            for (int y = 0; y < cases.length; y++) {
+                Case[] CaseRow = cases[y];
+                Case case1 = CaseRow[x];
+                if(case1.hasStaticEntities() && case1.getStaticEntite() instanceof Mangeable){
+                    Entite e = case1.getStaticEntite();
+                    Circle c = new Circle();
+                    c.setFill(Color.YELLOW);
+                    IntegerBinding xpos = e.getPositionLogique().CaseColProperty().multiply(scaleFactor).add(61);
+                    IntegerBinding ypos = e.getPositionLogique().CaseRowProperty().multiply(scaleFactor).add(71);
+                    c.centerXProperty().bind(xpos);
+                    c.centerYProperty().bind(ypos);
+                    c.setRadius(4);
+                    if(e instanceof Fruits)
+                        c.setFill(Color.RED);
+
+                    gamePane.getChildren().add(c);
+                }
+            }
     }
 
     public void bindCompteurs(CompteurScore cs, CompteurVie cv){
@@ -164,10 +210,10 @@ public class GameView implements EventListener {
         pacman.setLayoutX(terrain.getLayoutX());
         pacman.setLayoutY(terrain.getLayoutY());
         pacman.rotateProperty().bind(pac.pacAngleProperty());
-        DoubleBinding pacxbind = (DoubleBinding) pac.getPositionLogique().CaseColProperty()/*.add(pac.getPositionGraphique().yProperty())*/.multiply(40d);
-        DoubleBinding pacybind = (DoubleBinding) pac.getPositionLogique().CaseRowProperty()/*.add(pac.getPositionGraphique().xProperty())*/.multiply(40d);
-        pacman.centerXProperty().bind(pacxbind);
-        pacman.centerYProperty().bind(pacybind);
+        IntegerBinding xpos = pac.getPositionLogique().CaseColProperty().multiply(scaleFactor).add(58).add(2);
+        IntegerBinding ypos = pac.getPositionLogique().CaseRowProperty().multiply(scaleFactor).add(68).add(2);
+        pacman.centerXProperty().bind(xpos);
+        pacman.centerYProperty().bind(ypos);
     }
 
     public void bindFantome(EntiteVueAnimable s, GestionnaireBoucles gb){
@@ -178,8 +224,11 @@ public class GameView implements EventListener {
         target.setLayoutY(terrain.getLayoutY());
         target.imageProperty().bind(pr);
 
-        DoubleBinding xbind = (DoubleBinding) f.getPositionLogique().CaseRowProperty()/*.add(f.getPositionGraphique().xProperty())*/.multiply(terrain.getScaleX()*8);
-        DoubleBinding ybind = (DoubleBinding) f.getPositionLogique().CaseColProperty()/*.add(f.getPositionGraphique().yProperty())*/.multiply(terrain.getScaleY()*8);
+        IntegerBinding xpos = f.getPositionLogique().CaseColProperty().multiply(scaleFactor).add(58).subtract(2);
+        IntegerBinding ypos = f.getPositionLogique().CaseRowProperty().multiply(scaleFactor).add(68).subtract(6);
+
+        target.xProperty().bind(xpos);
+        target.yProperty().bind(ypos);
     }
 
     private ImageView getFantomeFromNom(FantomeNom fn){

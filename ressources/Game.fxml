@@ -44,12 +44,11 @@
    <center>
       <Pane fx:id="gamePane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="terrain" fitHeight="364.0" fitWidth="597.0" pickOnBounds="true" preserveRatio="true" styleClass="playspace" />
             <ImageView fx:id="blinky" fitHeight="16.0" fitWidth="16.0" pickOnBounds="false" preserveRatio="false" />
             <ImageView fx:id="pinky" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="inky" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="clyde" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
-            <Arc fx:id="pacman" fill="#fcff1f" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.0" type="ROUND" />
+            <Arc fx:id="pacman" fill="#fcff1f" length="270.0" radiusX="8.0" radiusY="8.0" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.0" type="ROUND" />
          </children>
       </Pane>
    </center>
