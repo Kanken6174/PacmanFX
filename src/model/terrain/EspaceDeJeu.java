@@ -71,7 +71,7 @@ public class EspaceDeJeu {
                     pellets++;
             }
         }
-        PelletsRemaining = pellets;
+        PelletsRemaining = pellets-2;   //bug au niveau du nmb de pellets qui se finit jamais en dessous de -2
     }
 
     public void decrementPellets(){

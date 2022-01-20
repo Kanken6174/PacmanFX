@@ -34,8 +34,10 @@ public class DeplaceurPacMan extends Deplaceur {
             Case Destination = EJ.getCardinals(Posl).get(DirectionVoulue.ordinal()); //on teste que à droite pour le moment...
             if(Destination == null || Destination.isObstacle()) {
                 PositionLogique dPos = EJ.getPoslPacmanDebug();
-                if(dPos == null)    //ce cas est un interaction particulière où le pacman n'existe plus sur le terrain (dpos est sa position trouvée en parcourant le terrain)
+                if(dPos == null) {    //ce cas est un interaction particulière où le pacman n'existe plus sur le terrain (dpos est sa position trouvée en parcourant le terrain)
+                    resolveEntityStates(source);
                     super.resetPositionForManaged();    //on va donc reset le pacman pour se décoincer (observé quand on a la gomme de puissance et qu'on mange un fantome
+                }
                 return null;                            //dans un coin
             }else {
                 PositionLogique pol = geree.getPositionLogique();

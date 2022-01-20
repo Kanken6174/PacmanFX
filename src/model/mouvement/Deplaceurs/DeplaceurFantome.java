@@ -119,6 +119,15 @@ public class DeplaceurFantome extends Deplaceur{
 
     @Override
     protected void resolveEntityStates(Case locale) {
+        /*if(locale.containsPacMan()){
+            if(EJ.getPacman().isSuper()){
+                    super.em.setLocalEvent(new GhostEatenEvent((Fantome) geree));
+                    super.em.sendEvent();
+            }else {
+                super.em.setLocalEvent(new PacmanDeathEvent());
+                super.em.sendEvent();
+            }
+        }*/
     }
 
     @Override
