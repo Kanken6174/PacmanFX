@@ -1,9 +1,16 @@
+/**@author Yorick Geoffre
+ * @brief contient les sources de l'animateur de pacman
+ */
 package views.viewClasses.Animateurs;
 
 import javafx.scene.image.WritableImage;
 import javafx.scene.shape.Arc;
 import views.viewClasses.Sprites.SpriteAnimable;
 
+/**
+ * Cette classe spécifie un comportement d'animation pour le pacman, qui est un Arc et donc
+ * ne dispose pas de SpriteAnimable (animation directe de l'arc)
+ */
 public class AnimateurPacMan extends Animateur{
     private Arc pacman;
     private boolean closingAnimation = false;

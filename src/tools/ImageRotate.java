@@ -10,9 +10,16 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
 /**
- * Les méthodes de ImageRotate permettent de tourner
+ * Les méthodes de ImageRotate permettent de tourner une image par un multiple de 90°, et ce seulement à partir d'une
+ * Writable Image.
  */
 public class ImageRotate {
+    /**
+     * On tourne une image d'un multiple de 90°
+     * @param bi l'image à tourner
+     * @param degresPos l'orientation souhaitée (0,90,180,270...)
+     * @return l'image tournée
+     */
     public static WritableImage RotateDegx90(WritableImage bi, double degresPos){
         if(bi.getWidth() != bi.getHeight())
             throw new IndexOutOfBoundsException("Image must be a square");
@@ -49,6 +56,12 @@ public class ImageRotate {
         */
     }
 
+    /**
+     * Permet de tourner une matrice de couleurs (carrée) JFX de 90° une fois
+     * @param side la taile d'un côté de la matrice carrée
+     * @param colors la matrice carrée à tourner
+     * @return la matrice tournée de 90°
+     */
     private static Color[][] RotateColorArray90(int side,Color colors[][]){
         for (int x = 0; x < side / 2; x++) {
             for (int y = x; y < side-x-1; y++) {
