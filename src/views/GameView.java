@@ -1,6 +1,7 @@
 package views;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
@@ -21,6 +22,7 @@ import model.entites.Pacman;
 import model.enums.FantomeNom;
 import model.mouvement.Positions.PositionLogique;
 import model.partie.CompteurScore;
+import model.partie.CompteurVie;
 import model.terrain.Case;
 import model.terrain.EspaceDeJeu;
 import views.viewClasses.Animateurs.Animateur;
@@ -37,6 +39,9 @@ public class GameView {
     @FXML private BorderPane myBP;
     @FXML private Pane gamePane;
     @FXML private Arc pacman;
+    @FXML private Arc Life1;
+    @FXML private Arc Life2;
+    @FXML private Arc Life3;
     @FXML private ImageView blinky;
     @FXML private ImageView pinky;
     @FXML private ImageView inky;
@@ -128,7 +133,15 @@ public class GameView {
         }
     }
 
-    public void bindCompteur(CompteurScore cs){
+    public void bindCompteurs(CompteurScore cs, CompteurVie cv){
+        BooleanBinding alive1 = cv.Viesproperty().greaterThanOrEqualTo(1);
+        BooleanBinding alive2 = cv.Viesproperty().greaterThanOrEqualTo(2);
+        BooleanBinding alive3 = cv.Viesproperty().greaterThanOrEqualTo(3);
+
+        Life1.visibleProperty().bind(alive3);
+        Life2.visibleProperty().bind(alive2);
+        Life3.visibleProperty().bind(alive1);
+
         StringBinding sb = cs.Scoreproperty().asString();
         scoreCounter.textProperty().bind(Bindings.format("Score: %s",sb));
     }

@@ -35,9 +35,9 @@
    <bottom>
       <FlowPane stylesheets="@Game.css" BorderPane.alignment="CENTER">
          <children>
-            <Arc fill="DODGERBLUE" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="pacman" type="ROUND" />
-            <Arc fill="DODGERBLUE" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="pacman" type="ROUND" />
-            <Arc fill="DODGERBLUE" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="pacman" type="ROUND" />
+            <Arc fx:id="Life1" fill="DODGERBLUE" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="pacman" type="ROUND" />
+            <Arc fx:id="Life2" fill="DODGERBLUE" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="pacman" type="ROUND" />
+            <Arc fx:id="Life3" fill="DODGERBLUE" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="pacman" type="ROUND" />
          </children>
       </FlowPane>
    </bottom>

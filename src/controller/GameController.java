@@ -10,7 +10,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import model.Events.ConcreteEmitter;
-import model.Events.EventEmitter;
 import model.boucles.Abonne;
 import model.boucles.GestionnaireBoucles;
 import model.entites.Fantome;
@@ -20,6 +19,7 @@ import model.fileData.LevelFile;
 import model.mouvement.Deplaceurs.DeplaceurFantome;
 import model.mouvement.Deplaceurs.DeplaceurPacMan;
 import model.partie.CompteurScore;
+import model.partie.CompteurVie;
 import model.terrain.EspaceDeJeu;
 import views.GameView;
 
@@ -36,6 +36,7 @@ public class GameController implements EventHandler<KeyEvent> {
     private EspaceDeJeu EJ;
 
     private CompteurScore cs;
+    private CompteurVie cv;
 
     private GestionnaireBoucles gb = new GestionnaireBoucles();
 
@@ -64,7 +65,6 @@ public class GameController implements EventHandler<KeyEvent> {
         EJ.LoadStage(lf.getFilename(), lf.getColumnAmount(), lf.getRowAmount());
         gv.loadRessources(EJ);
         gv.DrawEntities(gb);
-        gv.bindCompteur(cs);
         SetupLoops();
     }
 
@@ -72,9 +72,12 @@ public class GameController implements EventHandler<KeyEvent> {
      * Met en place les différentes boucles de jeu en instanciant le GestionnaireBoucles local
      */
     private void SetupLoops(){
-        EventEmitter em = new ConcreteEmitter();
+        ConcreteEmitter em = new ConcreteEmitter();
+        cv = new CompteurVie(em);
+        gv.bindCompteurs(cs,cv);
         em.addListener(gb);
         em.addListener(cs);
+        em.addListener(cv);
         DeplaceurPacMan dpac = new DeplaceurPacMan(EJ,EJ.getPacman(),em);
         em.addListener(dpac);
         gb.scheduleLoop(dpac, 10);

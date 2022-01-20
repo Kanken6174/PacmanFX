@@ -4,7 +4,6 @@ import model.entites.Entite;
 import model.entites.Fantome;
 import model.entites.Pacman;
 import model.mouvement.Positions.PositionLogique;
-import model.partie.CompteurVie;
 import model.terrain.loaders.CollisionLoader;
 import model.terrain.loaders.entityLoader;
 
@@ -16,7 +15,6 @@ public class EspaceDeJeu {
     private int maxY = 28;  //colonnes
     private String levelName = "";
     private Case[][] tiles = new Case[maxX][maxY];
-    private CompteurVie cv = new CompteurVie();
 
     public void LoadStage(String StageName){
         levelName = StageName;
@@ -40,10 +38,6 @@ public class EspaceDeJeu {
 
     public int getMaxY(){
         return maxY;
-    }
-
-    public CompteurVie getCv(){
-        return cv;
     }
 
     public void reset(){
