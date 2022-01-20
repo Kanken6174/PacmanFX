@@ -202,8 +202,6 @@ public class GameView implements EventListener {
         BooleanBinding alive2 = cv.Viesproperty().greaterThanOrEqualTo(2);
         BooleanBinding alive3 = cv.Viesproperty().greaterThanOrEqualTo(3);
 
-
-
         Life1.visibleProperty().bind(alive3);
         Life2.visibleProperty().bind(alive2);
         Life3.visibleProperty().bind(alive1);
