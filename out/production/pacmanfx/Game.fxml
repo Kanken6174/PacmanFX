@@ -2,54 +2,54 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Arc?>
 
-<BorderPane fx:id="myBP" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Game">
-   <center>
-      <Arc fx:id="pacman" fill="#fcff1f" length="270.0" radiusX="45.0" radiusY="45.0" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="7.0" type="ROUND" BorderPane.alignment="CENTER" />
-   </center>
-   <right>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-
-         </top>
-         <center>
-            <ImageView fx:id="fantome4" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
-               <image>
-                  <Image smooth="false" url="@Images/blinkyRight.png" />
-               </image>
-            </ImageView>
-         </center>
-         <top>
-            <ImageView fx:id="fantome3" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
-               <image>
-                  <Image smooth="false" url="@Images/blinkyRight.png" />
-               </image>
-            </ImageView>
-         </top>
-         <bottom>
-            <ImageView fx:id="fantome2" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
-               <image>
-                  <Image smooth="false" url="@Images/blinkyRight.png" />
-               </image>
-            </ImageView>
-         </bottom>
-         <left>
-            <ImageView fx:id="fantome1" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER">
-               <image>
-                  <Image smooth="false" url="@Images/blinkyRight.png" />
-               </image>
-            </ImageView>
-         </left>
-      </BorderPane>
-   </right>
+<BorderPane fx:id="myBP" prefHeight="700.0" prefWidth="800.0" styleClass="backgroundPane" stylesheets="@Game.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GameView">
    <cursor>
       <Cursor fx:constant="DISAPPEAR" />
    </cursor>
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
+   <top>
+      <FlowPane fx:id="topPane" prefHeight="200.0" styleClass="pacman" stylesheets="@Game.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="scoreCounter" styleClass="ScoreCounter" stylesheets="@Game.css" text="Score: 999">
+               <FlowPane.margin>
+                  <Insets left="100.0" top="25.0" />
+               </FlowPane.margin>
+            </Label>
+            <Label styleClass="ScoreCounter" stylesheets="@Game.css" text="High Score: 999999">
+               <FlowPane.margin>
+                  <Insets left="125.0" top="25.0" />
+               </FlowPane.margin>
+            </Label>
+         </children>
+      </FlowPane>
+   </top>
+   <bottom>
+      <FlowPane stylesheets="@Game.css" BorderPane.alignment="CENTER">
+         <children>
+            <Arc fx:id="Life1" fill="DODGERBLUE" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="pacman" type="ROUND" />
+            <Arc fx:id="Life2" fill="DODGERBLUE" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="pacman" type="ROUND" />
+            <Arc fx:id="Life3" fill="DODGERBLUE" length="270.0" radiusX="16.0" radiusY="16.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="pacman" type="ROUND" />
+         </children>
+      </FlowPane>
+   </bottom>
+   <center>
+      <Pane fx:id="gamePane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="blinky" fitHeight="16.0" fitWidth="16.0" pickOnBounds="false" preserveRatio="false" />
+            <ImageView fx:id="pinky" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inky" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="clyde" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
+            <Arc fx:id="pacman" fill="#fcff1f" length="270.0" radiusX="8.0" radiusY="8.0" startAngle="35" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.0" type="ROUND" />
+         </children>
+      </Pane>
+   </center>
 </BorderPane>

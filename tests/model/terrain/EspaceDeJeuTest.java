@@ -1,6 +1,5 @@
 package model.terrain;
 
-import javafx.scene.image.WritableImage;
 import model.entites.*;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +15,6 @@ class EspaceDeJeuTest {
         Case[][] cases = EJ.getStage();
         assertNotNull(cases);
         drawGameStageToConsole(cases);
-        WritableImage bi = EJ.assemblePlayspace();
         System.out.print("test");
         //System.out.flush();
     }
@@ -52,7 +50,7 @@ class EspaceDeJeuTest {
                         if(e instanceof Fantome)
                             //toAdd = "\uD83D\uDC7B";
                             toAdd = "A";
-                        if(e instanceof PacmanObject)
+                        if(e instanceof Pacman)
                             toAdd = "C";
                     }
                     toWrite += toAdd;

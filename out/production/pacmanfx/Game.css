@@ -1,0 +1,35 @@
+.backgroundPane {
+    -fx-background-color: black;
+}
+
+.ScoreCounter {
+    -fx-font-family: "Bell MT 35px";
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(0, 183, 255);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: rgb(0, 174, 255);
+    -fx-border-width: 3px;
+}
+
+.playspace {
+    -fx-border-radius: 5px;
+    -fx-border-color: rgb(0, 174, 255);
+    -fx-border-width: 3px;
+}
+
+.pacman {
+    -fx-fill: yellow;
+}
+
+.GameOverText{
+        -fx-font-family: "Bauhaus 93 36px";
+        -fx-background-color: transparent;
+        -fx-text-fill: rgb(0, 183, 255);
+        -fx-background-radius: 6, 5;
+        -fx-background-insets: 0, 1;
+        -fx-padding: 5px;
+        -fx-border-width: 3px;
+}

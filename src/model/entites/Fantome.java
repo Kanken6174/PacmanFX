@@ -1,53 +1,116 @@
+/**
+ * @author Joseph Minchin
+ */
+
 package model.entites;
 
 import model.enums.FantomeNom;
 import model.enums.FantomeState;
-import model.graphics.Sprites.SpriteAnimable;
+import model.enums.Orients;
+import model.mouvement.ChasseComportement;
+import model.mouvement.ChasseType.BlinkyChasse;
+import model.mouvement.ChasseType.ClydeChasse;
+import model.mouvement.ChasseType.InkyChasse;
+import model.mouvement.ChasseType.PinkyChasse;
+import model.mouvement.Positions.PositionLogique;
+import model.mouvement.ScatterComportement;
 
-public class Fantome extends Entite{
+public class Fantome extends Entite implements Mangeable{
     public int spriteX = 441;   //définit la position du sprite sur la palette (X)
     public int spriteY = 49;    //début du sprite des fantomes  (Y)
 
-    private SpriteAnimable sa;
+    private PositionLogique scatterHome;
+    private PositionLogique target;
 
-    private FantomeNom identifier;     //définit spriteY et de quel fantome il s'agit
+    public Orients dircetionYeux; //La direction des yeux indique la direction du fantome
+
+    public FantomeNom identifier;     //définit spriteY et de quel fantome il s'agit
     private FantomeState fs = FantomeState.SCATTER;
 
-    private PacmanObject cible;
+    private Pacman p;
 
-    private ChasseComportement chasseComportement;
+    private ChasseComportement c;
+
+    private ScatterComportement s;
+
+    //private Orients wantedDirection = Orients.HAUT;
     /**
      *
      * @param fn l'id du fantome, de 0 à 3 (enum)
      */
+
+    public Fantome(FantomeNom fn, ScatterComportement scatType, Pacman target){
+        identifier = fn;
+        spriteY += 16*identifier.ordinal();    //0-3
+        p = target;
+        s = scatType;
+
+        c = setChasseType(fn);
+    }
 
     public Fantome(FantomeNom fn){
         identifier = fn;
         spriteY += 16*identifier.ordinal();    //0-3
     }
 
-    public Fantome(FantomeNom fn, PacmanObject target){
-        identifier = fn;
-        spriteY += 16*identifier.ordinal();    //0-3
-        cible = target;
-    }
-
     public FantomeNom getFantomeNom(){
         return identifier;
     }
 
-    public void setSpriteAnimable(SpriteAnimable sa){
-        this.sa = sa;
+
+    public ChasseComportement setChasseType(FantomeNom nomGhost) {
+        ChasseComportement typeChasse;
+
+        switch (nomGhost) {
+            case BLINKY:
+                typeChasse = new BlinkyChasse();
+                break;
+            case INKY:
+                typeChasse = new InkyChasse();
+                break;
+            case PINKY:
+                typeChasse = new PinkyChasse();
+                break;
+            case CLYDE:
+                typeChasse = new ClydeChasse();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + nomGhost);
+        }
+        return typeChasse;
     }
 
-    public SpriteAnimable getSpriteAnimable(){
-        return this.sa;
+    public void setDircetionYeux(Orients orientYeux){
+        dircetionYeux = orientYeux;
     }
 
+    public String getC() {
+        String typeChasse = null;
 
-    public double getXCible() { return cible.getPacX(); }
+        switch (identifier) {
+            case BLINKY:
+                typeChasse = "CHASSE";
+                break;
+            case INKY:
+                typeChasse = "CAPRICIEUX";
+                break;
+            case PINKY:
+                typeChasse = "AMBUSCADE";
+                break;
+            case CLYDE:
+                typeChasse = "ALEATOIRE";
+                break;
+        }
 
-    public double getYCible() { return cible.getPacY(); }
+        return typeChasse;
+    }
 
-    public int getAngleCible() { return cible.getPacAngle(); }
+    public void chasse() { c.chasse(p.getPositionLogique(), this); }
+
+    public void scatter() { s.scatter(scatterHome, this); }
+
+    @Override
+    public int getScore() {
+        return 200;
+    }
 }

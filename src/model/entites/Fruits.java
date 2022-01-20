@@ -1,13 +1,12 @@
 package model.entites;
 
-public class Fruits extends Entite{
-    public String type;
-    Type t;
-    int points;
-    int spriteX = 471; //Début des sprites des fruits
-    int spriteY = 33; //Ligne des sprites des fruits
+import model.entites.FruitsPac.Galboss;
 
-    private int getScore(Type t){
+public class Fruits extends Entite implements Mangeable{
+    public String type;
+    Type t = new Galboss();
+
+    public int getScore(){
         return t.getPoints();
     }
 }

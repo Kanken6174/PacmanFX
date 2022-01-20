@@ -1,31 +1,72 @@
+/**
+ * @author Yorick geoffre
+ * @brief Ce fichier contient les sources des entités
+ */
+
 package model.entites;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import model.enums.Orients;
+import model.fileData.SpriteAnchor;
 import model.mouvement.Positions.PositionGraphique;
 import model.mouvement.Positions.PositionLogique;
 
-public class Entite {
-    public int id;
-    protected PositionGraphique pos;
-    protected PositionLogique posL;
+/**
+ * Une Entite représente un élément dont l'état peut changer, mobile ou non, comme le Pacman, les fantomes ou les gommes...
+ */
+public abstract class Entite {
+    /**La position Graphique (offset -4 4) de l'entité sur le terrain*/
+    protected PositionGraphique pos = new PositionGraphique(0,0);
+    /**La position logique X et Y de la case contenant l'entité sur le terrain*/
+    protected PositionLogique posL = new PositionLogique(0,0);
+    /**La position logique X et Y de la case d'origine de l'entité*/
+    protected PositionLogique posHome = new PositionLogique(0,0);
 
-    public int getX(){
-        return (int) pos.getX();
+    private final BooleanProperty Visible = new SimpleBooleanProperty();
+        public boolean isVisible() {return Visible.get();}
+        public void setVisible(boolean value){this.Visible.set(value);}
+        public BooleanProperty isVisibleProperty(){return Visible;}
+
+    /**Informations nécessaires pour récupérer le sprite de cette entité*/
+    protected SpriteAnchor sp;
+
+    public void setSpriteAnchor(SpriteAnchor sp){
+        this.sp = sp;
     }
 
-    public float getY(){
-        return pos.getY();
+    public SpriteAnchor getSpriteAnchor(){
+        return this.sp;
+    }
+
+    public double getGfxX(){
+        return (int) pos.getx();
+    }
+
+    public double getGfxY(){
+        return pos.gety();
     }
 
     public Orients getOrient(){
         return posL.getOrient();
     }
 
-    public int getLogicX(){
-        return posL.getCasex();
+    public int getLogicRow(){
+        return posL.getCaseRow();
     }
 
-    public int getLogicY(){
-        return posL.getCaseY();
+    public void setLogicRow(int val) { posL.setCaseRow(val); }
+
+    public int getLogicColumn(){
+        return posL.getCaseColumn();
     }
+
+    public void setLogicColumn(int val) { posL.setCaseColumn(val); }
+
+    public void setHome(int row, int col){posHome.setCaseRow(row); posHome.setCaseColumn(col);}
+    public PositionLogique getHome(){return this.posHome;}
+
+    public PositionGraphique getPositionGraphique() {return this.pos;}
+
+    public PositionLogique getPositionLogique() {return this.posL;}
 }
