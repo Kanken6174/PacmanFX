@@ -90,8 +90,12 @@ public class DeplaceurPacMan extends Deplaceur {
     }
 
     @Override
+    /**
+     * Va gérer les intéractions du pacman avec sa nouvelle case, spécifiquement sa mort ou un mangeable mangé
+     */
     protected void resolveEntityStates(Case locale) {
-        if(locale.hasStaticEntities()){
+        if(locale.hasStaticEntities() && locale.getStaticEntite().isVisible()){
+            locale.getStaticEntite().setVisible(false);
             super.em.setLocalEvent(new ScoreObjectEatenEvent((Mangeable) locale.getStaticEntite()));
             super.em.sendEvent();
             if(locale.getStaticEntite() instanceof Gomme) {
@@ -102,7 +106,7 @@ public class DeplaceurPacMan extends Deplaceur {
                     return;
                 }
             }
-            locale.setEntiteStatique(null);
+            locale.getStaticEntite().setVisible(false);
         }
         if(locale.hasGhosts()){
             super.em.setLocalEvent(new PacmanDeathEvent());

@@ -5,6 +5,8 @@
 
 package model.entites;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import model.enums.Orients;
 import model.fileData.SpriteAnchor;
 import model.mouvement.Positions.PositionGraphique;
@@ -20,6 +22,11 @@ public abstract class Entite {
     protected PositionLogique posL = new PositionLogique(0,0);
     /**La position logique X et Y de la case d'origine de l'entité*/
     protected PositionLogique posHome = new PositionLogique(0,0);
+
+    private final BooleanProperty Visible = new SimpleBooleanProperty();
+        public boolean isVisible() {return Visible.get();}
+        public void setVisible(boolean value){this.Visible.set(value);}
+        public BooleanProperty isVisibleProperty(){return Visible;}
 
     /**Informations nécessaires pour récupérer le sprite de cette entité*/
     protected SpriteAnchor sp;

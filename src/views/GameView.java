@@ -5,7 +5,10 @@
 package views;
 
 import javafx.application.Platform;
-import javafx.beans.binding.*;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.binding.IntegerBinding;
+import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -178,13 +181,18 @@ public class GameView implements EventListener {
                     Entite e = case1.getStaticEntite();
                     Circle c = new Circle();
                     c.setFill(Color.YELLOW);
-                    IntegerBinding xpos = e.getPositionLogique().CaseColProperty().multiply(scaleFactor).add(61);
-                    IntegerBinding ypos = e.getPositionLogique().CaseRowProperty().multiply(scaleFactor).add(71);
+                    IntegerBinding xpos = e.getPositionLogique().CaseColProperty().multiply(scaleFactor).add(62);
+                    IntegerBinding ypos = e.getPositionLogique().CaseRowProperty().multiply(scaleFactor).add(72);
+                    c.visibleProperty().bind(e.isVisibleProperty());
+                    e.setVisible(true);
                     c.centerXProperty().bind(xpos);
                     c.centerYProperty().bind(ypos);
-                    c.setRadius(4);
+                    c.setRadius(2);
                     if(e instanceof Fruits)
                         c.setFill(Color.RED);
+
+                    if(e instanceof SuperGomme)
+                        c.setRadius(4);
 
                     gamePane.getChildren().add(c);
                 }
@@ -219,7 +227,8 @@ public class GameView implements EventListener {
     public void bindFantome(EntiteVueAnimable s, GestionnaireBoucles gb){
         Fantome f = (Fantome) s.getSource();
         ObjectProperty<WritableImage> pr = s.getSpriteProperty();
-        ImageView target  = getFantomeFromNom(f.getFantomeNom());
+        ImageView target  = new ImageView();
+        gamePane.getChildren().add(target);
         target.setLayoutX(terrain.getLayoutX());
         target.setLayoutY(terrain.getLayoutY());
         target.imageProperty().bind(pr);
