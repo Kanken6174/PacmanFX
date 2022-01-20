@@ -34,6 +34,11 @@ public class Case {
     /**L'entité statique actuellement contenue dans cette case*/
     private Entite EntiteStatique = null;
 
+    /**Le constructeur de la case
+     *
+     * @param X sa position X dans le tableau du terrain
+     * @param Y sa position Y dans le tableau du terrain
+     */
     public Case(int X, int Y) {
         pl = new PositionLogique(X,Y);
     }
