@@ -9,10 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.stage.Stage;
 import model.fileData.LevelFile;
@@ -34,6 +31,7 @@ public class MenuView{
     private ListView<String> ScoreList;
 
     @FXML private Label BoardTitle;
+    @FXML private TextArea pseudoBox;
 
     private ListProperty<LevelFile> levels = new SimpleListProperty<LevelFile>();
 
@@ -92,7 +90,7 @@ public class MenuView{
 
         stage.show();
         LevelFile toLoad = levelsList.getValue();
-        GameController gm = new GameController(view, toLoad);
+        GameController gm = new GameController(view, toLoad, pseudoBox.getText());
         root.setOnKeyPressed(gm);   //ça devrait nous éviter d'avoir à demander le focus à chaque fois
         root.requestFocus();
     }
